@@ -69,16 +69,6 @@
             box-shadow: 0 0 20px rgba(229, 9, 20, 0.6);
         }
 
-        #particles-canvas {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-            pointer-events: none;
-        }
-
         ::-webkit-scrollbar {
             width: 6px;
             height: 6px;
@@ -98,13 +88,6 @@
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(15px); }
             to { opacity: 1; transform: translateY(0); }
-        }
-
-        .floating-action {
-            transition: all 0.3s ease;
-        }
-        .floating-action:hover {
-            transform: scale(1.1) translateY(-2px);
         }
     </style>
 </head>
@@ -134,7 +117,7 @@
         <span>⚡ GRAND LAUNCH CELEBRATION: USE CODE <span class="bg-black/30 px-2 py-0.5 rounded text-white">SCARLEX10</span> FOR 10% OFF!</span>
     </div>
 
-    <!-- Navigation Bar -->
+    <!-- Navigation Bar (Hidden Admin Button to Protect Against Buyers) -->
     <nav class="sticky top-0 z-40 bg-bgMain/90 backdrop-blur-md border-b border-zinc-900 px-4 lg:px-12 py-4 flex items-center justify-between">
         <a href="#" onclick="navigateTo('home')" class="flex items-center gap-3 group">
             <div class="w-10 h-10 bg-brand rounded-lg flex items-center justify-center text-white font-bold text-lg tracking-tighter btn-glow transition-all">
@@ -146,23 +129,24 @@
             </div>
         </a>
 
-        <div class="hidden lg:flex items-center gap-8 text-sm font-medium tracking-wide uppercase font-montserrat">
+        <div class="flex items-center gap-8 text-sm font-medium tracking-wide uppercase font-montserrat">
             <a href="#" onclick="navigateTo('home')" class="hover:text-brand transition-colors text-white">Home</a>
             <a href="#" onclick="navigateTo('shop')" class="hover:text-brand transition-colors text-textMuted">Shop Collection</a>
             <a href="#" onclick="navigateTo('about')" class="hover:text-brand transition-colors text-textMuted">Our Craft</a>
             <a href="#" onclick="navigateTo('contact')" class="hover:text-brand transition-colors text-textMuted">Contact</a>
-            <a href="#" onclick="navigateTo('admin')" class="text-zinc-600 hover:text-brand transition-colors text-xs"><i class="fa-solid fa-lock mr-1"></i>Admin</a>
-        </div>
-
-        <div class="flex items-center gap-4">
-            <button onclick="navigateTo('admin')" class="bg-zinc-900/80 border border-zinc-800 text-xs px-4 py-2 rounded-full hover:bg-brand transition-all font-montserrat uppercase tracking-wider text-white">
-                <i class="fa-solid fa-gauge mr-1"></i> Open Dashboard
-            </button>
         </div>
     </nav>
 
     <!-- Core App Mount Point -->
     <main id="app-view-container" class="min-h-screen relative"></main>
+
+    <!-- Simple Hidden Admin Portal Entry Point in Footer Layout -->
+    <footer class="bg-black py-8 border-t border-zinc-950 px-4 text-center text-zinc-600 text-xs font-mono">
+        <div>&copy; 2026 SCARLEX VENTURES. All Rights Reserved.</div>
+        <div class="mt-2 text-[10px] tracking-wide">
+            Designed and Developed by Bishal Sarma. <button onclick="triggerAdminAuth()" class="hover:text-brand transition-colors ml-1"><i class="fa-solid fa-lock text-[9px]"></i> Portal</button>
+        </div>
+    </footer>
 
     <!-- VIEWS / TEMPLATES -->
     <template id="view-home">
@@ -184,7 +168,7 @@
                 </div>
             </section>
 
-            <!-- Dynamically Loaded Dynamic Showcase Section -->
+            <!-- Dynamic Showcase Section -->
             <section class="py-20 px-4 max-w-7xl mx-auto">
                 <div class="flex flex-col items-center mb-12 text-center">
                     <h2 class="text-4xl md:text-6xl heading-premium tracking-wider">LIVE DESIGNS CATALOG</h2>
@@ -209,8 +193,25 @@
         <div class="fade-in-view max-w-4xl mx-auto px-4 py-16">
             <h1 class="text-4xl md:text-6xl heading-premium text-center tracking-wider mb-2">SCARLEX <span class="text-brand">VENTURES</span></h1>
             <p class="text-center font-montserrat text-xs text-textMuted tracking-[0.3em] uppercase mb-12">THE GENESIS OF AUTOMOTIVE LUXURY WALL ART</p>
-            <div class="prose prose-invert max-w-none text-zinc-300 font-light space-y-6 text-sm md:text-base leading-relaxed">
+            
+            <div class="prose prose-invert max-w-none text-zinc-300 font-light space-y-8 text-sm md:text-base leading-relaxed">
                 <p>Founded and owned by <strong>Bishal Sarma</strong>, our signature brand emerged from a simple realization: standard automotive posters lack the tangible depth and dynamic shadows that express genuine engineering excellence.</p>
+                
+                <!-- Leadership Board Section -->
+                <div class="border-t border-b border-zinc-900 py-6 my-8">
+                    <h3 class="text-sm font-montserrat uppercase text-zinc-400 tracking-widest mb-4">Leadership & Strategy</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="bg-zinc-900/30 p-4 border border-zinc-900 rounded-lg">
+                            <span class="text-white font-semibold font-montserrat block">Bishal Sarma</span>
+                            <span class="text-xs text-brand uppercase font-mono tracking-wider">Owner & Head Designer</span>
+                        </div>
+                        <div class="bg-zinc-900/30 p-4 border border-zinc-900 rounded-lg">
+                            <span class="text-white font-semibold font-montserrat block">Nilabh Jyoti Sarma</span>
+                            <span class="text-xs text-brand uppercase font-mono tracking-wider">Co-Founder & Head of Social Media</span>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="p-6 bg-zinc-900/40 border border-zinc-800 rounded-xl">
                     <h4 class="text-brand font-montserrat font-semibold uppercase text-xs tracking-wider mb-2">Corporate Transparency</h4>
                     <p class="text-xs text-zinc-400 font-light">SCARLEX VENTURES operates legally compliant under registered government authorization parameters (GSTIN Reg: <strong>18NYCPS5069C1ZX</strong>).</p>
@@ -222,11 +223,37 @@
     <template id="view-contact">
         <div class="fade-in-view max-w-4xl mx-auto px-4 py-16 text-center">
             <h1 class="text-4xl md:text-6xl heading-premium tracking-wider mb-4">CONNECT WITH <span class="text-brand">THE GARAGE</span></h1>
-            <p class="text-sm text-textMuted font-light mb-8 max-w-lg mx-auto">Have a question regarding custom specifications? Reach out directly and our designer Bishal Sarma will connect shortly.</p>
+            <p class="text-sm text-textMuted font-light mb-8 max-w-lg mx-auto">Have a question regarding custom specifications? Reach out directly and our design team will connect shortly.</p>
             <div class="space-y-4 max-w-md mx-auto text-left bg-bgCard p-6 border border-zinc-800 rounded-xl">
                 <div><span class="text-xs text-textMuted uppercase block">Email</span><span class="text-white text-sm">scarlexventures@gmail.com</span></div>
                 <div><span class="text-xs text-textMuted uppercase block">WhatsApp / Phone</span><span class="text-white text-sm">+91 8402906422</span></div>
                 <div><span class="text-xs text-textMuted uppercase block">GSTIN Identifier</span><span class="text-white text-sm font-mono">18NYCPS5069C1ZX</span></div>
+            </div>
+        </div>
+    </template>
+
+    <!-- GATEWAY PASSWORD ENTRY PROMPT VIEW -->
+    <template id="view-admin-auth">
+        <div class="fade-in-view max-w-md mx-auto px-4 py-24 text-center">
+            <div class="bg-bgCard border border-zinc-800 p-8 rounded-xl shadow-xl">
+                <div class="w-12 h-12 bg-brand/10 border border-brand/30 rounded-full flex items-center justify-center text-brand text-lg mx-auto mb-4">
+                    <i class="fa-solid fa-shield-halved"></i>
+                </div>
+                <h2 class="text-xl font-bold font-montserrat text-white uppercase tracking-wider mb-1">Secure Operations Entry</h2>
+                <p class="text-xs text-textMuted mb-6">Enter system administrator authorization credentials to proceed.</p>
+                
+                <div class="space-y-4 text-left">
+                    <div>
+                        <label class="block text-xs text-zinc-400 mb-1">Access Passcode</label>
+                        <input type="password" id="auth-pass-input" placeholder="••••••••••••" class="w-full bg-zinc-900 border border-zinc-800 text-white rounded p-2.5 text-center tracking-widest text-sm focus:outline-none focus:border-brand">
+                    </div>
+                    <button onclick="verifyAdminPasscode()" class="w-full bg-brand hover:bg-brandHover text-white py-2.5 rounded text-xs font-montserrat font-bold uppercase tracking-widest transition-all">
+                        Authenticate Console
+                    </button>
+                    <button onclick="navigateTo('home')" class="w-full text-center text-zinc-600 hover:text-zinc-400 text-xs mt-2 block transition-colors">
+                        Return to Storefront
+                    </button>
+                </div>
             </div>
         </div>
     </template>
@@ -239,8 +266,8 @@
                     <h1 class="text-3xl font-bold tracking-tight text-white uppercase font-montserrat">SCARLEX MANAGEMENT <span class="text-brand">DASHBOARD</span></h1>
                     <p class="text-xs text-textMuted font-mono">ACTIVE OPERATIONS OVERVIEW - PRODUCT INVENTORY MANAGEMENT STATION</p>
                 </div>
-                <button onclick="navigateTo('home')" class="bg-zinc-900 border border-zinc-800 text-xs px-4 py-2 rounded font-semibold text-zinc-400 hover:text-white transition-all uppercase tracking-wider">
-                    Exit Command Station
+                <button onclick="logoutAdmin()" class="bg-zinc-900 border border-zinc-800 text-xs px-4 py-2 rounded font-semibold text-zinc-400 hover:text-white transition-all uppercase tracking-wider">
+                    Lock & Exit Console
                 </button>
             </div>
 
@@ -316,7 +343,10 @@
 
     <!-- CORE BUSINESS INTERACTION ENGINE SCRIPT -->
     <script>
-        // Database Core State (Saved to browser storage so your additions persist immediately!)
+        // Track console validation status state variables
+        let isAdminAuthenticated = false;
+
+        // Database Core State 
         let currentProducts = JSON.parse(localStorage.getItem('scarlex_catalog')) || [
             {
                 id: "p1",
@@ -342,7 +372,35 @@
             localStorage.setItem('scarlex_catalog', JSON.stringify(currentProducts));
         }
 
+        function triggerAdminAuth() {
+            if (isAdminAuthenticated) {
+                navigateTo('admin');
+            } else {
+                navigateTo('admin-auth');
+            }
+        }
+
+        function verifyAdminPasscode() {
+            const secret = document.getElementById('auth-pass-input').value;
+            if (secret === "SCARLEX2026") {
+                isAdminAuthenticated = true;
+                navigateTo('admin');
+            } else {
+                alert('Invalid Security Passcode Profile Credentials Refused.');
+            }
+        }
+
+        function logoutAdmin() {
+            isAdminAuthenticated = false;
+            navigateTo('home');
+        }
+
         function navigateTo(viewId) {
+            // Guard view block access routing permissions manually
+            if (viewId === 'admin' && !isAdminAuthenticated) {
+                viewId = 'admin-auth';
+            }
+
             const container = document.getElementById('app-view-container');
             const template = document.getElementById(`view-${viewId}`);
             if (!template) return;
@@ -440,10 +498,9 @@
                 mrp: mrp,
                 sellingPrice: selling,
                 specs: specs,
-                image: "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?q=80&w=600&auto=format&fit=crop" // Default image fallback
+                image: "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?q=80&w=600&auto=format&fit=crop"
             };
 
-            // File upload selector logic
             if (imageFileInput.files && imageFileInput.files[0]) {
                 const reader = new FileReader();
                 reader.onload = function(e) {
