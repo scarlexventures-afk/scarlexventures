@@ -2,571 +2,125 @@
 <html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>SCARLEX VENTURES | Premium 3D Frame Car Collectibles</title>
-    <meta name="description" content="Own the Legend. Handcrafted premium 3D framed die-cast car displays designed for collectors and automotive enthusiasts. Built with passion by Team Scarlex.">
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SCARLEX VENTURES | Full System</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        brand: '#E50914',
-                        brandHover: '#FF3B3B',
-                        bgMain: '#0A0A0A',
-                        bgCard: '#161616',
-                        textMuted: '#B3B3B3',
-                        googleBg: '#4285F4',
-                        fbBg: '#1877F2'
-                    },
-                    fontFamily: {
-                        heading: ['Bebas Neue', 'sans-serif'],
-                        sans: ['Poppins', 'sans-serif'],
-                        montserrat: ['Montserrat', 'sans-serif']
-                    }
-                }
-            }
-        }
-    </script>
-    
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat&family=Poppins&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
     <style>
-        body {
-            background-color: #050505;
-            color: #FFFFFF;
-            font-family: 'Poppins', sans-serif;
-            overflow-x: hidden;
-            -webkit-tap-highlight-color: transparent;
-        }
-        .heading-premium {
-            font-family: 'Bebas Neue', sans-serif;
-            letter-spacing: 0.1em;
-        }
-        .glass-card {
-            background: rgba(22, 22, 22, 0.7);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        @media (min-width: 1024px) {
-            .glass-card:hover {
-                border-color: rgba(229, 9, 20, 0.4);
-                box-shadow: 0 0 30px rgba(229, 9, 20, 0.15);
-                transform: translateY(-4px);
-            }
-        }
-        ::-webkit-scrollbar { width: 4px; }
-        ::-webkit-scrollbar-thumb { background: #E50914; border-radius: 2px; }
-        .fade-in-view { animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        body { background-color: #050505; color: #FFFFFF; font-family: 'Poppins', sans-serif; }
+        .glass-card { background: rgba(22, 22, 22, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.05); }
+        .heading-premium { font-family: 'Bebas Neue', sans-serif; letter-spacing: 0.1em; }
+        .fade-in-view { animation: fadeIn 0.4s ease-out forwards; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
-
-        .simulator-mobile {
-            max-width: 410px;
-            margin: 2rem auto;
-            border: 12px solid #1c1c1e;
-            border-radius: 32px;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
-            height: 840px;
-            overflow-y: auto;
-            position: relative;
-        }
     </style>
 </head>
-<body class="antialiased flex flex-col min-h-screen">
+<body class="antialiased">
 
-    <div class="bg-brand text-white text-center py-1.5 px-4 text-xs font-montserrat uppercase font-bold tracking-[0.2em] relative z-[10001] shadow-md flex items-center justify-center gap-2">
-        <span>WEBSITE IS LIVE 🔥</span>
-    </div>
-
-    <div class="bg-zinc-950 border-b border-zinc-900 px-4 py-2 flex items-center justify-between gap-4 text-xs font-mono relative z-[10000]">
-        <div class="flex items-center gap-2">
-            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-            <span class="text-zinc-400 text-[11px] uppercase tracking-wider hidden sm:inline">Viewport Simulator Node:</span>
-            <span id="simulator-status-badge" class="text-white bg-zinc-900 px-2 py-0.5 rounded text-[10px]">Desktop View</span>
+    <nav class="sticky top-0 z-40 bg-black/90 border-b border-zinc-900 p-4 flex justify-between items-center">
+        <div class="text-2xl heading-premium">SCARLEX <span class="text-red-600">VENTURES</span></div>
+        <div class="space-x-6 text-xs uppercase font-bold">
+            <button onclick="navigateTo('home')" class="hover:text-red-500">Home</button>
+            <button onclick="navigateTo('shop')" class="hover:text-red-500">Shop</button>
+            <button onclick="navigateTo('admin')" class="hover:text-red-500">Admin</button>
         </div>
-        <div class="flex gap-1.5 bg-zinc-900 p-0.5 rounded border border-zinc-800">
-            <button onclick="switchViewSimulatorMode('desktop')" id="sim-btn-desktop" class="bg-brand text-white px-3 py-1 rounded text-[10px] uppercase font-bold tracking-wide transition-all">Desktop Mode</button>
-            <button onclick="switchViewSimulatorMode('mobile')" id="sim-btn-mobile" class="text-zinc-400 hover:text-white px-3 py-1 rounded text-[10px] uppercase font-bold tracking-wide transition-all">Mobile View</button>
-        </div>
-    </div>
+    </nav>
 
-    <div id="viewport-canvas-wrapper" class="w-full flex-grow flex flex-col transition-all duration-300">
-
-        <div id="loading-screen" class="fixed inset-0 z-[9999] bg-bgMain flex flex-col justify-center items-center transition-opacity duration-500">
-            <div class="relative flex flex-col items-center px-4 text-center">
-                <div class="text-3xl md:text-6xl heading-premium text-white tracking-widest mb-4">
-                    SCARLEX<span class="text-brand">VENTURES</span>
-                </div>
-                <div class="w-36 h-[2px] bg-zinc-800 relative overflow-hidden rounded-full">
-                    <div class="absolute h-full w-1/3 bg-brand top-0 left-0 animate-[loading_1.2s_infinite_linear]"></div>
-                </div>
-            </div>
-        </div>
-
-        <nav class="sticky top-0 z-40 bg-bgMain/95 backdrop-blur-md border-b border-zinc-900 px-4 lg:px-12 py-3.5 flex items-center justify-between">
-            <a href="#" onclick="navigateTo('home')" class="flex items-center gap-2.5">
-                <div class="w-9 h-9 bg-brand rounded flex items-center justify-center text-white text-base"><i class="fa-solid fa-car-side"></i></div>
-                <div>
-                    <span class="text-xl heading-premium text-white tracking-wider block leading-none">SCARLEX <span class="text-brand">VENTURES</span></span>
-                    <span class="text-[8px] font-montserrat text-textMuted tracking-widest uppercase block mt-0.5">3D Frame Collectibles</span>
-                </div>
-            </a>
-
-            <div class="hidden lg:flex items-center gap-8 text-xs font-medium tracking-wide uppercase font-montserrat">
-                <a href="#" onclick="navigateTo('home')" class="hover:text-brand transition-colors text-white">Home</a>
-                <a href="#" onclick="navigateTo('shop')" class="hover:text-brand transition-colors text-textMuted">Shop Collection</a>
-                <a href="#" onclick="navigateTo('about')" class="hover:text-brand transition-colors text-textMuted">About</a>
-                <a href="#" onclick="navigateTo('contact')" class="hover:text-brand transition-colors text-textMuted">Contact</a>
-            </div>
-
-            <div class="flex items-center gap-3">
-                <a href="https://www.instagram.com/scarlex_garage?igsh=c2xhZXZ0d3pqcm04" target="_blank" class="text-zinc-400 hover:text-brand transition-colors text-sm"><i class="fa-brands fa-instagram"></i></a>
-                <a href="https://chat.whatsapp.com/LOyuL7Cfv6Z5hhNf659Tvg" target="_blank" class="text-zinc-400 hover:text-emerald-500 transition-colors text-sm"><i class="fa-brands fa-whatsapp"></i></a>
-                <span class="w-[1px] h-4 bg-zinc-800 hidden sm:inline-block"></span>
-                <button onclick="toggleAuthModal()" id="nav-auth-btn" class="bg-zinc-900 border border-zinc-800 text-[11px] px-3.5 py-2 rounded font-montserrat uppercase tracking-wider text-white flex items-center gap-1.5 transition-all">
-                    <i class="fa-solid fa-user-circle text-sm text-zinc-400"></i> <span id="nav-auth-text">Sign In</span>
-                </button>
-                <button onclick="toggleMobileNavMenu()" class="lg:hidden text-white p-2 text-xl"><i class="fa-solid fa-bars-staggered" id="mobile-menu-icon"></i></button>
-            </div>
-        </nav>
-
-        <div id="mobile-nav-drawer" class="fixed inset-x-0 top-[57px] bottom-0 bg-bgMain/98 z-30 transform -translate-x-full transition-transform duration-300 border-t border-zinc-900 lg:hidden flex flex-col p-6 space-y-4 font-montserrat text-sm uppercase tracking-widest">
-            <a href="#" onclick="handleMobileLink('home')" class="py-3 border-b border-zinc-900 text-white flex justify-between items-center"><span>Home</span><i class="fa-solid fa-chevron-right text-xs text-zinc-700"></i></a>
-            <a href="#" onclick="handleMobileLink('shop')" class="py-3 border-b border-zinc-900 text-zinc-300 flex justify-between items-center"><span>Shop Collection</span><i class="fa-solid fa-chevron-right text-xs text-zinc-700"></i></a>
-            <a href="#" onclick="handleMobileLink('about')" class="py-3 border-b border-zinc-900 text-zinc-300 flex justify-between items-center"><span>About</span><i class="fa-solid fa-chevron-right text-xs text-zinc-700"></i></a>
-            <a href="#" onclick="handleMobileLink('contact')" class="py-3 text-zinc-300 flex justify-between items-center"><span>Contact</span><i class="fa-solid fa-chevron-right text-xs text-zinc-700"></i></a>
-        </div>
-
-        <main id="app-view-container" class="flex-grow min-h-[calc(100vh-180px)] relative bg-bgMain"></main>
-
-        <footer class="bg-black py-8 border-t border-zinc-950 px-4 text-center text-zinc-600 text-xs font-mono">
-            <div>&copy; 2026 SCARLEX VENTURES. All Rights Reserved.</div>
-            <div class="mt-2 text-[10px] tracking-wide text-zinc-500">
-                Designed and Developed by <strong class="text-zinc-400">TEAM SCARLEX</strong>. <button onclick="triggerAdminAuth()" class="hover:text-brand transition-colors ml-1 text-zinc-600"><i class="fa-solid fa-lock text-[9px]"></i> Portal Operations</button>
-            </div>
-        </footer>
-
-    </div>
-
-    <div id="auth-modal" class="fixed inset-0 bg-black/80 z-[100] backdrop-blur-sm hidden flex items-center justify-center p-4">
-        <div class="bg-bgCard border border-zinc-800 w-full max-w-sm rounded-xl p-5 relative fade-in-view">
-            <button onclick="toggleAuthModal()" class="absolute top-4 right-4 text-zinc-500 hover:text-white p-1 text-sm"><i class="fa-solid fa-xmark"></i></button>
-            <div id="auth-logged-out-state">
-                <h3 class="text-base font-bold font-montserrat uppercase tracking-wider mb-1" id="auth-title">Customer Login</h3>
-                <p class="text-[11px] text-textMuted mb-4">Securely access your account vault through traditional or federated channels.</p>
-                
-                <div class="grid grid-cols-2 gap-2 mb-4">
-                    <button onclick="executeSocialMockAuthentication('Google')" class="bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 p-2 rounded text-[10px] font-semibold flex items-center justify-center gap-1.5 text-white transition-colors">
-                        <i class="fa-brands fa-google text-googleBg"></i> Google
-                    </button>
-                    <button onclick="executeSocialMockAuthentication('Facebook')" class="bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 p-2 rounded text-[10px] font-semibold flex items-center justify-center gap-1.5 text-white transition-colors">
-                        <i class="fa-brands fa-facebook text-fbBg"></i> Facebook
-                    </button>
-                </div>
-
-                <div class="relative flex py-2 items-center mb-2">
-                    <div class="flex-grow border-t border-zinc-900"></div>
-                    <span class="flex-shrink mx-3 text-[9px] text-zinc-600 uppercase font-mono tracking-wider">Or Traditional Credentials</span>
-                    <div class="flex-grow border-t border-zinc-900"></div>
-                </div>
-
-                <div class="space-y-3 text-xs">
-                    <div>
-                        <label class="block text-zinc-400 mb-1">Email Address</label>
-                        <input type="email" id="auth-email-input" class="w-full bg-zinc-900 border border-zinc-800 text-white p-2.5 rounded focus:outline-none focus:border-brand">
-                    </div>
-                    <div>
-                        <label class="block text-zinc-400 mb-1">Password</label>
-                        <input type="password" id="auth-pass-input" class="w-full bg-zinc-900 border border-zinc-800 text-white p-2.5 rounded focus:outline-none focus:border-brand">
-                    </div>
-                    <button onclick="processMockAuthentication()" class="w-full bg-brand text-white py-2.5 rounded font-montserrat font-bold uppercase tracking-wider mt-2">Continue</button>
-                    <p class="text-[10px] text-center text-zinc-500 mt-2">Don't have an account? <a href="#" class="text-brand hover:underline" onclick="toggleAuthMode()">Sign up here</a></p>
-                </div>
-            </div>
-            <div id="auth-logged-in-state" class="hidden text-center py-2">
-                <i class="fa-solid fa-circle-check text-brand text-3xl mb-2"></i>
-                <h3 class="text-sm font-bold font-montserrat uppercase tracking-wider text-white">Account Verified</h3>
-                <p class="text-[11px] text-zinc-500 mb-4" id="auth-user-email"></p>
-                <button onclick="executeAccountLogout()" class="w-full bg-zinc-900 hover:bg-zinc-800 text-zinc-400 hover:text-white py-2 rounded text-xs uppercase tracking-wider border border-zinc-800 font-medium">Disconnect Session</button>
-            </div>
-        </div>
-    </div>
+    <main id="app-view-container" class="p-6"></main>
 
     <template id="view-home">
-        <div class="fade-in-view">
-            <section class="relative min-h-[75vh] flex items-center justify-center bg-gradient-to-b from-neutral-950 to-bgMain border-b border-zinc-900 px-4 py-12 text-center">
-                <div class="max-w-4xl mx-auto flex flex-col items-center">
-                    <span class="text-brand font-montserrat text-[10px] tracking-[0.4em] font-semibold mb-3">SCARLEX GARAGE EXCLUSIVE</span>
-                    <h1 class="text-4xl sm:text-6xl md:text-8xl heading-premium text-white mb-4 leading-tight">PREMIUM 3D FRAME<br><span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-zinc-400 to-brand">COLLECTIBLES</span></h1>
-                    <p class="font-montserrat text-zinc-400 text-xs sm:text-sm tracking-wide max-w-xl mb-6 font-light px-2">Handcrafted luxury automotive wall art capturing iconic legends inside deep shadow-box frames.</p>
-                    
-                    <div class="flex flex-wrap gap-3 justify-center mb-8">
-                        <button onclick="navigateTo('shop')" class="bg-brand text-white px-8 py-3.5 rounded font-montserrat font-bold text-xs uppercase tracking-widest">Shop Collection</button>
-                        <a href="https://chat.whatsapp.com/LOyuL7Cfv6Z5hhNf659Tvg" target="_blank" class="bg-zinc-900 border border-zinc-800 text-white px-6 py-3.5 rounded font-montserrat font-bold text-xs uppercase tracking-widest flex items-center gap-2 hover:bg-zinc-800 transition-colors"><i class="fa-brands fa-whatsapp text-emerald-500 text-sm"></i> Join Community</a>
-                    </div>
-                </div>
-            </section>
-            <section class="py-16 px-4 max-w-7xl mx-auto">
-                <div class="flex flex-col items-center mb-10 text-center">
-                    <h2 class="text-3xl md:text-5xl heading-premium tracking-wider">LIVE DESIGNS CATALOG</h2>
-                    <div class="w-12 h-[3px] bg-brand mt-2 rounded"></div>
-                </div>
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6" id="home-featured-products-grid"></div>
-            </section>
+        <div class="text-center py-20">
+            <h1 class="text-5xl heading-premium mb-6">PREMIUM 3D FRAMES</h1>
+            <div id="home-featured-products-grid" class="grid grid-cols-1 md:grid-cols-3 gap-6"></div>
         </div>
     </template>
 
     <template id="view-shop">
-        <div class="fade-in-view max-w-7xl mx-auto px-4 py-10">
-            <div class="mb-10 pb-5 border-b border-zinc-900">
-                <h1 class="text-3xl md:text-5xl heading-premium tracking-wider">THE ARTISAN <span class="text-brand">CATALOG</span></h1>
-            </div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" id="shop-catalog-grid"></div>
-        </div>
-    </template>
-
-    <template id="view-about">
-        <div class="fade-in-view max-w-3xl mx-auto px-4 py-12">
-            <h1 class="text-3xl md:text-5xl heading-premium text-center tracking-wider mb-2">ABOUT <span class="text-brand">SCARLEX</span></h1>
-            <p class="text-center font-montserrat text-[10px] text-textMuted tracking-[0.3em] uppercase mb-10">THE GENESIS OF AUTOMOTIVE LUXURY WALL ART</p>
-            <div class="space-y-6 text-zinc-300 font-light text-xs sm:text-sm leading-relaxed">
-                <p>Preserving automotive history in three dimensions. By combining premium physical precision scales with breathtaking depth curation, we turn empty spaces into high-fidelity monuments honoring the world's most legendary machines.</p>
-                <div class="border-t border-b border-zinc-900 py-6 my-6">
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div class="bg-zinc-900/30 p-4 border border-zinc-800 rounded shadow-md">
-                            <span class="text-white font-semibold font-montserrat text-sm block">Bishal Sarma</span>
-                            <span class="text-[9px] text-brand uppercase font-mono tracking-wider block mt-0.5">Founder & Owner</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </template>
-
-    <template id="view-contact">
-        <div class="fade-in-view max-w-2xl mx-auto px-4 py-12 text-center">
-            <h1 class="text-3xl md:text-5xl heading-premium mb-4">CONNECT WITH <span class="text-brand">THE GARAGE</span></h1>
-            <div class="space-y-4 max-w-sm mx-auto text-left bg-bgCard p-5 border border-zinc-800 rounded-lg text-xs shadow-xl">
-                <div><span class="text-[10px] text-textMuted uppercase block">Email Channel</span><span class="text-white font-medium">scarlexventures@gmail.com</span></div>
-            </div>
-        </div>
-    </template>
-
-    <template id="view-admin-auth">
-        <div class="fade-in-view max-w-sm mx-auto px-4 py-24 text-center">
-            <div class="bg-bgCard border border-zinc-800 p-6 rounded-lg shadow-xl">
-                <h2 class="text-sm font-bold font-montserrat text-white uppercase tracking-wider mb-1">System Authorization Entry</h2>
-                <div class="space-y-3 text-left text-xs">
-                    <input type="password" id="auth-pass-admin-field" placeholder="••••••••••••" class="w-full bg-zinc-900 border border-zinc-800 text-white p-2.5 rounded text-center tracking-widest focus:outline-none focus:border-brand">
-                    <button onclick="verifyAdminPasscode()" class="w-full bg-brand text-white py-2.5 rounded font-montserrat font-bold uppercase text-xs tracking-wider">Unlock System Panels</button>
-                </div>
-            </div>
+        <div class="max-w-6xl mx-auto">
+            <h1 class="text-3xl font-bold mb-8">CATALOG</h1>
+            <div id="shop-catalog-grid" class="grid grid-cols-2 md:grid-cols-4 gap-6"></div>
         </div>
     </template>
 
     <template id="view-admin">
-        <div class="fade-in-view max-w-7xl mx-auto px-4 py-8 space-y-8">
-            <div class="flex flex-col md:flex-row md:justify-between md:items-center gap-4 border-b border-zinc-900 pb-4">
-                <div>
-                    <h1 class="text-2xl font-bold text-white uppercase font-montserrat">SCARLEX SYSTEM <span class="text-brand">OPERATIONS CONSOLE</span></h1>
-                </div>
-                <button onclick="logoutAdmin()" class="bg-zinc-900 border border-zinc-800 text-xs px-4 py-2 rounded font-semibold text-zinc-400 hover:text-white uppercase tracking-wider self-start">Lock Panel</button>
-            </div>
+        <div class="max-w-4xl mx-auto space-y-6">
+            <h2 class="text-xl font-bold">ADMIN CONSOLE</h2>
+            <div class="bg-zinc-900 p-6 rounded-lg space-y-4">
+                <input type="hidden" id="edit-prod-idx" value="-1">
+                <input type="text" id="admin-name" placeholder="Product Name" class="w-full bg-black p-2 border border-zinc-700">
+                <input type="number" id="admin-selling" placeholder="Price" class="w-full bg-black p-2 border border-zinc-700">
+                
+                <label class="block text-xs text-zinc-400">Upload Product Image (Small files only)</label>
+                <input type="file" id="admin-image-file" accept="image/*" class="w-full text-sm">
+                <input type="hidden" id="admin-img-url">
 
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                <div class="bg-bgCard border border-zinc-800 p-5 rounded-lg h-fit space-y-4">
-                    <div class="border-b border-zinc-800 pb-1.5"><h2 class="text-xs font-bold text-white uppercase tracking-wider font-montserrat" id="form-action-title">Deploy Dynamic Collectible Artifact</h2></div>
-                    <input type="hidden" id="edit-prod-idx" value="-1">
-                    
-                    <div class="space-y-3 text-xs">
-                        <div>
-                            <label class="block mb-1 text-zinc-400">Collectible Label Title Name</label>
-                            <input type="text" id="admin-name" placeholder="Porsche 911 GT3 RS Frame" class="w-full bg-zinc-900 border border-zinc-800 text-white rounded p-2 focus:outline-none focus:border-brand">
-                        </div>
-                        <div class="grid grid-cols-2 gap-2.5">
-                            <div>
-                                <label class="block mb-1 text-zinc-400">MRP Base (₹)</label>
-                                <input type="number" id="admin-mrp" placeholder="7999" class="w-full bg-zinc-900 border border-zinc-800 text-white rounded p-2 focus:outline-none focus:border-brand">
-                            </div>
-                            <div>
-                                <label class="block mb-1 text-zinc-400">Net Selling (₹)</label>
-                                <input type="number" id="admin-selling" placeholder="4999" class="w-full bg-zinc-900 border border-zinc-800 text-white rounded p-2 focus:outline-none focus:border-brand">
-                            </div>
-                        </div>
-                        <div class="grid grid-cols-3 gap-1.5">
-                            <div><label class="block mb-1 text-zinc-500 text-[10px]">Length(cm)</label><input type="text" id="admin-size-l" value="30" class="w-full bg-zinc-900 border border-zinc-800 text-white rounded p-1.5 text-center"></div>
-                            <div><label class="block mb-1 text-zinc-500 text-[10px]">Breadth(cm)</label><input type="text" id="admin-size-b" value="40" class="w-full bg-zinc-900 border border-zinc-800 text-white rounded p-1.5 text-center"></div>
-                            <div><label class="block mb-1 text-zinc-500 text-[10px]">Height(cm)</label><input type="text" id="admin-size-h" value="5" class="w-full bg-zinc-900 border border-zinc-800 text-white rounded p-1.5 text-center"></div>
-                        </div>
-                        <div>
-                            <label class="block mb-1 text-zinc-400">Product Category</label>
-                            <select id="admin-category" class="w-full bg-zinc-900 border border-zinc-800 text-white rounded p-2 focus:outline-none focus:border-brand">
-                                <option value="Luxury Cars">Luxury Cars</option><option value="Sports Cars">Sports Cars</option><option value="Formula 1">Formula 1</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label class="block mb-1 text-zinc-400">Description</label>
-                            <textarea id="admin-specs" rows="2" placeholder="Handcrafted architectural shadow box assembly definitions details..." class="w-full bg-zinc-900 border border-zinc-800 text-white rounded p-2 focus:outline-none focus:border-brand"></textarea>
-                        </div>
-                        <div class="space-y-1.5">
-                            <label class="block text-zinc-400">Image Asset Link / URL (Paste an image URL here)</label>
-                            <input type="text" id="admin-img-url" placeholder="https://images.unsplash.com/..." class="w-full bg-zinc-900 border border-zinc-800 text-white rounded p-2 focus:outline-none focus:border-brand">
-                        </div>
-                        <div class="flex gap-2 pt-1">
-                            <button onclick="handleDeployProduct()" class="flex-grow bg-brand hover:bg-brandHover text-white py-2.5 rounded font-montserrat font-bold uppercase tracking-wider text-xs transition-all">Save Asset Node</button>
-                            <button onclick="clearAdminAssetFormState()" class="bg-zinc-900 border border-zinc-800 text-zinc-500 px-3 rounded text-xs hover:text-white"><i class="fa-solid fa-arrow-rotate-left"></i></button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="lg:col-span-2 bg-bgCard border border-zinc-800 p-5 rounded-lg space-y-4">
-                    <div class="border-b border-zinc-800 pb-1.5"><h2 class="text-xs font-bold text-white uppercase tracking-wider font-montserrat">Active Inventory Ledger</h2></div>
-                    <div class="overflow-x-auto w-full">
-                        <table class="w-full text-left text-[11px] text-zinc-400 min-w-[550px]">
-                            <thead>
-                                <tr class="border-b border-zinc-800 text-zinc-500 uppercase font-mono"><th class="py-2 px-1">Image</th><th class="py-2">Artifact Metrics Details</th><th class="py-2">Category</th><th class="py-2">Dimensions</th><th class="py-2">Price</th><th class="py-2 text-center">Actions</th></tr>
-                            </thead>
-                            <tbody id="admin-inventory-table"></tbody>
-                        </table>
-                    </div>
-                </div>
+                <button onclick="handleDeployProduct()" class="bg-red-600 px-6 py-2 w-full font-bold uppercase">Save Product</button>
             </div>
+            <table class="w-full text-left">
+                <tbody id="admin-inventory-table"></tbody>
+            </table>
         </div>
     </template>
 
     <script>
-        let isAdminAuthenticated = false;
-        let activeRouteViewId = 'home';
-        let sessionUser = JSON.parse(localStorage.getItem('scarlex_user')) || null;
-        const backendPipelineTargetContact = "918402906422";
-        
-        const cloudVaultEndpointUrl = "https://api.jsonbin.io/v3/b/6a5281f0f5f4af5e2981a17b";
+        const cloudVaultEndpointUrl = "https://api.jsonbin.io/v3/b/6a5281f0f5f4af5e2981a17b"; 
+        const cloudVaultMasterAccessKey = "$2a$10$DJChfscCUnBVaEIlRC97kOgBNhG8ZcaNJUIr0.IuZjFgVsDfJdUJi";
+        let currentProducts = [];
 
-const cloudVaultMasterAccessKey = "$2a$10$DJChfscCUnBVaEIlRC97kOgBNhG8ZcaNJUIr0.IuZjFgVsDfJdUJi";
-        let currentProducts = [
-            { id: "p1", name: "Rolls-Royce Collection Frame", category: "Luxury Cars", mrp: 7999, sellingPrice: 5499, sizeL: "30", sizeB: "40", sizeH: "5", image: "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?q=80&w=600&auto=format&fit=crop", specs: "Premium handcrafted high-fidelity luxury wall art configuration system designed by Team Scarlex." },
-            { id: "p2", name: "Ferrari F1 Frame", category: "Formula 1", mrp: 6999, sellingPrice: 4999, sizeL: "30", sizeB: "40", sizeH: "5", image: "https://images.unsplash.com/photo-1514565131-fce0801e5785?q=80&w=600&auto=format&fit=crop", specs: "Perfect desktop statement engineering visual array alignment curation." }
-        ];
+        // File to Base64 logic
+        document.getElementById('admin-image-file').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            const reader = new FileReader();
+            reader.onloadend = () => { document.getElementById('admin-img-url').value = reader.result; };
+            if (file) reader.readAsDataURL(file);
+        });
 
-        /* Realtime Global Push Sync Engine */
         async function syncStorage() {
-            localStorage.setItem('scarlex_catalog', JSON.stringify(currentProducts));
-            try {
-                const res = await fetch(cloudVaultEndpointUrl, {
-                    method: 'PUT',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-Master-Key': $2a$10$DJChfscCUnBVaEIlRC97kOgBNhG8ZcaNJUIr0.IuZjFgVsDfJdUJi
-                    },
-                    body: JSON.stringify({ catalog: currentProducts })
-                });
-                if(!res.ok) throw new Error("Cloud Rejected Request. Check your API Keys.");
-                console.log("Global Catalog Sync Completed.");
-            } catch (err) {
-                console.error(err);
-                alert("⚠️ Saved locally, but cloud sync failed! Reason: " + err.message + "\nPlease double check that you updated your jsonbin.io credentials inside the code.");
-            }
-        }
-        
-        /* Realtime Global Pull Data Recovery Engine */
-        async function pullLiveGlobalDatabaseCatalog() {
-            try {
-                const response = await fetch(`${cloudVaultEndpointUrl}/latest`, {
-                    method: 'GET',
-                    headers: { 'X-Master-Key': cloudVaultMasterAccessKey }
-                });
-                if(!response.ok) throw new Error("Invalid endpoint structure.");
-                const remoteData = await response.json();
-                if (remoteData && remoteData.record && remoteData.record.catalog) {
-                    currentProducts = remoteData.record.catalog;
-                    localStorage.setItem('scarlex_catalog', JSON.stringify(currentProducts));
-                    console.log("Latest Remote Assets Retrieved Safely.");
-                }
-            } catch (e) {
-                console.warn("Falling back to local data buffer", e);
-                let fallbackLocal = localStorage.getItem('scarlex_catalog');
-                if(fallbackLocal) currentProducts = JSON.parse(fallbackLocal);
-            }
-        }
-
-        function switchViewSimulatorMode(mode) {
-            const wrapper = document.getElementById('viewport-canvas-wrapper');
-            const badge = document.getElementById('simulator-status-badge');
-            const btnDesktop = document.getElementById('sim-btn-desktop');
-            const btnMobile = document.getElementById('sim-btn-mobile');
-
-            if (mode === 'mobile') {
-                wrapper.className = "simulator-mobile";
-                badge.innerText = "Mobile Frame Emulation Mode";
-                btnMobile.className = "bg-brand text-white px-3 py-1 rounded text-[10px] uppercase font-bold tracking-wide transition-all";
-                btnDesktop.className = "text-zinc-400 hover:text-white px-3 py-1 rounded text-[10px] uppercase font-bold tracking-wide transition-all";
-            } else {
-                wrapper.className = "w-full flex-grow flex flex-col transition-all duration-300";
-                badge.innerText = "Desktop View";
-                btnDesktop.className = "bg-brand text-white px-3 py-1 rounded text-[10px] uppercase font-bold tracking-wide transition-all";
-                btnMobile.className = "text-zinc-400 hover:text-white px-3 py-1 rounded text-[10px] uppercase font-bold tracking-wide transition-all";
-            }
-        }
-
-        function toggleAuthModal() { document.getElementById('auth-modal').classList.toggle('hidden'); }
-        
-        function triggerCheckoutGatewaySession(prodId) {
-            const targetProd = currentProducts.find(p => p.id === prodId);
-            if(!targetProd) return;
-            const message = encodeURIComponent(`Hello Team Scarlex! I am interested in ordering the custom 3D frame: ${targetProd.name} (Price: ₹${targetProd.sellingPrice}). Please share availability and payment details!`);
-            window.open(`https://wa.me/${backendPipelineTargetContact}?text=${message}`, '_blank');
-        }
-
-        function toggleMobileNavMenu() {
-            const drawer = document.getElementById('mobile-nav-drawer');
-            if (drawer.classList.contains('-translate-x-full')) drawer.classList.remove('-translate-x-full');
-            else drawer.classList.add('-translate-x-full');
-        }
-        function handleMobileLink(viewId) { toggleMobileNavMenu(); navigateTo(viewId); }
-        function triggerAdminAuth() { navigateTo(isAdminAuthenticated ? 'admin' : 'admin-auth'); }
-        function verifyAdminPasscode() {
-            if (document.getElementById('auth-pass-admin-field').value === "SCARLEX2026") {
-                isAdminAuthenticated = true; navigateTo('admin');
-            } else { alert('Security passkeys evaluation failed.'); }
-        }
-        function logoutAdmin() { isAdminAuthenticated = false; navigateTo('home'); }
-
-        function navigateTo(viewId) {
-            if (viewId === 'admin' && !isAdminAuthenticated) viewId = 'admin-auth';
-            activeRouteViewId = viewId;
-
-            const container = document.getElementById('app-view-container');
-            const template = document.getElementById(`view-${viewId}`);
-            if (!template) return;
-            container.innerHTML = '';
-            container.appendChild(template.content.cloneNode(true));
-
-            if (viewId === 'home') renderGrid('home-featured-products-grid');
-            if (viewId === 'shop') renderGrid('shop-catalog-grid');
-            if (viewId === 'admin') renderAdminTable();
-        }
-
-        function renderGrid(targetId) {
-            const grid = document.getElementById(targetId); if (!grid) return; grid.innerHTML = '';
-            currentProducts.forEach(product => {
-                const discount = Math.round(((product.mrp - product.sellingPrice) / product.mrp) * 100);
-                const card = document.createElement('div');
-                card.className = 'glass-card rounded-lg overflow-hidden p-3 flex flex-col justify-between';
-                card.innerHTML = `
-                    <div>
-                        <div class="relative w-full aspect-square bg-zinc-900 rounded overflow-hidden mb-3 flex items-center justify-center border border-zinc-900"><img src="${product.image || 'https://images.unsplash.com/photo-1514565131-fce0801e5785'}" class="w-full h-full object-cover">${discount > 0 ? `<span class="absolute top-2 left-2 bg-brand text-white text-[9px] font-bold px-1.5 py-0.5 rounded">${discount}% OFF</span>` : ''}</div>
-                        <span class="text-[9px] uppercase font-mono tracking-widest text-brand font-semibold">${product.category}</span>
-                        <h3 class="text-xs font-bold text-white tracking-wide mt-0.5 truncate font-montserrat">${product.name}</h3>
-                        <div class="text-[9px] font-mono text-zinc-500 mt-0.5">Size: ${product.sizeL}x${product.sizeB}x${product.sizeH} cm</div>
-                        <p class="text-[10px] text-zinc-400 font-light mt-1 line-clamp-2">${product.specs || ''}</p>
-                    </div>
-                    <div class="mt-3 pt-2.5 border-t border-zinc-900 flex justify-between items-center">
-                        <div>
-                            <span class="text-[10px] line-through mr-1 text-zinc-500">₹${product.mrp}</span>
-                            <span class="text-xs font-bold text-white">₹${product.sellingPrice}</span>
-                        </div>
-                        <button onclick="triggerCheckoutGatewaySession('${product.id}')" class="bg-brand text-[10px] font-bold text-white px-3 py-1.5 rounded uppercase tracking-wider flex items-center gap-1"><i class="fa-brands fa-whatsapp text-white"></i> Buy Now</button>
-                    </div>
-                `;
-                grid.appendChild(card);
+            await fetch(cloudVaultEndpointUrl, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json', 'X-Master-Key': cloudVaultMasterAccessKey },
+                body: JSON.stringify({ catalog: currentProducts })
             });
-        }
-
-        function renderAdminTable() {
-            const tableBody = document.getElementById('admin-inventory-table'); if (!tableBody) return; tableBody.innerHTML = '';
-            currentProducts.forEach((product, index) => {
-                const row = document.createElement('tr');
-                row.className = 'border-b border-zinc-900 text-xs hover:bg-zinc-900/40';
-                row.innerHTML = `
-                    <td class="py-2.5 px-1"><img src="${product.image}" class="w-6 h-6 object-cover rounded border border-zinc-800"></td>
-                    <td class="py-2.5 font-medium text-white"><div class="font-bold truncate max-w-[140px]">${product.name}</div></td>
-                    <td class="py-2.5 text-zinc-400">${product.category}</td>
-                    <td class="py-2.5 font-mono text-[10px] text-zinc-500">${product.sizeL}x${product.sizeB}x${product.sizeH}cm</td>
-                    <td class="py-2.5 font-mono text-white font-bold">₹${product.sellingPrice}</td>
-                    <td class="py-2.5 text-center">
-                        <button onclick="prepareProductFormStateForEdit(${index})" class="text-zinc-500 hover:text-white p-1"><i class="fa-solid fa-pen-to-square text-xs"></i></button>
-                        <button onclick="deleteProduct(${index})" class="text-zinc-600 hover:text-brand p-1"><i class="fa-solid fa-trash-can text-xs"></i></button>
-                    </td>
-                `;
-                tableBody.appendChild(row);
-            });
-        }
-
-        function prepareProductFormStateForEdit(idx) {
-            const target = currentProducts[idx]; if(!target) return;
-            document.getElementById('edit-prod-idx').value = idx;
-            document.getElementById('form-action-title').innerText = "Modify Current Frame Artifact Node";
-            document.getElementById('admin-name').value = target.name;
-            document.getElementById('admin-mrp').value = target.mrp;
-            document.getElementById('admin-selling').value = target.sellingPrice;
-            document.getElementById('admin-category').value = target.category;
-            document.getElementById('admin-specs').value = target.specs || '';
-            document.getElementById('admin-size-l').value = target.sizeL;
-            document.getElementById('admin-size-b').value = target.sizeB;
-            document.getElementById('admin-size-h').value = target.sizeH;
-            document.getElementById('admin-img-url').value = target.image;
-        }
-
-        function clearAdminAssetFormState() {
-            document.getElementById('edit-prod-idx').value = "-1";
-            document.getElementById('form-action-title').innerText = "Deploy Dynamic Collectible Artifact";
-            document.getElementById('admin-name').value = ''; document.getElementById('admin-mrp').value = ''; document.getElementById('admin-selling').value = '';
-            document.getElementById('admin-specs').value = ''; document.getElementById('admin-img-url').value = '';
         }
 
         function handleDeployProduct() {
-            const idx = parseInt(document.getElementById('edit-prod-idx').value);
-            const name = document.getElementById('admin-name').value.trim();
-            const mrp = parseFloat(document.getElementById('admin-mrp').value);
-            const selling = parseFloat(document.getElementById('admin-selling').value);
-            const category = document.getElementById('admin-category').value;
-            const specs = document.getElementById('admin-specs').value.trim();
-            const l = document.getElementById('admin-size-l').value.trim() || '30';
-            const b = document.getElementById('admin-size-b').value.trim() || '40';
-            const h = document.getElementById('admin-size-h').value.trim() || '5';
-            let imgUrl = document.getElementById('admin-img-url').value.trim();
-
-            if (!name || !mrp || !selling) { alert('Please accurately complete parameters.'); return; }
-            if (!imgUrl) { imgUrl = "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?q=80&w=600&auto=format&fit=crop"; }
-
-            const instanceProductNode = {
-                id: idx >= 0 ? currentProducts[idx].id : "PROD-" + Date.now().toString().slice(-4),
-                name: name, category: category, mrp: mrp, sellingPrice: selling, specs: specs,
-                sizeL: l, sizeB: b, sizeH: h, image: imgUrl
+            const product = {
+                id: Date.now(),
+                name: document.getElementById('admin-name').value,
+                sellingPrice: document.getElementById('admin-selling').value,
+                image: document.getElementById('admin-img-url').value
             };
-
-            if (idx >= 0) { currentProducts[idx] = instanceProductNode; } 
-            else { currentProducts.unshift(instanceProductNode); }
-            
-            syncStorage().then(() => {
-                renderAdminTable(); 
-                clearAdminAssetFormState();
-                alert('Product list updated and deployed.');
-            });
+            currentProducts.push(product);
+            syncStorage().then(() => { alert("Saved!"); navigateTo('admin'); });
         }
 
-        function deleteProduct(index) {
-            if (confirm('Are you sure you want to delete this?')) {
-                currentProducts.splice(index, 1); 
-                syncStorage().then(() => renderAdminTable());
+        function navigateTo(viewId) {
+            const container = document.getElementById('app-view-container');
+            container.innerHTML = document.getElementById(`view-${viewId}`).innerHTML;
+            
+            // Logic to populate grids
+            if(viewId === 'home' || viewId === 'shop') {
+                const grid = document.getElementById(viewId === 'home' ? 'home-featured-products-grid' : 'shop-catalog-grid');
+                grid.innerHTML = currentProducts.map(p => `
+                    <div class="glass-card p-4 rounded"><img src="${p.image}" class="w-full h-40 object-cover mb-2"><h3 class="font-bold">${p.name}</h3><p class="text-red-500">₹${p.sellingPrice}</p></div>
+                `).join('');
+            }
+            if(viewId === 'admin') {
+                document.getElementById('admin-inventory-table').innerHTML = currentProducts.map((p, i) => `
+                    <tr><td class="p-2">${p.name}</td><td class="p-2"><button onclick="deleteProd(${i})" class="text-red-500">Delete</button></td></tr>
+                `).join('');
             }
         }
 
-        window.addEventListener('DOMContentLoaded', () => {
-            pullLiveGlobalDatabaseCatalog().then(() => {
-                const loader = document.getElementById('loading-screen');
-                if (loader) { loader.style.opacity = '0'; setTimeout(() => loader.remove(), 500); }
-                navigateTo('home');
-            });
-        });
+        function deleteProd(i) { currentProducts.splice(i, 1); syncStorage().then(() => navigateTo('admin')); }
+
+        // Boot
+        window.onload = async () => {
+            const res = await fetch(`${cloudVaultEndpointUrl}/latest`, { headers: {'X-Master-Key': cloudVaultMasterAccessKey} });
+            const data = await res.json();
+            currentProducts = data.record.catalog || [];
+            navigateTo('home');
+        };
     </script>
 </body>
 </html>
