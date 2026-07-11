@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>SCARLEX VENTURES | Premium 3D Frame Car Collectibles</title>
-    <meta name="description" content="Own the Legend. Handcrafted premium 3D framed die-cast car displays designed for collectors and automotive enthusiasts. Built with passion by Bishal Sarma.">
+    <meta name="description" content="Own the Legend. Handcrafted premium 3D framed die-cast car displays designed for collectors and automotive enthusiasts. Built with passion by Team Scarlex.">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -39,7 +39,7 @@
 
     <style>
         body {
-            background-color: #0A0A0A;
+            background-color: #050505;
             color: #FFFFFF;
             font-family: 'Poppins', sans-serif;
             overflow-x: hidden;
@@ -67,75 +67,119 @@
         ::-webkit-scrollbar-thumb { background: #E50914; border-radius: 2px; }
         .fade-in-view { animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Device Simulator Frame Overrides */
+        .simulator-mobile {
+            max-width: 410px;
+            margin: 2rem auto;
+            border: 12px solid #1c1c1e;
+            border-radius: 32px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+            height: 840px;
+            overflow-y: auto;
+            position: relative;
+        }
     </style>
 </head>
 <body class="antialiased flex flex-col min-h-screen">
 
-    <!-- Loading Screen Overlay -->
-    <div id="loading-screen" class="fixed inset-0 z-[9999] bg-bgMain flex flex-col justify-center items-center transition-opacity duration-500">
-        <div class="relative flex flex-col items-center px-4 text-center">
-            <div class="text-3xl md:text-6xl heading-premium text-white tracking-widest mb-4">
-                SCARLEX<span class="text-brand">VENTURES</span>
-            </div>
-            <div class="w-36 h-[2px] bg-zinc-800 relative overflow-hidden rounded-full">
-                <div class="absolute h-full w-1/3 bg-brand top-0 left-0 animate-[loading_1.2s_infinite_linear]"></div>
-            </div>
+    <!-- Screen Aspect Ratio Simulator Canvas Mode Trigger Panel Header -->
+    <div class="bg-zinc-950 border-b border-zinc-900 px-4 py-2 flex items-center justify-between gap-4 text-xs font-mono relative z-[10000]">
+        <div class="flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+            <span class="text-zinc-400 text-[11px] uppercase tracking-wider hidden sm:inline">Viewport Simulator Node:</span>
+            <span id="simulator-status-badge" class="text-white bg-zinc-900 px-2 py-0.5 rounded text-[10px]">Desktop View</span>
+        </div>
+        <div class="flex gap-1.5 bg-zinc-900 p-0.5 rounded border border-zinc-800">
+            <button onclick="switchViewSimulatorMode('desktop')" id="sim-btn-desktop" class="bg-brand text-white px-3 py-1 rounded text-[10px] uppercase font-bold tracking-wide transition-all">Desktop Mode</button>
+            <button onclick="switchViewSimulatorMode('mobile')" id="sim-btn-mobile" class="text-zinc-400 hover:text-white px-3 py-1 rounded text-[10px] uppercase font-bold tracking-wide transition-all">Mobile View</button>
         </div>
     </div>
 
-    <!-- Navigation Bar -->
-    <nav class="sticky top-0 z-40 bg-bgMain/95 backdrop-blur-md border-b border-zinc-900 px-4 lg:px-12 py-3.5 flex items-center justify-between">
-        <a href="#" onclick="navigateTo('home')" class="flex items-center gap-2.5">
-            <div class="w-9 h-9 bg-brand rounded flex items-center justify-center text-white text-base"><i class="fa-solid fa-car-side"></i></div>
-            <div>
-                <span class="text-xl heading-premium text-white tracking-wider block leading-none">SCARLEX <span class="text-brand">VENTURES</span></span>
-                <span class="text-[8px] font-montserrat text-textMuted tracking-widest uppercase block mt-0.5">3D Frame Collectibles</span>
+    <!-- Active Root Environment Shell Canvas -->
+    <div id="viewport-canvas-wrapper" class="w-full flex-grow flex flex-col transition-all duration-300">
+
+        <!-- Loading Screen Overlay -->
+        <div id="loading-screen" class="fixed inset-0 z-[9999] bg-bgMain flex flex-col justify-center items-center transition-opacity duration-500">
+            <div class="relative flex flex-col items-center px-4 text-center">
+                <div class="text-3xl md:text-6xl heading-premium text-white tracking-widest mb-4">
+                    SCARLEX<span class="text-brand">VENTURES</span>
+                </div>
+                <div class="w-36 h-[2px] bg-zinc-800 relative overflow-hidden rounded-full">
+                    <div class="absolute h-full w-1/3 bg-brand top-0 left-0 animate-[loading_1.2s_infinite_linear]"></div>
+                </div>
             </div>
-        </a>
-
-        <div class="hidden lg:flex items-center gap-8 text-xs font-medium tracking-wide uppercase font-montserrat">
-            <a href="#" onclick="navigateTo('home')" class="hover:text-brand transition-colors text-white">Home</a>
-            <a href="#" onclick="navigateTo('shop')" class="hover:text-brand transition-colors text-textMuted">Shop Collection</a>
-            <a href="#" onclick="navigateTo('about')" class="hover:text-brand transition-colors text-textMuted">Our Craft</a>
-            <a href="#" onclick="navigateTo('contact')" class="hover:text-brand transition-colors text-textMuted">Contact</a>
         </div>
 
-        <div class="flex items-center gap-3">
-            <!-- Dynamic Social Integration Channels Links Panel -->
-            <a href="https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?q=80&w=600&auto=format&fit=crop" target="_blank" class="text-zinc-400 hover:text-brand transition-colors text-sm" title="Instagram Profile"><i class="fa-brands fa-instagram"></i></a>
-            <a href="https://chat.whatsapp.com/LOyuL7Cfv6Z5hhNf659Tvg" target="_blank" class="text-zinc-400 hover:text-emerald-500 transition-colors text-sm" title="WhatsApp Community"><i class="fa-brands fa-whatsapp"></i></a>
-            <span class="w-[1px] h-4 bg-zinc-800 hidden sm:inline-block"></span>
-            <button onclick="toggleAuthModal()" id="nav-auth-btn" class="bg-zinc-900 border border-zinc-800 text-[11px] px-3.5 py-2 rounded font-montserrat uppercase tracking-wider text-white flex items-center gap-1.5 transition-all">
-                <i class="fa-solid fa-user-circle text-sm text-zinc-400"></i> <span id="nav-auth-text">Sign In</span>
-            </button>
-            <button onclick="toggleMobileNavMenu()" class="lg:hidden text-white p-2 text-xl"><i class="fa-solid fa-bars-staggered" id="mobile-menu-icon"></i></button>
-        </div>
-    </nav>
+        <!-- Global Navigation Bar -->
+        <nav class="sticky top-0 z-40 bg-bgMain/95 backdrop-blur-md border-b border-zinc-900 px-4 lg:px-12 py-3.5 flex items-center justify-between">
+            <a href="#" onclick="navigateTo('home')" class="flex items-center gap-2.5">
+                <div class="w-9 h-9 bg-brand rounded flex items-center justify-center text-white text-base"><i class="fa-solid fa-car-side"></i></div>
+                <div>
+                    <span class="text-xl heading-premium text-white tracking-wider block leading-none">SCARLEX <span class="text-brand">VENTURES</span></span>
+                    <span class="text-[8px] font-montserrat text-textMuted tracking-widest uppercase block mt-0.5">3D Frame Collectibles</span>
+                </div>
+            </a>
 
-    <!-- Mobile Drawer -->
-    <div id="mobile-nav-drawer" class="fixed inset-x-0 top-[57px] bottom-0 bg-bgMain/98 z-30 transform -translate-x-full transition-transform duration-300 border-t border-zinc-900 lg:hidden flex flex-col p-6 space-y-4 font-montserrat text-sm uppercase tracking-widest">
-        <a href="#" onclick="handleMobileLink('home')" class="py-3 border-b border-zinc-900 text-white flex justify-between items-center"><span>Home</span><i class="fa-solid fa-chevron-right text-xs text-zinc-700"></i></a>
-        <a href="#" onclick="handleMobileLink('shop')" class="py-3 border-b border-zinc-900 text-zinc-300 flex justify-between items-center"><span>Shop Collection</span><i class="fa-solid fa-chevron-right text-xs text-zinc-700"></i></a>
-        <a href="#" onclick="handleMobileLink('about')" class="py-3 border-b border-zinc-900 text-zinc-300 flex justify-between items-center"><span>Our Craft</span><i class="fa-solid fa-chevron-right text-xs text-zinc-700"></i></a>
-        <a href="#" onclick="handleMobileLink('contact')" class="py-3 text-zinc-300 flex justify-between items-center"><span>Contact</span><i class="fa-solid fa-chevron-right text-xs text-zinc-700"></i></a>
-        <div class="pt-6 flex gap-4 justify-center text-lg text-zinc-500">
-            <a href="https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?q=80&w=600&auto=format&fit=crop" target="_blank" class="hover:text-brand"><i class="fa-brands fa-instagram"></i></a>
-            <a href="https://chat.whatsapp.com/LOyuL7Cfv6Z5hhNf659Tvg" target="_blank" class="hover:text-emerald-500"><i class="fa-brands fa-whatsapp"></i></a>
+            <div class="hidden lg:flex items-center gap-8 text-xs font-medium tracking-wide uppercase font-montserrat">
+                <a href="#" onclick="navigateTo('home')" class="hover:text-brand transition-colors text-white">Home</a>
+                <a href="#" onclick="navigateTo('shop')" class="hover:text-brand transition-colors text-textMuted">Shop Collection</a>
+                <a href="#" onclick="navigateTo('about')" class="hover:text-brand transition-colors text-textMuted">Our Craft</a>
+                <a href="#" onclick="navigateTo('contact')" class="hover:text-brand transition-colors text-textMuted">Contact</a>
+            </div>
+
+            <div class="flex items-center gap-3">
+                <!-- Verified Official Channels Anchors -->
+                <a href="https://www.instagram.com/scarlex_garage?igsh=c2xhZXZ0d3pqcm04" target="_blank" class="text-zinc-400 hover:text-brand transition-colors text-sm" title="Official Instagram Handle"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://chat.whatsapp.com/LOyuL7Cfv6Z5hhNf659Tvg" target="_blank" class="text-zinc-400 hover:text-emerald-500 transition-colors text-sm" title="WhatsApp Community Hub"><i class="fa-brands fa-whatsapp"></i></a>
+                <span class="w-[1px] h-4 bg-zinc-800 hidden sm:inline-block"></span>
+                <button onclick="toggleAuthModal()" id="nav-auth-btn" class="bg-zinc-900 border border-zinc-800 text-[11px] px-3.5 py-2 rounded font-montserrat uppercase tracking-wider text-white flex items-center gap-1.5 transition-all">
+                    <i class="fa-solid fa-user-circle text-sm text-zinc-400"></i> <span id="nav-auth-text">Sign In</span>
+                </button>
+                <button onclick="toggleMobileNavMenu()" class="lg:hidden text-white p-2 text-xl"><i class="fa-solid fa-bars-staggered" id="mobile-menu-icon"></i></button>
+            </div>
+        </nav>
+
+        <!-- Mobile Drawer -->
+        <div id="mobile-nav-drawer" class="fixed inset-x-0 top-[57px] bottom-0 bg-bgMain/98 z-30 transform -translate-x-full transition-transform duration-300 border-t border-zinc-900 lg:hidden flex flex-col p-6 space-y-4 font-montserrat text-sm uppercase tracking-widest">
+            <a href="#" onclick="handleMobileLink('home')" class="py-3 border-b border-zinc-900 text-white flex justify-between items-center"><span>Home</span><i class="fa-solid fa-chevron-right text-xs text-zinc-700"></i></a>
+            <a href="#" onclick="handleMobileLink('shop')" class="py-3 border-b border-zinc-900 text-zinc-300 flex justify-between items-center"><span>Shop Collection</span><i class="fa-solid fa-chevron-right text-xs text-zinc-700"></i></a>
+            <a href="#" onclick="handleMobileLink('about')" class="py-3 border-b border-zinc-900 text-zinc-300 flex justify-between items-center"><span>Our Craft</span><i class="fa-solid fa-chevron-right text-xs text-zinc-700"></i></a>
+            <a href="#" onclick="handleMobileLink('contact')" class="py-3 text-zinc-300 flex justify-between items-center"><span>Contact</span><i class="fa-solid fa-chevron-right text-xs text-zinc-700"></i></a>
+            <div class="pt-6 flex gap-4 justify-center text-lg text-zinc-500">
+                <a href="https://www.instagram.com/scarlex_garage?igsh=c2xhZXZ0d3pqcm04" target="_blank" class="hover:text-brand"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://chat.whatsapp.com/LOyuL7Cfv6Z5hhNf659Tvg" target="_blank" class="hover:text-emerald-500"><i class="fa-brands fa-whatsapp"></i></a>
+            </div>
         </div>
+
+        <!-- Main Dynamic Application Mounting Containment Structure -->
+        <main id="app-view-container" class="flex-grow min-h-[calc(100vh-180px)] relative bg-bgMain"></main>
+
+        <!-- Global Layout Core Structural Footer Frame Container -->
+        <footer class="bg-black py-8 border-t border-zinc-950 px-4 text-center text-zinc-600 text-xs font-mono">
+            <div>&copy; 2026 SCARLEX VENTURES. All Rights Reserved.</div>
+            <div class="mt-2 text-[10px] tracking-wide text-zinc-500">
+                Designed and Developed by <strong class="text-zinc-400">TEAM SCARLEX</strong>. <button onclick="triggerAdminAuth()" class="hover:text-brand transition-colors ml-1 text-zinc-600"><i class="fa-solid fa-lock text-[9px]"></i> Portal Operations</button>
+            </div>
+        </footer>
+
+    </div><!-- End Viewport Canvas Wrapper -->
+
+    <!-- CUSTOMER ACCESSIBILITY MAINTENANCE BLOCKER OVERLAY -->
+    <div id="maintenance-blocker-screen" class="fixed inset-0 z-[9990] bg-black hidden flex flex-col justify-center items-center p-6 text-center">
+        <div class="max-w-md bg-zinc-900/40 border border-zinc-800 p-8 rounded-xl backdrop-blur-md">
+            <div class="w-16 h-16 bg-brand/10 text-brand rounded-full flex items-center justify-center text-2xl mx-auto mb-4"><i class="fa-solid fa-warehouse-item animate-pulse"></i></div>
+            <h1 class="text-2xl md:text-3xl heading-premium text-white tracking-widest mb-2">GARAGE UNDER MAINTENANCE</h1>
+            <p class="text-xs text-zinc-400 font-light leading-relaxed mb-6">Our showroom floor catalog is temporarily undergoing diagnostic configuration sweeps. Check back soon for new 3D artifact updates!</p>
+            <div class="flex items-center justify-center gap-4 text-zinc-500 text-sm border-t border-zinc-800 pt-5">
+                <a href="https://www.instagram.com/scarlex_garage?igsh=c2xhZXZ0d3pqcm04" target="_blank" class="hover:text-brand transition-colors"><i class="fa-brands fa-instagram mr-1"></i> @scarlex_garage</a>
+            </div>
+        </div>
+        <!-- Secret access point for owners to enter admin even while site is down -->
+        <button onclick="triggerAdminAuth()" class="absolute bottom-4 right-4 text-[10px] font-mono text-zinc-800 hover:text-zinc-600"><i class="fa-solid fa-lock"></i> Overide System</button>
     </div>
 
-    <!-- Main Dynamic Application Mounting Containment Structure -->
-    <main id="app-view-container" class="flex-grow min-h-[calc(100vh-140px)] relative bg-bgMain"></main>
-
-    <!-- Global Layout Core Structural Footer Frame Container -->
-    <footer class="bg-black py-8 border-t border-zinc-950 px-4 text-center text-zinc-600 text-xs font-mono">
-        <div>&copy; 2026 SCARLEX VENTURES. All Rights Reserved.</div>
-        <div class="mt-2 text-[10px] tracking-wide">
-            Designed and Developed by Bishal Sarma. <button onclick="triggerAdminAuth()" class="hover:text-brand transition-colors ml-1"><i class="fa-solid fa-lock text-[9px]"></i> Portal</button>
-        </div>
-    </footer>
-
-    <!-- Customer Session Credentials Modal Overlay Box Framework with Identity Integration Providers Mockups -->
+    <!-- Customer Session Credentials Modal Overlay Box Framework -->
     <div id="auth-modal" class="fixed inset-0 bg-black/80 z-[100] backdrop-blur-sm hidden flex items-center justify-center p-4">
         <div class="bg-bgCard border border-zinc-800 w-full max-w-sm rounded-xl p-5 relative fade-in-view">
             <button onclick="toggleAuthModal()" class="absolute top-4 right-4 text-zinc-500 hover:text-white p-1 text-sm"><i class="fa-solid fa-xmark"></i></button>
@@ -143,7 +187,6 @@
                 <h3 class="text-base font-bold font-montserrat uppercase tracking-wider mb-1" id="auth-title">Customer Login</h3>
                 <p class="text-[11px] text-textMuted mb-4">Securely access your account vault through traditional or federated channels.</p>
                 
-                <!-- Social Authentication Platform Integrations Channels Grid Setup -->
                 <div class="grid grid-cols-2 gap-2 mb-4">
                     <button onclick="executeSocialMockAuthentication('Google')" class="bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 p-2 rounded text-[10px] font-semibold flex items-center justify-center gap-1.5 text-white transition-colors">
                         <i class="fa-brands fa-google text-googleBg"></i> Google
@@ -198,7 +241,7 @@
                     </div>
                 </div>
 
-                <!-- Explicit Merchant Financial Flow Destination Assignment -->
+                <!-- Direct Merchant Payment Collection Target Routing -->
                 <div class="bg-brand/5 border border-brand/20 p-3 rounded-lg text-center font-mono">
                     <span class="text-zinc-400 block text-[10px] uppercase tracking-wider">Direct Transaction Merchant Node Target</span>
                     <span class="text-white font-bold text-sm tracking-widest"><i class="fa-solid fa-money-bill-transfer text-brand mr-1"></i> +91 8402906422</span>
@@ -206,7 +249,7 @@
 
                 <div class="space-y-3">
                     <div class="flex justify-between items-center border-b border-zinc-900 pb-1.5">
-                        <span class="font-bold font-montserrat uppercase tracking-wider text-zinc-300 text-[11px]"><i class="fa-solid fa-truck-ramp-box text-brand mr-1"></i> 1. Delivery & Shipping Destination</span>
+                        <span class="font-bold font-montserrat uppercase tracking-wider text-zinc-300 text-[11px]"><i class="fa-solid fa-truck-ramp-box text-brand mr-1"></i> 1. Delivery Shipping Destination</span>
                         <button onclick="persistDeliveryAddressData()" class="text-[10px] text-brand hover:underline font-semibold font-mono">Save Details</button>
                     </div>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
@@ -246,7 +289,7 @@
     <!-- CORE VIEW TEMPLATE ELEMENTS CONTEXT MODULES -->
     <template id="view-home">
         <div class="fade-in-view">
-            <section class="relative min-h-[82vh] lg:h-[85vh] flex items-center justify-center bg-gradient-to-b from-neutral-950 to-bgMain border-b border-zinc-900 px-4 py-12 text-center">
+            <section class="relative min-h-[75vh] flex items-center justify-center bg-gradient-to-b from-neutral-950 to-bgMain border-b border-zinc-900 px-4 py-12 text-center">
                 <div class="max-w-4xl mx-auto flex flex-col items-center">
                     <span class="text-brand font-montserrat text-[10px] tracking-[0.4em] font-semibold mb-3">SCARLEX GARAGE EXCLUSIVE</span>
                     <h1 class="text-4xl sm:text-6xl md:text-8xl heading-premium text-white mb-4 leading-tight">PREMIUM 3D FRAME<br><span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-zinc-400 to-brand">COLLECTIBLES</span></h1>
@@ -305,8 +348,8 @@
             <h1 class="text-3xl md:text-5xl heading-premium mb-4">CONNECT WITH <span class="text-brand">THE GARAGE</span></h1>
             <div class="space-y-4 max-w-sm mx-auto text-left bg-bgCard p-5 border border-zinc-800 rounded-lg text-xs shadow-xl">
                 <div><span class="text-[10px] text-textMuted uppercase block">Email Channel</span><span class="text-white font-medium">scarlexventures@gmail.com</span></div>
-                <div><span class="text-[10px] text-textMuted uppercase block">WhatsApp / Phone Pipeline</span><span class="text-white font-medium">+91 8402906422</span></div>
-                <div><span class="text-[10px] text-textMuted uppercase block">Instagram Handle</span><a href="https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?q=80&w=600&auto=format&fit=crop" target="_blank" class="text-brand hover:underline font-bold">@scarlex_garage</a></div>
+                <div><span class="text-[10px] text-textMuted uppercase block">WhatsApp Phone Pipeline</span><span class="text-white font-medium">+91 8402906422</span></div>
+                <div><span class="text-[10px] text-textMuted uppercase block">Instagram Hub</span><a href="https://www.instagram.com/scarlex_garage?igsh=c2xhZXZ0d3pqcm04" target="_blank" class="text-brand hover:underline font-bold">@scarlex_garage</a></div>
                 <div><span class="text-[10px] text-textMuted uppercase block">Community Hub</span><a href="https://chat.whatsapp.com/LOyuL7Cfv6Z5hhNf659Tvg" target="_blank" class="text-emerald-400 hover:underline font-bold">Join Official WhatsApp Community</a></div>
             </div>
         </div>
@@ -329,12 +372,24 @@
     <!-- ADMINISTRATIVE CONSOLE CONTROL LEDGER PANELS -->
     <template id="view-admin">
         <div class="fade-in-view max-w-7xl mx-auto px-4 py-8 space-y-8">
-            <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 border-b border-zinc-900 pb-4">
+            <div class="flex flex-col md:flex-row md:justify-between md:items-center gap-4 border-b border-zinc-900 pb-4">
                 <div>
                     <h1 class="text-2xl font-bold text-white uppercase font-montserrat">SCARLEX SYSTEM <span class="text-brand">OPERATIONS CONSOLE</span></h1>
                     <p class="text-[10px] text-brand font-mono uppercase tracking-wider">Level 1 Encryption Clearance Protocol Active</p>
                 </div>
-                <button onclick="logoutAdmin()" class="bg-zinc-900 border border-zinc-800 text-xs px-4 py-2 rounded font-semibold text-zinc-400 hover:text-white uppercase tracking-wider self-start">
+                
+                <!-- NEW SECURE WEBSITE LIVE/OFF SYSTEM SWITCH FIELD -->
+                <div class="flex items-center gap-3 bg-zinc-950 p-3 rounded-lg border border-zinc-800 self-start">
+                    <div class="text-left">
+                        <span class="text-[10px] font-mono block text-zinc-500 uppercase">Store Customer Gate</span>
+                        <span id="store-status-text" class="text-xs font-bold text-emerald-400">STATUS: ONLINE LIVE</span>
+                    </div>
+                    <button onclick="toggleStoreVisibilityGateStatus()" id="store-toggle-switch-btn" class="bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 px-3 py-1.5 rounded font-mono text-[10px] uppercase font-bold tracking-wide transition-all active:scale-95">
+                        Take Catalog Offline
+                    </button>
+                </div>
+
+                <button onclick="logoutAdmin()" class="bg-zinc-900 border border-zinc-800 text-xs px-4 py-2 rounded font-semibold text-zinc-400 hover:text-white uppercase tracking-wider self-start md:self-center">
                     Lock System Panel
                 </button>
             </div>
@@ -402,7 +457,7 @@
                 </div>
             </div>
 
-            <!-- Integrated Financial Logs Engine & PDF Utility Panel Container -->
+            <!-- Integrated Financial Logs Engine -->
             <div class="bg-bgCard border border-zinc-800 p-5 rounded-lg space-y-4">
                 <div class="border-b border-zinc-900 pb-2 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3">
                     <div>
@@ -427,14 +482,16 @@
     <!-- CORE RUNTIME APPLICATION LOGIC MODULES -->
     <script>
         let isAdminAuthenticated = false;
+        let isWebsiteLiveForCustomers = localStorage.getItem('scarlex_site_live') !== 'false';
         let currentCheckoutMethod = 'upi';
         let activeTargetProductForCheckout = null;
+        let activeRouteViewId = 'home';
 
         let sessionUser = JSON.parse(localStorage.getItem('scarlex_user')) || null;
         let currentAuthModeIsLogin = true;
 
         let currentProducts = JSON.parse(localStorage.getItem('scarlex_catalog')) || [
-            { id: "p1", name: "Rolls-Royce Collection Frame", category: "Luxury Cars", mrp: 7999, sellingPrice: 5499, sizeL: "30", sizeB: "40", sizeH: "5", image: "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?q=80&w=600&auto=format&fit=crop", images: ["https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?q=80&w=600&auto=format&fit=crop"], specs: "Premium handcrafted high-fidelity luxury wall art configuration system designed by Bishal Sarma." },
+            { id: "p1", name: "Rolls-Royce Collection Frame", category: "Luxury Cars", mrp: 7999, sellingPrice: 5499, sizeL: "30", sizeB: "40", sizeH: "5", image: "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?q=80&w=600&auto=format&fit=crop", images: ["https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?q=80&w=600&auto=format&fit=crop"], specs: "Premium handcrafted high-fidelity luxury wall art configuration system designed by Team Scarlex." },
             { id: "p2", name: "Ferrari F1 Frame", category: "Formula 1", mrp: 6999, sellingPrice: 4999, sizeL: "30", sizeB: "40", sizeH: "5", image: "https://images.unsplash.com/photo-1514565131-fce0801e5785?q=80&w=600&auto=format&fit=crop", images: ["https://images.unsplash.com/photo-1514565131-fce0801e5785?q=80&w=600&auto=format&fit=crop"], specs: "Perfect desktop statement engineering visual array alignment curation." }
         ];
 
@@ -445,6 +502,57 @@
 
         function syncStorage() { localStorage.setItem('scarlex_catalog', JSON.stringify(currentProducts)); }
         function syncOrdersStorage() { localStorage.setItem('scarlex_orders', JSON.stringify(activeOrdersLedger)); }
+
+        /* VIEWPORT SIMULATOR CORE LOGIC CHANNELS */
+        function switchViewSimulatorMode(mode) {
+            const wrapper = document.getElementById('viewport-canvas-wrapper');
+            const badge = document.getElementById('simulator-status-badge');
+            const btnDesktop = document.getElementById('sim-btn-desktop');
+            const btnMobile = document.getElementById('sim-btn-mobile');
+
+            if (mode === 'mobile') {
+                wrapper.className = "simulator-mobile";
+                badge.innerText = "Mobile Frame Emulation Mode";
+                btnMobile.className = "bg-brand text-white px-3 py-1 rounded text-[10px] uppercase font-bold tracking-wide transition-all";
+                btnDesktop.className = "text-zinc-400 hover:text-white px-3 py-1 rounded text-[10px] uppercase font-bold tracking-wide transition-all";
+            } else {
+                wrapper.className = "w-full flex-grow flex flex-col transition-all duration-300";
+                badge.innerText = "Desktop View";
+                btnDesktop.className = "bg-brand text-white px-3 py-1 rounded text-[10px] uppercase font-bold tracking-wide transition-all";
+                btnMobile.className = "text-zinc-400 hover:text-white px-3 py-1 rounded text-[10px] uppercase font-bold tracking-wide transition-all";
+            }
+        }
+
+        /* LIVE/OFF KILL-SWITCH SYSTEM CHANNELS */
+        function evaluateGlobalWebsiteVisibilityState() {
+            const blocker = document.getElementById('maintenance-blocker-screen');
+            if (!isWebsiteLiveForCustomers && activeRouteViewId !== 'admin' && activeRouteViewId !== 'admin-auth') {
+                blocker.classList.remove('hidden');
+            } else {
+                blocker.classList.add('hidden');
+            }
+        }
+
+        function toggleStoreVisibilityGateStatus() {
+            isWebsiteLiveForCustomers = !isWebsiteLiveForCustomers;
+            localStorage.setItem('scarlex_site_live', isWebsiteLiveForCustomers);
+            updateAdminPanelSwitchUI();
+            evaluateGlobalWebsiteVisibilityState();
+        }
+
+        function updateAdminPanelSwitchUI() {
+            const txt = document.getElementById('store-status-text');
+            const btn = document.getElementById('store-toggle-switch-btn');
+            if(!txt || !btn) return;
+
+            if(isWebsiteLiveForCustomers) {
+                txt.innerText = "STATUS: ONLINE LIVE"; txt.className = "text-xs font-bold text-emerald-400";
+                btn.innerText = "Take Catalog Offline"; btn.className = "bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 px-3 py-1.5 rounded font-mono text-[10px] uppercase font-bold tracking-wide transition-all active:scale-95";
+            } else {
+                txt.innerText = "STATUS: OFFLINE MAINTENANCE"; txt.className = "text-xs font-bold text-brand";
+                btn.innerText = "Deploy Showroom Live"; btn.className = "bg-brand/10 text-brand border border-brand/30 px-3 py-1.5 rounded font-mono text-[10px] uppercase font-bold tracking-wide transition-all active:scale-95";
+            }
+        }
 
         function toggleAuthModal() {
             document.getElementById('auth-modal').classList.toggle('hidden');
@@ -464,11 +572,15 @@
                 document.getElementById('auth-user-email').innerText = sessionUser.email;
                 navText.innerText = sessionUser.email.split('@')[0].toUpperCase();
                 if (sessionUser.address) {
-                    document.getElementById('ship-name').value = sessionUser.address.name || '';
-                    document.getElementById('ship-phone').value = sessionUser.address.phone || '';
-                    document.getElementById('ship-address').value = sessionUser.address.line || '';
-                    document.getElementById('ship-city').value = sessionUser.address.city || '';
-                    document.getElementById('ship-pin').value = sessionUser.address.pin || '';
+                    setTimeout(() => {
+                        if(document.getElementById('ship-name')) {
+                            document.getElementById('ship-name').value = sessionUser.address.name || '';
+                            document.getElementById('ship-phone').value = sessionUser.address.phone || '';
+                            document.getElementById('ship-address').value = sessionUser.address.line || '';
+                            document.getElementById('ship-city').value = sessionUser.address.city || '';
+                            document.getElementById('ship-pin').value = sessionUser.address.pin || '';
+                        }
+                    }, 100);
                 }
             } else {
                 outState.classList.remove('hidden'); inState.classList.add('hidden');
@@ -579,6 +691,9 @@
 
         function navigateTo(viewId) {
             if (viewId === 'admin' && !isAdminAuthenticated) viewId = 'admin-auth';
+            activeRouteViewId = viewId;
+            evaluateGlobalWebsiteVisibilityState();
+
             const container = document.getElementById('app-view-container');
             const template = document.getElementById(`view-${viewId}`);
             if (!template) return;
@@ -588,7 +703,11 @@
 
             if (viewId === 'home') renderGrid('home-featured-products-grid');
             if (viewId === 'shop') renderGrid('shop-catalog-grid');
-            if (viewId === 'admin') { renderAdminTable(); renderOrdersLedgerListTableContainerNodes(); }
+            if (viewId === 'admin') { 
+                updateAdminPanelSwitchUI();
+                renderAdminTable(); 
+                renderOrdersLedgerListTableContainerNodes(); 
+            }
         }
 
         function renderGrid(targetId) {
@@ -772,7 +891,7 @@
                 const loader = document.getElementById('loading-screen');
                 if (loader) { loader.style.opacity = '0'; setTimeout(() => loader.remove(), 500); }
             }, 600);
-            renderAuthenticationStateMarkupCards(); navigateTo('home');
+            navigateTo('home');
         });
     </script>
 </body>
