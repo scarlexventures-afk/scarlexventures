@@ -83,6 +83,11 @@
 </head>
 <body class="antialiased flex flex-col min-h-screen">
 
+    <!-- Global Broadcast Live Notification Status Ribbon Tab Bar Component -->
+    <div class="bg-brand text-white text-center py-1.5 px-4 text-xs font-montserrat uppercase font-bold tracking-[0.2em] relative z-[10001] shadow-md flex items-center justify-center gap-2">
+        <span>WEBSITE IS LIVE 🔥</span>
+    </div>
+
     <!-- Screen Aspect Ratio Simulator Canvas Mode Trigger Panel Header -->
     <div class="bg-zinc-950 border-b border-zinc-900 px-4 py-2 flex items-center justify-between gap-4 text-xs font-mono relative z-[10000]">
         <div class="flex items-center gap-2">
@@ -124,12 +129,11 @@
             <div class="hidden lg:flex items-center gap-8 text-xs font-medium tracking-wide uppercase font-montserrat">
                 <a href="#" onclick="navigateTo('home')" class="hover:text-brand transition-colors text-white">Home</a>
                 <a href="#" onclick="navigateTo('shop')" class="hover:text-brand transition-colors text-textMuted">Shop Collection</a>
-                <a href="#" onclick="navigateTo('about')" class="hover:text-brand transition-colors text-textMuted">Our Craft</a>
+                <a href="#" onclick="navigateTo('about')" class="hover:text-brand transition-colors text-textMuted">About</a>
                 <a href="#" onclick="navigateTo('contact')" class="hover:text-brand transition-colors text-textMuted">Contact</a>
             </div>
 
             <div class="flex items-center gap-3">
-                <!-- Verified Official Channels Anchors -->
                 <a href="https://www.instagram.com/scarlex_garage?igsh=c2xhZXZ0d3pqcm04" target="_blank" class="text-zinc-400 hover:text-brand transition-colors text-sm" title="Official Instagram Handle"><i class="fa-brands fa-instagram"></i></a>
                 <a href="https://chat.whatsapp.com/LOyuL7Cfv6Z5hhNf659Tvg" target="_blank" class="text-zinc-400 hover:text-emerald-500 transition-colors text-sm" title="WhatsApp Community Hub"><i class="fa-brands fa-whatsapp"></i></a>
                 <span class="w-[1px] h-4 bg-zinc-800 hidden sm:inline-block"></span>
@@ -144,7 +148,7 @@
         <div id="mobile-nav-drawer" class="fixed inset-x-0 top-[57px] bottom-0 bg-bgMain/98 z-30 transform -translate-x-full transition-transform duration-300 border-t border-zinc-900 lg:hidden flex flex-col p-6 space-y-4 font-montserrat text-sm uppercase tracking-widest">
             <a href="#" onclick="handleMobileLink('home')" class="py-3 border-b border-zinc-900 text-white flex justify-between items-center"><span>Home</span><i class="fa-solid fa-chevron-right text-xs text-zinc-700"></i></a>
             <a href="#" onclick="handleMobileLink('shop')" class="py-3 border-b border-zinc-900 text-zinc-300 flex justify-between items-center"><span>Shop Collection</span><i class="fa-solid fa-chevron-right text-xs text-zinc-700"></i></a>
-            <a href="#" onclick="handleMobileLink('about')" class="py-3 border-b border-zinc-900 text-zinc-300 flex justify-between items-center"><span>Our Craft</span><i class="fa-solid fa-chevron-right text-xs text-zinc-700"></i></a>
+            <a href="#" onclick="handleMobileLink('about')" class="py-3 border-b border-zinc-900 text-zinc-300 flex justify-between items-center"><span>About</span><i class="fa-solid fa-chevron-right text-xs text-zinc-700"></i></a>
             <a href="#" onclick="handleMobileLink('contact')" class="py-3 text-zinc-300 flex justify-between items-center"><span>Contact</span><i class="fa-solid fa-chevron-right text-xs text-zinc-700"></i></a>
             <div class="pt-6 flex gap-4 justify-center text-lg text-zinc-500">
                 <a href="https://www.instagram.com/scarlex_garage?igsh=c2xhZXZ0d3pqcm04" target="_blank" class="hover:text-brand"><i class="fa-brands fa-instagram"></i></a>
@@ -246,10 +250,22 @@
 
     <template id="view-about">
         <div class="fade-in-view max-w-3xl mx-auto px-4 py-12">
-            <h1 class="text-3xl md:text-5xl heading-premium text-center tracking-wider mb-2">SCARLEX <span class="text-brand">VENTURES</span></h1>
+            <h1 class="text-3xl md:text-5xl heading-premium text-center tracking-wider mb-2">ABOUT <span class="text-brand">SCARLEX</span></h1>
             <p class="text-center font-montserrat text-[10px] text-textMuted tracking-[0.3em] uppercase mb-10">THE GENESIS OF AUTOMOTIVE LUXURY WALL ART</p>
+            
             <div class="space-y-6 text-zinc-300 font-light text-xs sm:text-sm leading-relaxed">
-                <p>Founded and owned by <strong>Bishal Sarma</strong>, our signature brand emerged from standard automotive posters lacking tangible depth and dynamic shadows.</p>
+                <!-- Solid Vision Statement Section -->
+                <div class="bg-zinc-900/40 p-6 border border-zinc-800/80 rounded-xl shadow-lg mb-8">
+                    <h3 class="text-xs font-bold font-montserrat text-white uppercase tracking-widest mb-2.5 flex items-center gap-2">
+                        <span class="w-1.5 h-3 bg-brand rounded-full"></span> Our Solid Vision
+                    </h3>
+                    <p class="text-zinc-300 font-normal italic leading-relaxed">
+                        "At Scarlex Ventures, our vision is to bridge the gap between high-octane engineering passion and elite interior design. We don't just sell frames; we preserve automotive history in three dimensions. By combining premium physical precision scales with breathtaking depth curation, we turn empty spaces into high-fidelity monuments honoring the world's most legendary machines."
+                    </p>
+                </div>
+
+                <p>Born out of frustration with ordinary, flat automotive posters, our signature collectibles emerged to capture tactile light patterns, tangible physical dimensions, and true shadow-box high fidelity design execution profiles.</p>
+                
                 <div class="border-t border-b border-zinc-900 py-6 my-6">
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div class="bg-zinc-900/30 p-4 border border-zinc-800 rounded shadow-md">
@@ -258,7 +274,7 @@
                         </div>
                         <div class="bg-zinc-900/30 p-4 border border-zinc-800 rounded shadow-md">
                             <span class="text-white font-semibold font-montserrat text-sm block">Nilabh Jyoti Sarma</span>
-                            <span class="text-[9px] text-brand uppercase font-mono tracking-wider block mt-0.5">Co-Founder & Head of Social Media</span>
+                            <span class="text-[9px] text-brand uppercase font-mono tracking-wider block mt-0.5">Head of Social Media</span>
                         </div>
                     </div>
                 </div>
