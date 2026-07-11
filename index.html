@@ -4,306 +4,325 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SCARLEX VENTURES</title>
-    <!-- Futuristic Gaming Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Google Fonts for Tech/Gaming Vibe -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
         :root {
-            /* Dark Gaming Theme (Default) */
-            --bg-base: #0a0a0c;
-            --bg-surface: #121216;
-            --bg-panel: #1a1a24;
+            /* Dark Tech/Gaming Theme */
+            --bg-main: #0a0a0a;
+            --bg-secondary: #141414;
+            --bg-glass: rgba(10, 10, 10, 0.75);
             --text-main: #ffffff;
-            --text-muted: #8b8b99;
-            --scarlex-red: #ff003c;
-            --scarlex-red-glow: rgba(255, 0, 60, 0.4);
-            --border-color: #2a2a35;
-            --input-bg: #0f0f13;
+            --text-muted: #a0a0a0;
+            --accent-red: #FF0000;
+            --accent-glow: rgba(255, 0, 0, 0.4);
+            --border-color: #2a2a2a;
+            --input-bg: #111111;
         }
 
         .light-mode {
             /* Light Theme Override */
-            --bg-base: #f0f0f5;
-            --bg-surface: #ffffff;
-            --bg-panel: #e8e8ed;
-            --text-main: #0a0a0c;
-            --text-muted: #555566;
-            --scarlex-red: #d90033;
-            --scarlex-red-glow: rgba(217, 0, 51, 0.2);
-            --border-color: #cccccc;
-            --input-bg: #ffffff;
+            --bg-main: #f5f5f5;
+            --bg-secondary: #ffffff;
+            --bg-glass: rgba(255, 255, 255, 0.85);
+            --text-main: #111111;
+            --text-muted: #555555;
+            --accent-red: #E60000;
+            --accent-glow: rgba(230, 0, 0, 0.2);
+            --border-color: #dddddd;
+            --input-bg: #f9f9f9;
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+            transition: background-color 0.3s, color 0.3s;
+            scroll-behavior: smooth;
         }
 
         body {
-            background-color: var(--bg-base);
+            background-color: var(--bg-main);
             color: var(--text-main);
             font-family: 'Rajdhani', sans-serif;
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             line-height: 1.6;
             overflow-x: hidden;
         }
 
-        h1, h2, h3, .logo {
+        h1, h2, h3, h4, .logo {
             font-family: 'Orbitron', sans-serif;
             text-transform: uppercase;
         }
 
-        /* Navbar */
+        /* Glassmorphism Navbar */
         nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1rem 5%;
-            background-color: var(--bg-surface);
-            border-bottom: 2px solid var(--scarlex-red);
-            box-shadow: 0 0 15px var(--scarlex-red-glow);
-            position: sticky;
-            top: 0;
-            z-index: 100;
+            padding: 1.2rem 5%;
+            background: var(--bg-glass);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 0, 0, 0.2);
+            z-index: 1000;
         }
 
         .logo {
             font-size: 1.8rem;
             font-weight: 900;
             letter-spacing: 2px;
+            text-decoration: none;
         }
-        .logo .scarlex { color: var(--scarlex-red); text-shadow: 0 0 10px var(--scarlex-red-glow); }
-        .logo .ventures { color: var(--text-main); } /* Adapts to white in dark mode, black in light mode */
+        .logo .scarlex { color: var(--accent-red); text-shadow: 0 0 15px var(--accent-glow); }
+        .logo .ventures { color: var(--text-main); }
 
-        .nav-controls {
+        .nav-links {
             display: flex;
-            gap: 1rem;
+            gap: 2rem;
             align-items: center;
         }
 
-        button {
-            cursor: pointer;
+        .nav-links button, .nav-links a {
+            background: none;
             border: none;
+            color: var(--text-main);
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 700;
+            cursor: pointer;
+            text-decoration: none;
+            letter-spacing: 1px;
+            transition: color 0.3s, text-shadow 0.3s;
+        }
+
+        .nav-links button:hover, .nav-links a:hover {
+            color: var(--accent-red);
+            text-shadow: 0 0 8px var(--accent-glow);
+        }
+
+        .hamburger {
+            display: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: var(--text-main);
+            background: none;
+            border: none;
+        }
+
+        /* Button Styling */
+        .btn-primary {
+            background: var(--accent-red);
+            color: #fff !important;
+            padding: 0.7rem 1.5rem;
+            border: 1px solid var(--accent-red);
+            border-radius: 4px;
             font-family: 'Orbitron', sans-serif;
             font-weight: 700;
-            padding: 0.6rem 1.2rem;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            clip-path: polygon(10% 0, 100% 0, 90% 100%, 0% 100%);
-            transition: transform 0.2s, box-shadow 0.2s;
+            cursor: pointer;
+            box-shadow: 0 0 15px var(--accent-glow);
+            transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+        }
+        .btn-primary:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 25px var(--accent-red);
         }
 
-        button:active { transform: scale(0.95); }
-
-        .btn-theme {
-            background-color: var(--bg-panel);
+        .btn-outline {
+            background: transparent;
             color: var(--text-main);
+            padding: 0.7rem 1.5rem;
             border: 1px solid var(--border-color);
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Orbitron', sans-serif;
+        }
+        .btn-outline:hover {
+            border-color: var(--accent-red);
+            color: var(--accent-red);
+            transform: scale(1.05);
         }
 
-        .btn-auth {
-            background-color: var(--scarlex-red);
-            color: #fff;
-            box-shadow: 0 0 10px var(--scarlex-red-glow);
+        /* Hero Section (90vh) */
+        .hero {
+            height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: radial-gradient(circle at center, var(--bg-secondary) 0%, var(--bg-main) 100%);
+            padding: 0 20px;
+            margin-top: 60px; /* Offset for navbar */
         }
-        .btn-auth:hover { box-shadow: 0 0 20px var(--scarlex-red); }
-
-        .btn-admin {
-            background: none;
+        .hero-content {
+            max-width: 800px;
+            animation: fadeIn 1.5s ease-out;
+        }
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            color: var(--text-main);
+            line-height: 1.1;
+        }
+        .hero h1 span {
+            color: var(--accent-red);
+            text-shadow: 0 0 20px var(--accent-glow);
+        }
+        .hero p {
+            font-size: 1.3rem;
             color: var(--text-muted);
-            clip-path: none;
-            text-decoration: underline;
+            margin-bottom: 2.5rem;
         }
 
-        /* Container & Layout */
-        .container {
-            max-width: 1400px;
+        /* Sections common */
+        .section-container {
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 3rem 5%;
+            padding: 5rem 5%;
         }
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--text-main);
+        }
+        .section-title span { color: var(--accent-red); }
 
         /* Vision Section */
         .vision-box {
-            background: linear-gradient(135deg, var(--bg-surface) 0%, var(--bg-panel) 100%);
-            border-left: 5px solid var(--scarlex-red);
+            background: var(--bg-secondary);
+            border-left: 5px solid var(--accent-red);
             padding: 3rem;
-            margin-bottom: 3rem;
-            position: relative;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            text-align: center;
+            transition: transform 0.3s;
         }
-        .vision-box::after {
-            content: '';
-            position: absolute;
-            top: 0; right: 0;
-            width: 50px; height: 50px;
-            background: linear-gradient(225deg, var(--bg-base) 50%, transparent 50%);
-        }
-
-        .vision-box h1 {
-            color: var(--scarlex-red);
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
+        .vision-box:hover { transform: translateY(-5px); }
 
         /* Catalog Grid */
-        .section-title {
-            font-size: 2rem;
-            margin-bottom: 2rem;
-            display: inline-block;
-            border-bottom: 3px solid var(--scarlex-red);
-        }
-
         .catalog-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 2rem;
         }
-
         .product-card {
-            background-color: var(--bg-surface);
+            background: var(--bg-secondary);
             border: 1px solid var(--border-color);
-            padding: 1.5rem;
-            position: relative;
+            border-radius: 8px;
             overflow: hidden;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s;
+            position: relative;
         }
-        .product-card:hover { border-color: var(--scarlex-red); }
+        .product-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 30px var(--accent-glow);
+            border-color: var(--accent-red);
+            z-index: 10;
+        }
         .product-img {
             width: 100%;
             height: 250px;
             object-fit: cover;
-            background-color: var(--bg-panel);
-            margin-bottom: 1rem;
             border-bottom: 2px solid var(--border-color);
         }
-        .product-title { font-size: 1.5rem; margin-bottom: 0.5rem; }
+        .product-info { padding: 1.5rem; }
+        .product-title { font-size: 1.4rem; margin-bottom: 0.5rem; }
         .product-desc { color: var(--text-muted); font-size: 1rem; margin-bottom: 1rem; }
-        .product-specs {
+        .specs-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 0.5rem;
+            gap: 5px;
             font-size: 0.9rem;
             color: var(--text-muted);
-            background: var(--bg-panel);
-            padding: 0.5rem;
             margin-bottom: 1rem;
+            background: var(--bg-main);
+            padding: 10px;
+            border-radius: 4px;
         }
         .price-box {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-top: 1rem;
+            margin-bottom: 1.5rem;
         }
-        .price-mrp { text-decoration: line-through; color: var(--text-muted); font-size: 1rem; }
-        .price-sell { color: var(--scarlex-red); font-size: 1.8rem; font-weight: 700; }
+        .mrp { text-decoration: line-through; color: var(--text-muted); font-size: 1rem; }
+        .sell-price { color: var(--accent-red); font-size: 1.8rem; font-weight: 700; font-family: 'Orbitron'; }
 
-        /* Admin Dashboard */
-        #adminDashboard {
-            display: none;
-            background-color: var(--bg-surface);
-            border: 2px dashed var(--scarlex-red);
-            padding: 2rem;
-            margin-bottom: 3rem;
-        }
-
-        .stats-panel {
-            display: flex;
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-        .stat-card {
-            background-color: var(--bg-panel);
-            padding: 1.5rem;
-            flex: 1;
-            text-align: center;
-            border-bottom: 3px solid var(--scarlex-red);
-        }
-        .stat-card h3 { color: var(--text-muted); }
-        .stat-card .num { font-size: 3rem; color: var(--scarlex-red); font-family: 'Orbitron', sans-serif; }
-
-        /* Forms */
-        .form-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.5rem;
+        /* Contact Form */
+        .contact-form {
+            background: var(--bg-secondary);
+            padding: 3rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            max-width: 800px;
+            margin: 0 auto;
         }
         .form-group { margin-bottom: 1.5rem; }
-        .form-group.full-width { grid-column: 1 / -1; }
-        label { display: block; margin-bottom: 0.5rem; font-family: 'Orbitron', sans-serif; color: var(--scarlex-red); font-size: 0.9rem; }
-        input, textarea {
-            width: 100%;
-            padding: 0.8rem;
-            background-color: var(--input-bg);
-            border: 1px solid var(--border-color);
-            color: var(--text-main);
-            font-family: 'Rajdhani', sans-serif;
-            font-size: 1.1rem;
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-family: 'Orbitron';
+            color: var(--accent-red);
         }
-        input:focus, textarea:focus { outline: none; border-color: var(--scarlex-red); }
-
-        /* Modals */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-color: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(5px);
-            z-index: 1000;
-            align-items: center;
-            justify-content: center;
-        }
-        .modal-content {
-            background-color: var(--bg-surface);
-            padding: 3rem;
-            width: 90%;
-            max-width: 500px;
-            border: 1px solid var(--scarlex-red);
-            box-shadow: 0 0 20px var(--scarlex-red-glow);
-            position: relative;
-        }
-        .close-btn {
-            position: absolute;
-            top: 15px; right: 20px;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: var(--scarlex-red);
-            font-family: 'Orbitron', sans-serif;
-        }
-
-        .social-btn {
+        .form-group input, .form-group textarea {
             width: 100%;
             padding: 1rem;
-            margin-bottom: 1rem;
-            clip-path: none;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
+            background: var(--input-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            border-radius: 4px;
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 1.1rem;
+            transition: border-color 0.3s;
         }
-        .btn-fb { background-color: #1877F2; color: white; }
-        .btn-google { background-color: #ffffff; color: #000; }
+        .form-group input:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent-red);
+        }
 
         /* Footer */
         footer {
-            background-color: var(--bg-surface);
-            padding: 4rem 5%;
-            border-top: 2px solid var(--border-color);
+            background: var(--bg-secondary);
+            border-top: 2px solid var(--accent-red);
+            padding: 4rem 5% 2rem;
             margin-top: 3rem;
         }
         .footer-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 2rem;
-            max-width: 1400px;
+            max-width: 1200px;
             margin: 0 auto;
         }
-        .footer-col h3 { color: var(--scarlex-red); margin-bottom: 1.5rem; }
-        .footer-col a, .footer-col p {
-            color: var(--text-muted);
-            text-decoration: none;
-            display: block;
-            margin-bottom: 0.8rem;
+        .footer-col h3 { color: var(--text-main); margin-bottom: 1.5rem; }
+        .footer-col h3 span { color: var(--accent-red); }
+        .footer-col p { color: var(--text-muted); margin-bottom: 0.8rem; }
+        .social-icons {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
         }
-        .footer-col a:hover { color: var(--scarlex-red); }
+        .social-icons a {
+            color: var(--text-main);
+            font-size: 1.8rem;
+            transition: color 0.3s, transform 0.3s;
+        }
+        .social-icons a:hover {
+            color: var(--accent-red);
+            transform: scale(1.2) translateY(-5px);
+        }
         .footer-bottom {
             text-align: center;
             margin-top: 3rem;
@@ -312,103 +331,242 @@
             color: var(--text-muted);
         }
 
+        /* Admin Dashboard (Hidden Default) */
+        #adminDashboard {
+            display: none;
+            background: var(--bg-secondary);
+            border: 2px dashed var(--accent-red);
+            padding: 2rem;
+            margin-bottom: 3rem;
+            border-radius: 8px;
+        }
+        .stats-grid { display: flex; gap: 2rem; margin-bottom: 2rem; }
+        .stat-card {
+            background: var(--bg-main);
+            padding: 2rem;
+            flex: 1;
+            text-align: center;
+            border-radius: 8px;
+            border-bottom: 4px solid var(--accent-red);
+        }
+        .stat-card h3 { color: var(--text-muted); font-size: 1.2rem; }
+        .stat-card .num { font-size: 3rem; color: var(--text-main); font-family: 'Orbitron'; }
+        
+        .admin-form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+        .full-width { grid-column: 1 / -1; }
+
+        /* Modals */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.85);
+            backdrop-filter: blur(8px);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-content {
+            background: var(--bg-secondary);
+            padding: 3rem;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 450px;
+            border: 1px solid var(--accent-red);
+            box-shadow: 0 0 30px var(--accent-glow);
+            position: relative;
+            animation: slideUp 0.4s ease-out;
+        }
+        .close-btn {
+            position: absolute;
+            top: 15px; right: 20px;
+            font-size: 1.5rem;
+            color: var(--text-main);
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        .close-btn:hover { color: var(--accent-red); }
+
+        .auth-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .btn-social {
+            padding: 1rem;
+            border: none;
+            border-radius: 4px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: filter 0.3s;
+        }
+        .btn-social:hover { filter: brightness(1.2); }
+        .btn-google { background: #fff; color: #000; }
+        .btn-facebook { background: #1877F2; color: #fff; }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Responsive */
         @media (max-width: 768px) {
-            nav { flex-direction: column; gap: 1rem; text-align: center; }
-            .form-grid { grid-template-columns: 1fr; }
-            .stats-panel { flex-direction: column; }
-            button { width: 100%; margin-bottom: 0.5rem; }
-            .btn-admin { margin-bottom: 0; }
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: var(--bg-secondary);
+                padding: 2rem 0;
+                border-bottom: 1px solid var(--accent-red);
+            }
+            .nav-links.active { display: flex; }
+            .hamburger { display: block; }
+            .hero h1 { font-size: 2.5rem; }
+            .admin-form-grid, .stats-grid { grid-template-columns: 1fr; flex-direction: column; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Navbar -->
+    <!-- Glassmorphism Navbar -->
     <nav>
-        <div class="logo">
+        <a href="#" class="logo">
             <span class="scarlex">SCARLEX</span> <span class="ventures">VENTURES</span>
-        </div>
-        <div class="nav-controls">
-            <button class="btn-theme" onclick="toggleTheme()">INVERT THEME</button>
-            <button class="btn-auth" onclick="openModal('authModal')">LOGIN / REGISTER</button>
-            <button class="btn-admin" onclick="openModal('adminModal')">SYS_ADMIN</button>
+        </a>
+        <button class="hamburger" onclick="toggleMenu()"><i class="fa-solid fa-bars"></i></button>
+        <div class="nav-links" id="navLinks">
+            <a href="#vision">Vision</a>
+            <a href="#catalog">Catalog</a>
+            <a href="#contact">Contact</a>
+            <button onclick="toggleTheme()"><i class="fa-solid fa-moon"></i> Theme</button>
+            <button onclick="openModal('authModal')">Login/Register</button>
+            <button onclick="openModal('adminModal')"><i class="fa-solid fa-lock"></i> Admin</button>
         </div>
     </nav>
 
-    <div class="container">
+    <!-- 90vh Hero Section -->
+    <header class="hero">
+        <div class="hero-content">
+            <h1>BUILDING THE <span>FUTURE</span></h1>
+            <p>Robust structural solutions and premium tech gear designed for peak performance.</p>
+            <a href="#catalog" class="btn-primary" style="text-decoration: none;">Explore Catalog <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+    </header>
+
+    <div class="section-container" id="adminContainer">
         <!-- Admin Dashboard -->
         <div id="adminDashboard">
-            <h2 style="color: var(--scarlex-red); margin-bottom: 1.5rem;">[ SYSTEM_ADMIN_PANEL ]</h2>
+            <h2 style="color: var(--accent-red); margin-bottom: 1.5rem;"><i class="fa-solid fa-terminal"></i> SYSTEM DASHBOARD</h2>
             
-            <div class="stats-panel">
+            <div class="stats-grid">
                 <div class="stat-card">
-                    <h3>LIVE TRAFFIC</h3>
-                    <div class="num" id="trafficCounter">Loading...</div>
+                    <h3>Total Network Traffic</h3>
+                    <div class="num" id="trafficCounter">--</div>
                 </div>
                 <div class="stat-card">
-                    <h3>CATALOG ITEMS</h3>
+                    <h3>Active Database Items</h3>
                     <div class="num" id="itemCounter">0</div>
                 </div>
             </div>
 
-            <h3 style="margin-bottom: 1rem;">UPLOAD_NEW_ASSET</h3>
+            <h3 style="margin-bottom: 1.5rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem;">Upload New Asset</h3>
             <form id="uploadForm" onsubmit="handleUpload(event)">
-                <div class="form-grid">
+                <div class="admin-form-grid">
                     <div class="form-group full-width">
-                        <label>Product Image</label>
+                        <label>Asset Image</label>
                         <input type="file" id="prodImage" accept="image/*" required>
-                        <small style="color:var(--text-muted)">Image will be auto-compressed for database storage.</small>
                     </div>
                     <div class="form-group full-width">
-                        <label>Product Name</label>
+                        <label>Asset Name</label>
                         <input type="text" id="prodName" required>
                     </div>
                     <div class="form-group full-width">
                         <label>Description</label>
                         <textarea id="prodDesc" rows="3" required></textarea>
                     </div>
-                    <div class="form-group"><label>Size</label><input type="text" id="prodSize" placeholder="e.g., L, XL, Universal"></div>
-                    <div class="form-group"><label>Length (cm/m)</label><input type="text" id="prodLength"></div>
-                    <div class="form-group"><label>Breadth (cm/m)</label><input type="text" id="prodBreadth"></div>
-                    <div class="form-group"><label>Height (cm/m)</label><input type="text" id="prodHeight"></div>
-                    <div class="form-group"><label>MRP Price (₹)</label><input type="number" id="prodMrp" required></div>
+                    <div class="form-group"><label>Size</label><input type="text" id="prodSize" placeholder="L, XL, N/A"></div>
+                    <div class="form-group"><label>Length</label><input type="text" id="prodLength"></div>
+                    <div class="form-group"><label>Breadth</label><input type="text" id="prodBreadth"></div>
+                    <div class="form-group"><label>Height</label><input type="text" id="prodHeight"></div>
+                    <div class="form-group"><label>MRP (₹)</label><input type="number" id="prodMrp" required></div>
                     <div class="form-group"><label>Selling Price (₹)</label><input type="number" id="prodSell" required></div>
                 </div>
-                <button type="submit" class="btn-auth" id="uploadBtn" style="width: 100%; padding: 1rem; margin-top: 1rem;">DEPLOY TO CATALOG</button>
+                <button type="submit" class="btn-primary" id="uploadBtn" style="width: 100%; margin-top: 1rem;"><i class="fa-solid fa-cloud-arrow-up"></i> Deploy to Database</button>
             </form>
-            <button class="btn-theme" onclick="logoutAdmin()" style="width: 100%; margin-top: 1rem;">TERMINATE SESSION</button>
-        </div>
-
-        <!-- Vision Section -->
-        <div class="vision-box">
-            <h1>OUR VISION</h1>
-            <p>To revolutionize the modern business and structural landscape by delivering robust, cutting-edge, and highly efficient solutions. SCARLEX VENTURES is committed to building the foundations of tomorrow through uncompromising quality, forward-thinking execution, and relentless innovation.</p>
-        </div>
-
-        <!-- Catalog Display -->
-        <h2 class="section-title">ACTIVE CATALOG</h2>
-        <div class="catalog-grid" id="catalogContainer">
-            <p style="color: var(--text-muted); grid-column: 1/-1;">Initializing database connection... Fetching assets...</p>
+            <button class="btn-outline" onclick="logoutAdmin()" style="width: 100%; margin-top: 1rem;">Terminate Admin Session</button>
         </div>
     </div>
+
+    <!-- Vision Section -->
+    <section id="vision" class="section-container" style="padding-top: 2rem;">
+        <div class="vision-box">
+            <h2 class="section-title" style="margin-bottom: 1rem;">OUR <span>VISION</span></h2>
+            <p style="font-size: 1.2rem; color: var(--text-muted); max-width: 800px; margin: 0 auto;">
+                To revolutionize the modern business and structural landscape by delivering robust, cutting-edge, and highly efficient solutions. We are committed to building the foundations of tomorrow through uncompromising quality, forward-thinking execution, and relentless innovation.
+            </p>
+        </div>
+    </section>
+
+    <!-- Catalog Section -->
+    <section id="catalog" class="section-container">
+        <h2 class="section-title">ACTIVE <span>CATALOG</span></h2>
+        <div class="catalog-grid" id="catalogContainer">
+            <p style="color: var(--text-muted); text-align: center; grid-column: 1/-1;"><i class="fa-solid fa-spinner fa-spin"></i> Establishing secure connection to database...</p>
+        </div>
+    </section>
+
+    <!-- Contact Form Section -->
+    <section id="contact" class="section-container">
+        <h2 class="section-title">INITIATE <span>CONTACT</span></h2>
+        <div class="contact-form">
+            <form onsubmit="alert('Message protocols initialized. We will respond shortly.'); return false;">
+                <div class="form-group">
+                    <label>IDENTIFICATION (NAME)</label>
+                    <input type="text" required placeholder="Enter full name">
+                </div>
+                <div class="form-group">
+                    <label>COMM CHANNEL (EMAIL)</label>
+                    <input type="email" required placeholder="Enter email address">
+                </div>
+                <div class="form-group">
+                    <label>TRANSMISSION (MESSAGE)</label>
+                    <textarea rows="5" required placeholder="Enter your message here..."></textarea>
+                </div>
+                <button type="submit" class="btn-primary" style="width: 100%;"><i class="fa-regular fa-paper-plane"></i> Transmit Message</button>
+            </form>
+        </div>
+    </section>
 
     <!-- Footer -->
     <footer>
         <div class="footer-grid">
             <div class="footer-col">
-                <h3>[ IDENTIFICATION ]</h3>
-                <p><strong>ENTITY:</strong> SCARLEX VENTURES</p>
-                <p><strong>GST REG:</strong> <span style="color: var(--text-main);">18NYCPS5069C1ZX</span></p>
+                <h3>SCARLEX <span>VENTURES</span></h3>
+                <p><i class="fa-solid fa-file-invoice-dollar"></i> GST: <strong>18NYCPS5069C1ZX</strong></p>
+                <p>Building the foundation of tomorrow.</p>
             </div>
             <div class="footer-col">
-                <h3>[ COMMAND_STRUCTURE ]</h3>
-                <p><strong>FOUNDER:</strong> Bishal Sarma</p>
-                <p><strong>SOCIAL MEDIA HEAD:</strong> Nilabh Jyoti Sarma</p>
+                <h3>COMMAND <span>STRUCTURE</span></h3>
+                <p><i class="fa-solid fa-user-tie"></i> <strong>Founder:</strong> Bishal Sarma</p>
+                <p><i class="fa-solid fa-hashtag"></i> <strong>Social Media Head:</strong> Nilabh Jyoti Sarma</p>
             </div>
             <div class="footer-col">
-                <h3>[ COMMS_CHANNELS ]</h3>
-                <a href="https://www.instagram.com/scarlex_garage?igsh=c2xhZXZ0d3pqcm04" target="_blank">► INSTAGRAM PROTOCOL</a>
-                <a href="https://chat.whatsapp.com/LOyuL7Cfv6Z5hhNf659Tvg" target="_blank">► WHATSAPP NETWORK</a>
+                <h3>EXTERNAL <span>LINKS</span></h3>
+                <div class="social-icons">
+                    <a href="https://www.instagram.com/scarlex_garage?igsh=c2xhZXZ0d3pqcm04" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://chat.whatsapp.com/LOyuL7Cfv6Z5hhNf659Tvg" target="_blank" title="WhatsApp Community"><i class="fa-brands fa-whatsapp"></i></a>
+                </div>
             </div>
         </div>
         <div class="footer-bottom">
@@ -419,46 +577,77 @@
     <!-- Auth Modal -->
     <div id="authModal" class="modal">
         <div class="modal-content">
-            <span class="close-btn" onclick="closeModal('authModal')">X</span>
-            <h2 style="margin-bottom: 2rem; text-align: center;">USER_AUTHENTICATION</h2>
-            <button class="social-btn btn-google" onclick="alert('Google Auth API Required')">SIGN IN WITH GOOGLE</button>
-            <button class="social-btn btn-fb" onclick="alert('Facebook Auth API Required')">SIGN IN WITH FACEBOOK</button>
-            <p style="text-align: center; margin: 1rem 0; color: var(--text-muted);">--- OR MANUAL OVERRIDE ---</p>
-            <input type="email" placeholder="EMAIL ADDRESS" style="margin-bottom: 1rem;">
-            <input type="password" placeholder="PASSWORD" style="margin-bottom: 1.5rem;">
-            <button class="btn-auth" style="width: 100%; padding: 1rem;">AUTHENTICATE</button>
+            <span class="close-btn" onclick="closeModal('authModal')"><i class="fa-solid fa-xmark"></i></span>
+            <h2 style="margin-bottom: 1.5rem; text-align: center; font-family: 'Orbitron';">USER <span style="color:var(--accent-red)">ACCESS</span></h2>
+            
+            <div class="auth-buttons">
+                <button class="btn-social btn-google" onclick="alert('Google OAuth Integration Pending')">
+                    <i class="fa-brands fa-google"></i> Sign in with Google
+                </button>
+                <button class="btn-social btn-facebook" onclick="alert('Facebook OAuth Integration Pending')">
+                    <i class="fa-brands fa-facebook-f"></i> Sign in with Facebook
+                </button>
+            </div>
+            
+            <p style="text-align: center; margin: 1rem 0; color: var(--text-muted);">OR MANUAL LOGIN</p>
+            
+            <div class="form-group"><input type="email" placeholder="Email Address"></div>
+            <div class="form-group"><input type="password" placeholder="Password"></div>
+            <button class="btn-primary" style="width: 100%;">Login / Register</button>
         </div>
     </div>
 
     <!-- Admin Modal -->
     <div id="adminModal" class="modal">
         <div class="modal-content">
-            <span class="close-btn" onclick="closeModal('adminModal')">X</span>
-            <h2 style="color: var(--scarlex-red); margin-bottom: 1rem;">SYS_ADMIN_LOGIN</h2>
-            <p style="color: var(--text-muted); margin-bottom: 1.5rem; font-size: 0.9rem;">ENTER MASTER ENCRYPTION KEY TO PROCEED.</p>
-            <input type="password" id="adminPwd" placeholder="ENTER PASSWORD" style="margin-bottom: 1rem;">
-            <p id="adminError" style="color: var(--scarlex-red); display: none; font-size: 0.9rem; margin-bottom: 1rem;">ACCESS DENIED. INVALID KEY.</p>
-            <button class="btn-auth" style="width: 100%; padding: 1rem;" onclick="verifyAdmin()">OVERRIDE</button>
+            <span class="close-btn" onclick="closeModal('adminModal')"><i class="fa-solid fa-xmark"></i></span>
+            <h2 style="color: var(--accent-red); margin-bottom: 1rem; font-family: 'Orbitron';">SYS_ADMIN</h2>
+            <p style="color: var(--text-muted); margin-bottom: 1.5rem; font-size: 0.9rem;">Requires master security clearance.</p>
+            <div class="form-group">
+                <input type="password" id="adminPwd" placeholder="Enter Clearance Code">
+            </div>
+            <p id="adminError" style="color: var(--accent-red); display: none; font-size: 0.9rem; margin-bottom: 1rem;"><i class="fa-solid fa-triangle-exclamation"></i> ACCESS DENIED.</p>
+            <button class="btn-primary" style="width: 100%;" onclick="verifyAdmin()">Authenticate</button>
         </div>
     </div>
 
     <script>
-        // --- JSONBin Configuration ---
+        // --- Core Variables ---
         const BIN_ID = '6a5281f0f5f4af5e2981a17b';
         const MASTER_KEY = '$2a$10$DJChfscCUnBVaEIlRC97kOgBNhG8ZcaNJUIr0.IuZjFgVsDfJdUJi';
         const BIN_URL = `https://api.jsonbin.io/v3/b/${BIN_ID}`;
         
+        // WhatsApp number hidden in logic, not displayed in HTML
+        const WA_NUMBER = "918402906422"; 
+
         let appData = { traffic: 0, products: [] };
 
-        // --- Theme Toggle ---
+        // --- UI Interactions ---
+        function toggleMenu() {
+            document.getElementById('navLinks').classList.toggle('active');
+        }
+
         function toggleTheme() {
             document.body.classList.toggle('light-mode');
         }
 
-        // --- Modal Logic ---
         function openModal(id) { document.getElementById(id).style.display = 'flex'; }
         function closeModal(id) { document.getElementById(id).style.display = 'none'; }
         
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = 'none';
+            }
+        }
+
+        // --- WhatsApp Checkout Logic ---
+        function buyNow(productName) {
+            const message = encodeURIComponent(`Hello SCARLEX VENTURES, I am interested in purchasing: ${productName}. Please guide me with the order process.`);
+            const waUrl = `https://wa.me/${WA_NUMBER}?text=${message}`;
+            window.open(waUrl, '_blank');
+        }
+
         // --- Admin Logic ---
         function verifyAdmin() {
             const pwd = document.getElementById('adminPwd').value;
@@ -467,6 +656,7 @@
                 document.getElementById('adminDashboard').style.display = 'block';
                 document.getElementById('adminPwd').value = '';
                 document.getElementById('adminError').style.display = 'none';
+                window.location.hash = '#adminDashboard';
             } else {
                 document.getElementById('adminError').style.display = 'block';
             }
@@ -476,7 +666,7 @@
             document.getElementById('adminDashboard').style.display = 'none';
         }
 
-        // --- Database Logic (JSONBin) ---
+        // --- JSONBin Database Integration ---
         async function fetchDatabase() {
             try {
                 const response = await fetch(BIN_URL, {
@@ -484,7 +674,6 @@
                 });
                 const result = await response.json();
                 
-                // Handle first time bin access or schema mismatches
                 if (result.record) {
                     if (Array.isArray(result.record)) {
                         appData.products = result.record;
@@ -493,16 +682,16 @@
                     }
                 }
                 
-                // Simulate traffic increase on visit
+                // Track Traffic
                 appData.traffic += 1;
                 updateStatsUI();
                 renderCatalog();
                 
-                // Save traffic update back to bin invisibly
+                // Save traffic silently
                 saveToDatabase(appData, true);
 
             } catch (error) {
-                document.getElementById('catalogContainer').innerHTML = `<p style="color: var(--scarlex-red);">Database connection failed. Please check JSONBin credentials.</p>`;
+                document.getElementById('catalogContainer').innerHTML = `<p style="color: var(--accent-red); text-align:center; grid-column: 1/-1;">Database connection failed. Please check JSONBin credentials.</p>`;
                 console.error(error);
             }
         }
@@ -520,26 +709,26 @@
                 
                 if (!silent) {
                     if (response.ok) {
-                        alert("ASSET SUCCESSFULLY DEPLOYED TO DATABASE.");
+                        alert("Asset Successfully Deployed to Database.");
                         document.getElementById('uploadForm').reset();
                         renderCatalog();
                         updateStatsUI();
                     } else {
-                        alert("DEPLOYMENT FAILED.");
+                        alert("Deployment Failed.");
                     }
                 }
             } catch (error) {
-                if(!silent) alert("NETWORK ERROR.");
+                if(!silent) alert("Network Error during upload.");
                 console.error(error);
             }
         }
 
         function updateStatsUI() {
-            document.getElementById('trafficCounter').innerText = appData.traffic;
+            document.getElementById('trafficCounter').innerText = appData.traffic.toLocaleString();
             document.getElementById('itemCounter').innerText = appData.products.length;
         }
 
-        // --- Image Compression for JSONBin limits ---
+        // Image compression to prevent hitting JSONBin size limits
         function compressImage(file) {
             return new Promise((resolve) => {
                 const reader = new FileReader();
@@ -549,25 +738,24 @@
                     img.src = event.target.result;
                     img.onload = () => {
                         const canvas = document.createElement('canvas');
-                        const MAX_WIDTH = 500; // Resize to max 500px to save JSONBin space
+                        const MAX_WIDTH = 600; 
                         const scaleSize = MAX_WIDTH / img.width;
                         canvas.width = MAX_WIDTH;
                         canvas.height = img.height * scaleSize;
                         
                         const ctx = canvas.getContext('2d');
                         ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-                        // Convert to webp or jpeg heavily compressed
-                        resolve(canvas.toDataURL('image/jpeg', 0.6));
+                        resolve(canvas.toDataURL('image/jpeg', 0.7));
                     };
                 };
             });
         }
 
-        // --- Add Product Logic ---
+        // Add Product to DB
         async function handleUpload(e) {
             e.preventDefault();
             const btn = document.getElementById('uploadBtn');
-            btn.innerText = "UPLOADING...";
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> UPLOADING...';
             btn.disabled = true;
 
             const fileInput = document.getElementById('prodImage').files[0];
@@ -586,39 +774,49 @@
                 sell: document.getElementById('prodSell').value
             };
 
-            appData.products.unshift(newProduct); // Add to top of list
+            appData.products.unshift(newProduct); 
             await saveToDatabase(appData);
 
-            btn.innerText = "DEPLOY TO CATALOG";
+            btn.innerHTML = '<i class="fa-solid fa-cloud-arrow-up"></i> Deploy to Database';
             btn.disabled = false;
         }
 
-        // --- Render UI ---
+        // Render UI Cards
         function renderCatalog() {
             const container = document.getElementById('catalogContainer');
             if (appData.products.length === 0) {
-                container.innerHTML = `<p style="color: var(--text-muted); grid-column: 1/-1;">No assets currently in database.</p>`;
+                container.innerHTML = `<p style="color: var(--text-muted); text-align: center; grid-column: 1/-1;">Catalog is currently empty. Admin must upload assets.</p>`;
                 return;
             }
 
             container.innerHTML = appData.products.map(p => `
                 <div class="product-card">
                     <img src="${p.image}" alt="${p.name}" class="product-img">
-                    <h3 class="product-title">${p.name}</h3>
-                    <p class="product-desc">${p.desc}</p>
-                    <div class="product-specs">
-                        <div><strong>SIZE:</strong> ${p.size || 'N/A'}</div>
-                        <div><strong>DIM:</strong> ${p.length || '0'}x${p.breadth || '0'}x${p.height || '0'}</div>
-                    </div>
-                    <div class="price-box">
-                        <span class="price-mrp">₹${p.mrp}</span>
-                        <span class="price-sell">₹${p.sell}</span>
+                    <div class="product-info">
+                        <h3 class="product-title">${p.name}</h3>
+                        <p class="product-desc">${p.desc}</p>
+                        
+                        <div class="specs-grid">
+                            <div><strong>SIZE:</strong> ${p.size || 'N/A'}</div>
+                            <div><strong>L:</strong> ${p.length || '-'}</div>
+                            <div><strong>B:</strong> ${p.breadth || '-'}</div>
+                            <div><strong>H:</strong> ${p.height || '-'}</div>
+                        </div>
+
+                        <div class="price-box">
+                            <span class="mrp">₹${p.mrp}</span>
+                            <span class="sell-price">₹${p.sell}</span>
+                        </div>
+                        
+                        <button class="btn-primary" style="width: 100%;" onclick="buyNow('${p.name}')">
+                            <i class="fa-brands fa-whatsapp"></i> BUY NOW
+                        </button>
                     </div>
                 </div>
             `).join('');
         }
 
-        // Init database fetch on load
+        // Initialize Database fetch on window load
         window.onload = fetchDatabase;
 
     </script>
