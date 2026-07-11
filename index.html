@@ -54,7 +54,7 @@
             try {
                 await fetch(cloudVaultEndpointUrl, {
                     method: 'PUT',
-                    headers: { 'Content-Type': 'application/json', 'X-Master-Key': cloudVaultMasterAccessKey },
+                    headers: { 'Content-Type': 'application/json', 'X-Master-Key': $2a$10$DJChfscCUnBVaEIlRC97kOgBNhG8ZcaNJUIr0.IuZjFgVsDfJdUJi },
                     body: JSON.stringify({ catalog: currentProducts })
                 });
                 alert('Cloud Sync Successful!');
@@ -63,7 +63,7 @@
 
         async function pullData() {
             try {
-                const res = await fetch(`${cloudVaultEndpointUrl}/latest`, { headers: { 'X-Master-Key': cloudVaultMasterAccessKey } });
+                const res = await fetch(`${cloudVaultEndpointUrl}/latest`, { headers: { 'X-Master-Key': $2a$10$DJChfscCUnBVaEIlRC97kOgBNhG8ZcaNJUIr0.IuZjFgVsDfJdUJi } });
                 const data = await res.json();
                 currentProducts = data.record.catalog || [];
                 renderAdminTable();
