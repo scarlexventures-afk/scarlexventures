@@ -2,13 +2,9 @@
 <html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>SCARLEX VENTURES | Premium 3D Frame Car Collectibles</title>
     <meta name="description" content="Own the Legend. Handcrafted premium 3D framed die-cast car displays designed for collectors and automotive enthusiasts. Built with passion by Bishal Sarma.">
-    
-    <meta property="og:title" content="SCARLEX VENTURES | Premium 3D Frame Collectibles">
-    <meta property="og:description" content="Exclusive luxury automotive wall art and handcrafted 3D frame collectibles.">
-    <meta property="og:type" content="website">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -44,6 +40,7 @@
             color: #FFFFFF;
             font-family: 'Poppins', sans-serif;
             overflow-x: hidden;
+            -webkit-tap-highlight-color: transparent;
         }
         
         .heading-premium {
@@ -59,10 +56,12 @@
             transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        .glass-card:hover {
-            border-color: rgba(229, 9, 20, 0.4);
-            box-shadow: 0 0 30px rgba(229, 9, 20, 0.15);
-            transform: translateY(-4px);
+        @media (min-width: 1024px) {
+            .glass-card:hover {
+                border-color: rgba(229, 9, 20, 0.4);
+                box-shadow: 0 0 30px rgba(229, 9, 20, 0.15);
+                transform: translateY(-4px);
+            }
         }
 
         .btn-glow:hover {
@@ -70,267 +69,362 @@
         }
 
         ::-webkit-scrollbar {
-            width: 6px;
-            height: 6px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #0A0A0A;
+            width: 4px;
         }
         ::-webkit-scrollbar-thumb {
             background: #E50914;
-            border-radius: 3px;
+            border-radius: 2px;
         }
 
         .fade-in-view {
-            animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(15px); }
+            from { opacity: 0; transform: translateY(8px); }
             to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
-<body class="antialiased">
+<body class="antialiased flex flex-col min-h-screen">
 
     <!-- Loading Screen -->
-    <div id="loading-screen" class="fixed inset-0 z-[9999] bg-bgMain flex flex-col justify-center items-center transition-opacity duration-700">
-        <div class="relative flex flex-col items-center">
-            <div class="text-4xl md:text-6xl heading-premium text-white tracking-widest mb-4">
+    <div id="loading-screen" class="fixed inset-0 z-[9999] bg-bgMain flex flex-col justify-center items-center transition-opacity duration-500">
+        <div class="relative flex flex-col items-center px-4 text-center">
+            <div class="text-3xl md:text-6xl heading-premium text-white tracking-widest mb-4">
                 SCARLEX<span class="text-brand">VENTURES</span>
             </div>
-            <div class="w-48 h-[2px] bg-zinc-800 relative overflow-hidden rounded-full">
-                <div class="absolute h-full w-1/3 bg-brand top-0 left-0 animate-[loading_1.5s_infinite_linear]"></div>
+            <div class="w-36 h-[2px] bg-zinc-800 relative overflow-hidden rounded-full">
+                <div class="absolute h-full w-1/3 bg-brand top-0 left-0 animate-[loading_1.2s_infinite_linear]"></div>
             </div>
-            <p class="text-xs font-montserrat tracking-[0.3em] text-textMuted uppercase mt-4">Premium 3D Automotive Art</p>
         </div>
     </div>
-    <style>
-        @keyframes loading {
-            0% { left: -33%; }
-            100% { left: 100%; }
-        }
-    </style>
+    <style>@keyframes loading { 0% { left: -33%; } 100% { left: 100%; } }</style>
 
-    <!-- Top Promo Banner -->
-    <div class="bg-brand text-white py-2 px-4 text-center text-xs md:text-sm font-montserrat font-semibold tracking-wider relative z-50 flex justify-center items-center gap-4">
-        <span>⚡ GRAND LAUNCH CELEBRATION: USE CODE <span class="bg-black/30 px-2 py-0.5 rounded text-white">SCARLEX10</span> FOR 10% OFF!</span>
+    <!-- Global Top Promo Banner -->
+    <div class="bg-brand text-white py-2 px-3 text-center text-[10px] md:text-xs font-montserrat font-semibold tracking-wider relative z-50">
+        ⚡ GRAND LAUNCH CELEBRATION: USE CODE <span class="bg-black/30 px-1.5 py-0.5 rounded">SCARLEX10</span> FOR 10% OFF!
     </div>
 
-    <!-- Navigation Bar (Hidden Admin Button to Protect Against Buyers) -->
-    <nav class="sticky top-0 z-40 bg-bgMain/90 backdrop-blur-md border-b border-zinc-900 px-4 lg:px-12 py-4 flex items-center justify-between">
-        <a href="#" onclick="navigateTo('home')" class="flex items-center gap-3 group">
-            <div class="w-10 h-10 bg-brand rounded-lg flex items-center justify-center text-white font-bold text-lg tracking-tighter btn-glow transition-all">
+    <!-- Navigation Bar -->
+    <nav class="sticky top-0 z-40 bg-bgMain/95 backdrop-blur-md border-b border-zinc-900 px-4 lg:px-12 py-3.5 flex items-center justify-between">
+        <a href="#" onclick="navigateTo('home')" class="flex items-center gap-2.5">
+            <div class="w-9 h-9 bg-brand rounded flex items-center justify-center text-white text-base">
                 <i class="fa-solid fa-car-side"></i>
             </div>
             <div>
-                <span class="text-2xl heading-premium text-white tracking-wider block leading-none">SCARLEX <span class="text-brand">VENTURES</span></span>
-                <span class="text-[9px] font-montserrat text-textMuted tracking-widest uppercase block mt-0.5">3D Frame Collectibles</span>
+                <span class="text-xl heading-premium text-white tracking-wider block leading-none">SCARLEX <span class="text-brand">VENTURES</span></span>
+                <span class="text-[8px] font-montserrat text-textMuted tracking-widest uppercase block mt-0.5">3D Frame Collectibles</span>
             </div>
         </a>
 
-        <div class="flex items-center gap-8 text-sm font-medium tracking-wide uppercase font-montserrat">
+        <!-- Desktop Navigation Items -->
+        <div class="hidden lg:flex items-center gap-8 text-xs font-medium tracking-wide uppercase font-montserrat">
             <a href="#" onclick="navigateTo('home')" class="hover:text-brand transition-colors text-white">Home</a>
-            <a href="#" onclick="navigateTo('shop')" class="hover:text-brand transition-colors text-textMuted">Shop Collection</a>
+            <a href="#" onclick="navigateTo('shop')" class="hover:text-brand transition-colors text-textMuted">Shop</a>
             <a href="#" onclick="navigateTo('about')" class="hover:text-brand transition-colors text-textMuted">Our Craft</a>
             <a href="#" onclick="navigateTo('contact')" class="hover:text-brand transition-colors text-textMuted">Contact</a>
         </div>
+
+        <div class="flex items-center gap-2">
+            <!-- Account Access Dropdown Trigger Button -->
+            <button onclick="toggleAuthModal()" id="nav-auth-btn" class="bg-zinc-900 border border-zinc-800 text-[11px] px-3.5 py-2 rounded font-montserrat uppercase tracking-wider text-white flex items-center gap-1.5 active:scale-95 transition-transform">
+                <i class="fa-solid fa-user-circle text-sm text-zinc-400"></i> <span id="nav-auth-text">Sign In</span>
+            </button>
+            
+            <!-- Mobile Toggle Menu Icon Button -->
+            <button onclick="toggleMobileNavMenu()" class="lg:hidden text-white p-2 text-xl active:scale-90 transition-transform">
+                <i class="fa-solid fa-bars-staggered" id="mobile-menu-icon"></i>
+            </button>
+        </div>
     </nav>
 
-    <!-- Core App Mount Point -->
-    <main id="app-view-container" class="min-h-screen relative"></main>
+    <!-- Mobile Navigation Drawer Overlay Drawer Block Element -->
+    <div id="mobile-nav-drawer" class="fixed inset-x-0 top-[57px] bottom-0 bg-bgMain/98 z-30 transform -translate-x-full transition-transform duration-300 border-t border-zinc-900 lg:hidden flex flex-col p-6 space-y-4 font-montserrat text-sm uppercase tracking-widest">
+        <a href="#" onclick="handleMobileLink('home')" class="py-3 border-b border-zinc-900 text-white flex justify-between items-center"><span>Home</span><i class="fa-solid fa-chevron-right text-xs text-zinc-700"></i></a>
+        <a href="#" onclick="handleMobileLink('shop')" class="py-3 border-b border-zinc-900 text-zinc-300 flex justify-between items-center"><span>Shop Collection</span><i class="fa-solid fa-chevron-right text-xs text-zinc-700"></i></a>
+        <a href="#" onclick="handleMobileLink('about')" class="py-3 border-b border-zinc-900 text-zinc-300 flex justify-between items-center"><span>Our Craft</span><i class="fa-solid fa-chevron-right text-xs text-zinc-700"></i></a>
+        <a href="#" onclick="handleMobileLink('contact')" class="py-3 text-zinc-300 flex justify-between items-center"><span>Contact</span><i class="fa-solid fa-chevron-right text-xs text-zinc-700"></i></a>
+    </div>
 
-    <!-- Simple Hidden Admin Portal Entry Point in Footer Layout -->
-    <footer class="bg-black py-8 border-t border-zinc-950 px-4 text-center text-zinc-600 text-xs font-mono">
-        <div>&copy; 2026 SCARLEX VENTURES. All Rights Reserved.</div>
-        <div class="mt-2 text-[10px] tracking-wide">
-            Designed and Developed by Bishal Sarma. <button onclick="triggerAdminAuth()" class="hover:text-brand transition-colors ml-1"><i class="fa-solid fa-lock text-[9px]"></i> Portal</button>
+    <!-- Core App View Mount Point Container -->
+    <main id="app-view-container" class="flex-grow min-h-[calc(100vh-140px)] relative bg-bgMain"></main>
+
+    <!-- Account Auth Overlay Modal Layout Base Context UI Structure -->
+    <div id="auth-modal" class="fixed inset-0 bg-black/80 z-[100] backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-bgCard border border-zinc-800 w-full max-w-sm rounded-xl p-5 relative fade-in-view">
+            <button onclick="toggleAuthModal()" class="absolute top-4 right-4 text-zinc-500 hover:text-white p-1 text-sm"><i class="fa-solid fa-xmark"></i></button>
+            
+            <!-- Dynamic State Switch Target Nodes Container Box Context Elements -->
+            <div id="auth-logged-out-state">
+                <h3 class="text-base font-bold font-montserrat uppercase tracking-wider mb-1" id="auth-title">Customer Login</h3>
+                <p class="text-[11px] text-textMuted mb-4">Securely save checkout addresses and complete instant digital orders.</p>
+                
+                <div class="space-y-3.5 text-xs">
+                    <div>
+                        <label class="block text-zinc-400 mb-1">Email Profile Address</label>
+                        <input type="email" id="auth-email-input" class="w-full bg-zinc-900 border border-zinc-800 text-white p-2.5 rounded focus:outline-none focus:border-brand">
+                    </div>
+                    <div>
+                        <label class="block text-zinc-400 mb-1">Password</label>
+                        <input type="password" id="auth-pass-input" class="w-full bg-zinc-900 border border-zinc-800 text-white p-2.5 rounded focus:outline-none focus:border-brand">
+                    </div>
+                    <button onclick="processMockAuthentication()" class="w-full bg-brand text-white py-2.5 rounded font-montserrat font-bold uppercase tracking-wider active:scale-[0.98] transition-transform mt-2">Continue</button>
+                    <p class="text-[10px] text-center text-zinc-500 mt-2">Don't have an account? <a href="#" class="text-brand hover:underline" onclick="toggleAuthMode()">Sign up here</a></p>
+                </div>
+            </div>
+
+            <div id="auth-logged-in-state" class="hidden text-center py-2">
+                <i class="fa-solid fa-circle-check text-brand text-3xl mb-2"></i>
+                <h3 class="text-sm font-bold font-montserrat uppercase tracking-wider text-white" id="auth-user-display">Account Verified</h3>
+                <p class="text-[11px] text-zinc-500 mb-4" id="auth-user-email"></p>
+                <button onclick="executeAccountLogout()" class="w-full bg-zinc-900 hover:bg-zinc-800 text-zinc-400 hover:text-white py-2 rounded text-xs uppercase tracking-wider border border-zinc-800 font-medium">Disconnect Session</button>
+            </div>
         </div>
-    </footer>
+    </div>
 
-    <!-- VIEWS / TEMPLATES -->
-    <template id="view-home">
-        <div class="fade-in-view">
-            <section class="relative h-[85vh] flex items-center justify-center overflow-hidden bg-gradient-to-b from-neutral-950 to-bgMain border-b border-zinc-900 px-4 text-center">
-                <div class="relative z-10 max-w-4xl mx-auto flex flex-col items-center">
-                    <span class="text-brand font-montserrat text-xs md:text-sm tracking-[0.4em] font-semibold uppercase mb-4">SCARLEX GARAGE EXCLUSIVE</span>
-                    <h1 class="text-5xl md:text-8xl heading-premium tracking-wider text-white mb-4 leading-tight">
-                        PREMIUM 3D FRAME<br><span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-zinc-400 to-brand">COLLECTIBLES</span>
-                    </h1>
-                    <p class="font-montserrat text-zinc-400 text-sm md:text-lg tracking-wide max-w-2xl mb-8 font-light">
-                        Designed for Tier-1 Car Enthusiasts. Meticulously handcrafted luxury automotive wall art capturing iconic legends inside deep shadow-box frames.
-                    </p>
-                    <div class="flex flex-col sm:flex-row gap-4 justify-center items-center w-full sm:w-auto">
-                        <button onclick="navigateTo('shop')" class="w-full sm:w-56 bg-brand hover:bg-brandHover text-white px-8 py-4 rounded-md font-montserrat font-bold text-sm uppercase tracking-widest transition-all btn-glow shadow-lg shadow-brand/20">
-                            Shop Now
+    <!-- Dynamic Checkout Engine Interface Base Layer Context Elements -->
+    <div id="checkout-drawer" class="fixed inset-0 bg-black/85 z-50 hidden overflow-y-auto p-3 md:p-6 flex items-center justify-center">
+        <div class="bg-bgCard border border-zinc-800 w-full max-w-xl rounded-xl overflow-hidden shadow-2xl fade-in-view my-auto">
+            <div class="bg-zinc-900/60 border-b border-zinc-800 p-4 flex justify-between items-center">
+                <div class="flex items-center gap-2">
+                    <span class="bg-brand/10 text-brand px-2 py-0.5 rounded text-[10px] uppercase font-mono tracking-wider font-bold">Secure Order Checkout</span>
+                </div>
+                <button onclick="closeCheckoutSession()" class="text-zinc-500 hover:text-white p-1 text-sm"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+
+            <div class="p-4 md:p-5 space-y-5 text-xs">
+                <!-- Short Item Meta Header Summary Layout Blocks -->
+                <div class="flex items-center gap-3 bg-zinc-900/40 border border-zinc-900 p-3 rounded-lg">
+                    <img id="check-item-img" src="" class="w-12 h-12 object-cover rounded border border-zinc-800">
+                    <div>
+                        <h4 id="check-item-name" class="font-bold text-white text-sm tracking-wide"></h4>
+                        <div class="text-[11px] text-zinc-400 mt-0.5">Total Amount Due: <span class="text-white font-bold font-mono text-xs ml-0.5" id="check-item-price"></span></div>
+                    </div>
+                </div>
+
+                <!-- Section Block Step 1: Destination Logistics Delivery Fields Setup -->
+                <div class="space-y-3">
+                    <div class="flex justify-between items-center border-b border-zinc-900 pb-1.5">
+                        <span class="font-bold font-montserrat uppercase tracking-wider text-zinc-300 text-[11px]"><i class="fa-solid fa-truck-ramp-box text-brand mr-1"></i> 1. Delivery & Shipping Destination</span>
+                        <button onclick="persistDeliveryAddressData()" class="text-[10px] text-brand hover:underline font-semibold font-mono">Save Details</button>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                        <input type="text" id="ship-name" placeholder="Full Receiver Name" class="bg-zinc-900 border border-zinc-800 text-white p-2.5 rounded focus:outline-none focus:border-brand w-full">
+                        <input type="text" id="ship-phone" placeholder="10-Digit Mobile Contact Number" class="bg-zinc-900 border border-zinc-800 text-white p-2.5 rounded focus:outline-none focus:border-brand w-full">
+                        <input type="text" id="ship-address" placeholder="Flat, Street Address, Landmark" class="bg-zinc-900 border border-zinc-800 text-white p-2.5 rounded focus:outline-none focus:border-brand w-full md:col-span-2">
+                        <input type="text" id="ship-city" placeholder="City" class="bg-zinc-900 border border-zinc-800 text-white p-2.5 rounded focus:outline-none focus:border-brand w-full">
+                        <input type="text" id="ship-pin" placeholder="PIN Code / Area Code" class="bg-zinc-900 border border-zinc-800 text-white p-2.5 rounded focus:outline-none focus:border-brand w-full">
+                    </div>
+                </div>
+
+                <!-- Section Block Step 2: Integrated Razorpay Payment Gate Method Elements Layout -->
+                <div class="space-y-3">
+                    <div class="border-b border-zinc-900 pb-1.5">
+                        <span class="font-bold font-montserrat uppercase tracking-wider text-zinc-300 text-[11px]"><i class="fa-solid fa-wallet text-brand mr-1"></i> 2. Select Secure Payment Gateway Method</span>
+                    </div>
+                    
+                    <div class="grid grid-cols-2 gap-2.5">
+                        <button onclick="setCheckoutMethodMode('upi')" id="pay-tab-upi" class="bg-zinc-900 hover:bg-zinc-800 border-2 border-brand text-white p-3 rounded-lg flex flex-col items-center justify-center gap-1.5 transition-all">
+                            <i class="fa-solid fa-qrcode text-base text-zinc-400"></i>
+                            <span class="font-bold tracking-wide text-[11px]">Instant UPI / QR Code</span>
+                        </button>
+                        <button onclick="setCheckoutMethodMode('card')" id="pay-tab-card" class="bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 text-zinc-400 p-3 rounded-lg flex flex-col items-center justify-center gap-1.5 transition-all">
+                            <i class="fa-solid fa-credit-card text-base text-zinc-400"></i>
+                            <span class="font-bold tracking-wide text-[11px]">Debit / Credit Card</span>
                         </button>
                     </div>
+
+                    <!-- Sandbox Payment Inner Form Panes Fields Context Options Matrix Blocks -->
+                    <div class="bg-zinc-950 p-4 border border-zinc-900 rounded-lg mt-2 min-h-[110px] flex flex-col justify-center">
+                        <!-- UPI Pane Element Block Display Layout Context -->
+                        <div id="pane-pay-upi" class="space-y-2 text-center py-2">
+                            <div class="inline-flex items-center gap-1.5 px-2.5 py-1 bg-green-500/10 border border-green-500/20 text-green-400 rounded-full text-[9px] font-mono mb-2">
+                                <span class="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span> Razorpay Unified Secure Channel Active
+                            </div>
+                            <input type="text" id="pay-upi-id" placeholder="username@upi / smartphone number" class="bg-zinc-900 border border-zinc-800 text-white p-2.5 rounded text-center text-xs focus:outline-none focus:border-brand max-w-xs w-full mx-auto block">
+                        </div>
+
+                        <!-- Card Pane Element Block Display Layout Context -->
+                        <div id="pane-pay-card" class="space-y-3 hidden">
+                            <div class="grid grid-cols-3 gap-2">
+                                <input type="text" id="pay-card-num" placeholder="0000 0000 0000 0000" class="bg-zinc-900 border border-zinc-800 text-white p-2 rounded text-xs focus:outline-none focus:border-brand col-span-3">
+                                <input type="text" id="pay-card-expiry" placeholder="MM/YY" class="bg-zinc-900 border border-zinc-800 text-white p-2 rounded text-xs focus:outline-none focus:border-brand text-center">
+                                <input type="password" id="pay-card-cvv" placeholder="CVV" class="bg-zinc-900 border border-zinc-800 text-white p-2 rounded text-xs focus:outline-none focus:border-brand text-center">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CTA Action Processing Operation Command Verification System Execution Button Grid Component -->
+                <button onclick="executeSecureTransactionProcess()" class="w-full bg-brand hover:bg-brandHover text-white py-3.5 rounded-lg font-montserrat font-bold uppercase tracking-widest text-xs transition-all shadow-lg shadow-brand/20 flex items-center justify-center gap-2 active:scale-[0.99]">
+                    <i class="fa-solid fa-shield-halved"></i> Authorize Payment Protocol Through Razorpay
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- STORES TEMPLATES VIEW SCHEMAS -->
+    <template id="view-home">
+        <div class="fade-in-view">
+            <section class="relative min-h-[82vh] lg:h-[85vh] flex items-center justify-center overflow-hidden bg-gradient-to-b from-neutral-950 to-bgMain border-b border-zinc-900 px-4 py-12 text-center">
+                <div class="relative z-10 max-w-4xl mx-auto flex flex-col items-center">
+                    <span class="text-brand font-montserrat text-[10px] md:text-xs tracking-[0.4em] font-semibold uppercase mb-3">SCARLEX GARAGE EXCLUSIVE</span>
+                    <h1 class="text-4xl sm:text-6xl md:text-8xl heading-premium tracking-wider text-white mb-4 leading-tight">
+                        PREMIUM 3D FRAME<br><span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-zinc-400 to-brand">COLLECTIBLES</span>
+                    </h1>
+                    <p class="font-montserrat text-zinc-400 text-xs sm:text-sm md:text-base tracking-wide max-w-xl mb-8 font-light px-2">
+                        Designed for Tier-1 Car Enthusiasts. Meticulously handcrafted luxury automotive wall art capturing iconic legends inside deep shadow-box frames.
+                    </p>
+                    <button onclick="navigateTo('shop')" class="w-full sm:w-52 bg-brand hover:bg-brandHover text-white px-8 py-3.5 rounded font-montserrat font-bold text-xs uppercase tracking-widest transition-all btn-glow shadow-lg shadow-brand/20 active:scale-95">
+                        Shop Collection
+                    </button>
                 </div>
             </section>
 
-            <!-- Dynamic Showcase Section -->
-            <section class="py-20 px-4 max-w-7xl mx-auto">
-                <div class="flex flex-col items-center mb-12 text-center">
-                    <h2 class="text-4xl md:text-6xl heading-premium tracking-wider">LIVE DESIGNS CATALOG</h2>
-                    <div class="w-16 h-1 bg-brand mt-2 rounded"></div>
+            <section class="py-16 px-4 max-w-7xl mx-auto">
+                <div class="flex flex-col items-center mb-10 text-center">
+                    <h2 class="text-3xl md:text-5xl heading-premium tracking-wider">LIVE DESIGNS CATALOG</h2>
+                    <div class="w-12 h-[3px] bg-brand mt-2 rounded"></div>
                 </div>
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" id="home-featured-products-grid"></div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6" id="home-featured-products-grid"></div>
             </section>
         </div>
     </template>
 
     <template id="view-shop">
-        <div class="fade-in-view max-w-7xl mx-auto px-4 py-12">
-            <div class="mb-12 pb-6 border-b border-zinc-900">
-                <h1 class="text-4xl md:text-6xl heading-premium tracking-wider">THE ARTISAN <span class="text-brand">CATALOG</span></h1>
-                <p class="text-xs text-textMuted font-montserrat tracking-widest uppercase mt-1">Explore individual frames built to standard exact measurements</p>
+        <div class="fade-in-view max-w-7xl mx-auto px-4 py-10">
+            <div class="mb-10 pb-5 border-b border-zinc-900">
+                <h1 class="text-3xl md:text-5xl heading-premium tracking-wider">THE ARTISAN <span class="text-brand">CATALOG</span></h1>
+                <p class="text-[10px] text-textMuted font-montserrat tracking-widest uppercase mt-1">Explore individual frames built to standard exact measurements</p>
             </div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8" id="shop-catalog-grid"></div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" id="shop-catalog-grid"></div>
         </div>
     </template>
 
     <template id="view-about">
-        <div class="fade-in-view max-w-4xl mx-auto px-4 py-16">
-            <h1 class="text-4xl md:text-6xl heading-premium text-center tracking-wider mb-2">SCARLEX <span class="text-brand">VENTURES</span></h1>
-            <p class="text-center font-montserrat text-xs text-textMuted tracking-[0.3em] uppercase mb-12">THE GENESIS OF AUTOMOTIVE LUXURY WALL ART</p>
+        <div class="fade-in-view max-w-3xl mx-auto px-4 py-12">
+            <h1 class="text-3xl md:text-5xl heading-premium text-center tracking-wider mb-2">SCARLEX <span class="text-brand">VENTURES</span></h1>
+            <p class="text-center font-montserrat text-[10px] text-textMuted tracking-[0.3em] uppercase mb-10">THE GENESIS OF AUTOMOTIVE LUXURY WALL ART</p>
             
-            <div class="prose prose-invert max-w-none text-zinc-300 font-light space-y-8 text-sm md:text-base leading-relaxed">
+            <div class="space-y-6 text-zinc-300 font-light text-xs sm:text-sm leading-relaxed">
                 <p>Founded and owned by <strong>Bishal Sarma</strong>, our signature brand emerged from a simple realization: standard automotive posters lack the tangible depth and dynamic shadows that express genuine engineering excellence.</p>
                 
-                <!-- Leadership Board Section -->
-                <div class="border-t border-b border-zinc-900 py-6 my-8">
-                    <h3 class="text-sm font-montserrat uppercase text-zinc-400 tracking-widest mb-4">Leadership & Strategy</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div class="bg-zinc-900/30 p-4 border border-zinc-900 rounded-lg">
-                            <span class="text-white font-semibold font-montserrat block">Bishal Sarma</span>
-                            <span class="text-xs text-brand uppercase font-mono tracking-wider">Owner & Head Designer</span>
+                <div class="border-t border-b border-zinc-900 py-6 my-6">
+                    <h3 class="text-[11px] font-montserrat uppercase text-zinc-500 tracking-widest mb-3.5">Leadership & Strategy Board</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div class="bg-zinc-900/30 p-3.5 border border-zinc-900 rounded">
+                            <span class="text-white font-semibold font-montserrat text-xs block">Bishal Sarma</span>
+                            <span class="text-[10px] text-brand uppercase font-mono tracking-wider">Owner & Head Designer</span>
                         </div>
-                        <div class="bg-zinc-900/30 p-4 border border-zinc-900 rounded-lg">
-                            <span class="text-white font-semibold font-montserrat block">Nilabh Jyoti Sarma</span>
-                            <span class="text-xs text-brand uppercase font-mono tracking-wider">Co-Founder & Head of Social Media</span>
+                        <div class="bg-zinc-900/30 p-3.5 border border-zinc-900 rounded">
+                            <span class="text-white font-semibold font-montserrat text-xs block">Nilabh Jyoti Sarma</span>
+                            <span class="text-[10px] text-brand uppercase font-mono tracking-wider">Co-Founder & Head of Social Media</span>
                         </div>
                     </div>
                 </div>
 
-                <div class="p-6 bg-zinc-900/40 border border-zinc-800 rounded-xl">
-                    <h4 class="text-brand font-montserrat font-semibold uppercase text-xs tracking-wider mb-2">Corporate Transparency</h4>
-                    <p class="text-xs text-zinc-400 font-light">SCARLEX VENTURES operates legally compliant under registered government authorization parameters (GSTIN Reg: <strong>18NYCPS5069C1ZX</strong>).</p>
+                <div class="p-4 bg-zinc-900/40 border border-zinc-900 rounded-lg">
+                    <h4 class="text-brand font-montserrat font-semibold uppercase text-[10px] tracking-wider mb-1">Corporate Transparency</h4>
+                    <p class="text-[11px] text-zinc-400">SCARLEX VENTURES operates legally compliant under registered government authorization parameters (GSTIN Reg: <strong>18NYCPS5069C1ZX</strong>).</p>
                 </div>
             </div>
         </div>
     </template>
 
     <template id="view-contact">
-        <div class="fade-in-view max-w-4xl mx-auto px-4 py-16 text-center">
-            <h1 class="text-4xl md:text-6xl heading-premium tracking-wider mb-4">CONNECT WITH <span class="text-brand">THE GARAGE</span></h1>
-            <p class="text-sm text-textMuted font-light mb-8 max-w-lg mx-auto">Have a question regarding custom specifications? Reach out directly and our design team will connect shortly.</p>
-            <div class="space-y-4 max-w-md mx-auto text-left bg-bgCard p-6 border border-zinc-800 rounded-xl">
-                <div><span class="text-xs text-textMuted uppercase block">Email</span><span class="text-white text-sm">scarlexventures@gmail.com</span></div>
-                <div><span class="text-xs text-textMuted uppercase block">WhatsApp / Phone</span><span class="text-white text-sm">+91 8402906422</span></div>
-                <div><span class="text-xs text-textMuted uppercase block">GSTIN Identifier</span><span class="text-white text-sm font-mono">18NYCPS5069C1ZX</span></div>
+        <div class="fade-in-view max-w-2xl mx-auto px-4 py-12 text-center">
+            <h1 class="text-3xl md:text-5xl heading-premium tracking-wider mb-3">CONNECT WITH <span class="text-brand">THE GARAGE</span></h1>
+            <p class="text-xs text-textMuted font-light mb-8 max-w-md mx-auto">Have a question regarding custom specifications? Reach out directly and our design team will connect shortly.</p>
+            <div class="space-y-4 max-w-sm mx-auto text-left bg-bgCard p-5 border border-zinc-800 rounded-lg text-xs">
+                <div><span class="text-[10px] text-textMuted uppercase block mb-0.5">Email</span><span class="text-white">scarlexventures@gmail.com</span></div>
+                <div><span class="text-[10px] text-textMuted uppercase block mb-0.5">WhatsApp / Phone</span><span class="text-white">+91 8402906422</span></div>
+                <div><span class="text-[10px] text-textMuted uppercase block mb-0.5">GSTIN Identifier</span><span class="text-white font-mono tracking-wide">18NYCPS5069C1ZX</span></div>
             </div>
         </div>
     </template>
 
-    <!-- GATEWAY PASSWORD ENTRY PROMPT VIEW -->
+    <!-- SECURE PASSWORD ENTRY GATEWAY FOR INTERNAL ADMIN -->
     <template id="view-admin-auth">
-        <div class="fade-in-view max-w-md mx-auto px-4 py-24 text-center">
-            <div class="bg-bgCard border border-zinc-800 p-8 rounded-xl shadow-xl">
-                <div class="w-12 h-12 bg-brand/10 border border-brand/30 rounded-full flex items-center justify-center text-brand text-lg mx-auto mb-4">
-                    <i class="fa-solid fa-shield-halved"></i>
-                </div>
-                <h2 class="text-xl font-bold font-montserrat text-white uppercase tracking-wider mb-1">Secure Operations Entry</h2>
-                <p class="text-xs text-textMuted mb-6">Enter system administrator authorization credentials to proceed.</p>
-                
-                <div class="space-y-4 text-left">
-                    <div>
-                        <label class="block text-xs text-zinc-400 mb-1">Access Passcode</label>
-                        <input type="password" id="auth-pass-input" placeholder="••••••••••••" class="w-full bg-zinc-900 border border-zinc-800 text-white rounded p-2.5 text-center tracking-widest text-sm focus:outline-none focus:border-brand">
-                    </div>
-                    <button onclick="verifyAdminPasscode()" class="w-full bg-brand hover:bg-brandHover text-white py-2.5 rounded text-xs font-montserrat font-bold uppercase tracking-widest transition-all">
-                        Authenticate Console
-                    </button>
-                    <button onclick="navigateTo('home')" class="w-full text-center text-zinc-600 hover:text-zinc-400 text-xs mt-2 block transition-colors">
-                        Return to Storefront
-                    </button>
+        <div class="fade-in-view max-w-sm mx-auto px-4 py-16 text-center">
+            <div class="bg-bgCard border border-zinc-800 p-6 rounded-lg shadow-xl">
+                <h2 class="text-sm font-bold font-montserrat text-white uppercase tracking-wider mb-1">Secure Operations Entry</h2>
+                <p class="text-[11px] text-textMuted mb-4">Enter system administrator authorization credentials to proceed.</p>
+                <div class="space-y-3 text-left text-xs">
+                    <input type="password" id="auth-pass-admin-field" placeholder="••••••••••••" class="w-full bg-zinc-900 border border-zinc-800 text-white p-2 rounded text-center tracking-widest focus:outline-none focus:border-brand">
+                    <button onclick="verifyAdminPasscode()" class="w-full bg-brand text-white py-2 rounded font-montserrat font-bold uppercase tracking-wider">Authenticate</button>
                 </div>
             </div>
         </div>
     </template>
 
-    <!-- ADMIN MANAGEMENT STATION VIEW -->
+    <!-- INTERNAL ADMIN DASHBOARD INVENTORY MODULE PANEL -->
     <template id="view-admin">
-        <div class="fade-in-view max-w-7xl mx-auto px-4 py-12">
-            <div class="flex justify-between items-center mb-8 border-b border-zinc-900 pb-4">
+        <div class="fade-in-view max-w-7xl mx-auto px-4 py-8">
+            <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-8 border-b border-zinc-900 pb-4">
                 <div>
-                    <h1 class="text-3xl font-bold tracking-tight text-white uppercase font-montserrat">SCARLEX MANAGEMENT <span class="text-brand">DASHBOARD</span></h1>
-                    <p class="text-xs text-textMuted font-mono">ACTIVE OPERATIONS OVERVIEW - PRODUCT INVENTORY MANAGEMENT STATION</p>
+                    <h1 class="text-2xl font-bold text-white uppercase font-montserrat">SCARLEX <span class="text-brand">DASHBOARD</span></h1>
+                    <p class="text-[10px] text-textMuted font-mono uppercase tracking-wider">PRODUCT INVENTORY MANAGEMENT PANEL STATION</p>
                 </div>
-                <button onclick="logoutAdmin()" class="bg-zinc-900 border border-zinc-800 text-xs px-4 py-2 rounded font-semibold text-zinc-400 hover:text-white transition-all uppercase tracking-wider">
+                <button onclick="logoutAdmin()" class="bg-zinc-900 border border-zinc-800 text-xs px-3.5 py-1.5 rounded font-semibold text-zinc-400 hover:text-white transition-all uppercase tracking-wider align-self-start">
                     Lock & Exit Console
                 </button>
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                <!-- Deploy Form -->
-                <div class="bg-bgCard border border-zinc-800 p-6 rounded-xl h-fit">
-                    <h2 class="text-md font-bold text-white uppercase tracking-wider mb-4 font-montserrat border-b border-zinc-800 pb-2">Deploy New Car Frame</h2>
-                    
-                    <div class="space-y-4 text-xs font-medium">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <!-- Deploy Form Container Blocks Element Module -->
+                <div class="bg-bgCard border border-zinc-800 p-4 rounded-lg h-fit">
+                    <h2 class="text-xs font-bold text-white uppercase tracking-wider mb-3 font-montserrat border-b border-zinc-800 pb-1.5">Deploy New Car Frame</h2>
+                    <div class="space-y-3.5 text-xs">
                         <div>
-                            <label class="block mb-1.5 text-zinc-400">Frame Display Name</label>
-                            <input type="text" id="admin-name" placeholder="e.g., Porsche 911 GT3 RS Frame" class="w-full bg-zinc-900 border border-zinc-800 text-white rounded p-2.5 focus:outline-none focus:border-brand">
+                            <label class="block mb-1 text-zinc-400">Frame Display Name</label>
+                            <input type="text" id="admin-name" placeholder="Porsche 911 GT3 RS Frame" class="w-full bg-zinc-900 border border-zinc-800 text-white rounded p-2 focus:outline-none focus:border-brand">
                         </div>
-                        
-                        <div class="grid grid-cols-2 gap-4">
+                        <div class="grid grid-cols-2 gap-3">
                             <div>
-                                <label class="block mb-1.5 text-zinc-400">MRP Base Price (₹)</label>
-                                <input type="number" id="admin-mrp" placeholder="e.g. 7999" class="w-full bg-zinc-900 border border-zinc-800 text-white rounded p-2.5 focus:outline-none focus:border-brand">
+                                <label class="block mb-1 text-zinc-400">MRP Base (₹)</label>
+                                <input type="number" id="admin-mrp" placeholder="7999" class="w-full bg-zinc-900 border border-zinc-800 text-white rounded p-2 focus:outline-none focus:border-brand">
                             </div>
                             <div>
-                                <label class="block mb-1.5 text-zinc-400">Selling Net Price (₹)</label>
-                                <input type="number" id="admin-selling" placeholder="e.g. 4999" class="w-full bg-zinc-900 border border-zinc-800 text-white rounded p-2.5 focus:outline-none focus:border-brand">
+                                <label class="block mb-1 text-zinc-400">Selling (₹)</label>
+                                <input type="number" id="admin-selling" placeholder="4999" class="w-full bg-zinc-900 border border-zinc-800 text-white rounded p-2 focus:outline-none focus:border-brand">
                             </div>
                         </div>
-
                         <div>
-                            <label class="block mb-1.5 text-zinc-400">Product Custom Image File</label>
-                            <input type="file" id="admin-image-file" accept="image/*" class="w-full bg-zinc-900 border border-zinc-800 text-zinc-400 rounded p-2 file:mr-4 file:py-1 file:px-3 file:rounded file:border-0 file:text-xs file:font-semibold file:bg-zinc-800 file:text-white hover:file:bg-zinc-700 cursor-pointer">
+                            <label class="block mb-1 text-zinc-400">Product Custom Image File</label>
+                            <input type="file" id="admin-image-file" accept="image/*" class="w-full bg-zinc-900 border border-zinc-800 text-zinc-400 rounded p-1.5 cursor-pointer text-[11px] file:bg-zinc-800 file:text-white file:border-0 file:rounded file:px-2 file:py-0.5 file:mr-2">
                         </div>
-
                         <div>
-                            <label class="block mb-1.5 text-zinc-400">Category Group</label>
-                            <select id="admin-category" class="w-full bg-zinc-900 border border-zinc-800 text-white rounded p-2.5 focus:outline-none focus:border-brand">
+                            <label class="block mb-1 text-zinc-400">Category Group</label>
+                            <select id="admin-category" class="w-full bg-zinc-900 border border-zinc-800 text-white rounded p-2 focus:outline-none focus:border-brand">
                                 <option value="Luxury Cars">Luxury Cars</option>
                                 <option value="Sports Cars">Sports Cars</option>
                                 <option value="Formula 1">Formula 1</option>
                             </select>
                         </div>
-
                         <div>
-                            <label class="block mb-1.5 text-zinc-400">Product Short Spec Details</label>
-                            <textarea id="admin-specs" rows="3" placeholder="Handcrafted deep shadow box layout structure details..." class="w-full bg-zinc-900 border border-zinc-800 text-white rounded p-2.5 focus:outline-none focus:border-brand"></textarea>
+                            <label class="block mb-1 text-zinc-400">Product Short Spec Details</label>
+                            <textarea id="admin-specs" rows="2" placeholder="Handcrafted deep shadow box layout structure..." class="w-full bg-zinc-900 border border-zinc-800 text-white rounded p-2 focus:outline-none focus:border-brand"></textarea>
                         </div>
-
-                        <button onclick="handleDeployProduct()" class="w-full bg-brand hover:bg-brandHover text-white py-3 rounded font-montserrat font-bold uppercase tracking-widest transition-all shadow-lg shadow-brand/20 mt-2">
+                        <button onclick="handleDeployProduct()" class="w-full bg-brand hover:bg-brandHover text-white py-2.5 rounded font-montserrat font-bold uppercase tracking-wider text-xs transition-all mt-1">
                             Append Live To Catalog
                         </button>
                     </div>
                 </div>
 
-                <!-- Live Inventory Monitor -->
-                <div class="lg:col-span-2 bg-bgCard border border-zinc-800 p-6 rounded-xl">
-                    <h2 class="text-md font-bold text-white uppercase tracking-wider mb-4 font-montserrat border-b border-zinc-800 pb-2">Catalog Inventory Operations Manager</h2>
-                    <div class="overflow-x-auto">
-                        <table class="w-full text-left text-xs text-zinc-400">
+                <!-- Live Inventory Monitor Data Table Interface Module -->
+                <div class="lg:col-span-2 bg-bgCard border border-zinc-800 p-4 rounded-lg">
+                    <h2 class="text-xs font-bold text-white uppercase tracking-wider mb-3 font-montserrat border-b border-zinc-800 pb-1.5">Catalog Inventory Operations</h2>
+                    <div class="overflow-x-auto w-full">
+                        <table class="w-full text-left text-[11px] text-zinc-400 min-w-[500px]">
                             <thead>
                                 <tr class="border-b border-zinc-800 text-zinc-500 uppercase font-mono">
-                                    <th class="py-3 px-2">Image</th>
-                                    <th class="py-3">Artifact Info</th>
-                                    <th class="py-3">Category</th>
-                                    <th class="py-3">MRP (₹)</th>
-                                    <th class="py-3">Selling (₹)</th>
-                                    <th class="py-3 text-center">Action</th>
+                                    <th class="py-2 px-1">Image</th>
+                                    <th class="py-2">Artifact Info</th>
+                                    <th class="py-2">Category</th>
+                                    <th class="py-2">MRP</th>
+                                    <th class="py-2">Selling</th>
+                                    <th class="py-2 text-center">Action</th>
                                 </tr>
                             </thead>
                             <tbody id="admin-inventory-table"></tbody>
@@ -341,48 +435,187 @@
         </div>
     </template>
 
-    <!-- CORE BUSINESS INTERACTION ENGINE SCRIPT -->
+    <!-- CORE BUSINESS ARCHITECTURE SCRIPT APPLICATION ENGINE -->
     <script>
-        // Track console validation status state variables
+        // Core Reactive Application Architecture State Model Variables
         let isAdminAuthenticated = false;
+        let currentCheckoutMethod = 'upi';
+        let activeTargetProductForCheckout = null;
 
-        // Database Core State 
+        // User Auth Subsystem Profile State Schema
+        let sessionUser = JSON.parse(localStorage.getItem('scarlex_user')) || null;
+        let currentAuthModeIsLogin = true;
+
+        // Pre-populated default artifact data framework
         let currentProducts = JSON.parse(localStorage.getItem('scarlex_catalog')) || [
-            {
-                id: "p1",
-                name: "Rolls-Royce Collection Frame",
-                category: "Luxury Cars",
-                mrp: 7999,
-                sellingPrice: 5499,
-                image: "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?q=80&w=600&auto=format&fit=crop",
-                specs: "Handcrafted layout structure showcasing premium tier aesthetic definitions."
-            },
-            {
-                id: "p2",
-                name: "Ferrari F1 Frame",
-                category: "Formula 1",
-                mrp: 6999,
-                sellingPrice: 4999,
-                image: "https://images.unsplash.com/photo-1514565131-fce0801e5785?q=80&w=600&auto=format&fit=crop",
-                specs: "Perfect statement track alignment for premium desktop racing configurations."
-            }
+            { id: "p1", name: "Rolls-Royce Collection Frame", category: "Luxury Cars", mrp: 7999, sellingPrice: 5499, image: "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?q=80&w=600&auto=format&fit=crop", specs: "Premium shadow box aesthetic definition." },
+            { id: "p2", name: "Ferrari F1 Frame", category: "Formula 1", mrp: 6999, sellingPrice: 4999, image: "https://images.unsplash.com/photo-1514565131-fce0801e5785?q=80&w=600&auto=format&fit=crop", specs: "Perfect tracking statement setup profile alignment." }
         ];
 
         function syncStorage() {
             localStorage.setItem('scarlex_catalog', JSON.stringify(currentProducts));
         }
 
-        function triggerAdminAuth() {
-            if (isAdminAuthenticated) {
-                navigateTo('admin');
+        // Customer Authentication Controller Action Methods
+        function toggleAuthModal() {
+            const modal = document.getElementById('auth-modal');
+            modal.classList.toggle('hidden');
+            renderAuthenticationStateMarkupCards();
+        }
+
+        function toggleAuthMode() {
+            currentAuthModeIsLogin = !currentAuthModeIsLogin;
+            document.getElementById('auth-title').innerText = currentAuthModeIsLogin ? "Customer Login" : "Customer Registration";
+        }
+
+        function renderAuthenticationStateMarkupCards() {
+            const outState = document.getElementById('auth-logged-out-state');
+            const inState = document.getElementById('auth-logged-in-state');
+            const navText = document.getElementById('nav-auth-text');
+
+            if (sessionUser) {
+                outState.classList.add('hidden');
+                inState.classList.remove('hidden');
+                document.getElementById('auth-user-email').innerText = sessionUser.email;
+                navText.innerText = sessionUser.email.split('@')[0].toUpperCase();
+                
+                // Load cached saved shipping destination address records dynamically
+                if (sessionUser.address) {
+                    document.getElementById('ship-name').value = sessionUser.address.name || '';
+                    document.getElementById('ship-phone').value = sessionUser.address.phone || '';
+                    document.getElementById('ship-address').value = sessionUser.address.line || '';
+                    document.getElementById('ship-city').value = sessionUser.address.city || '';
+                    document.getElementById('ship-pin').value = sessionUser.address.pin || '';
+                }
             } else {
-                navigateTo('admin-auth');
+                outState.classList.remove('hidden');
+                inState.classList.add('hidden');
+                navText.innerText = "Sign In";
             }
         }
 
+        function processMockAuthentication() {
+            const email = document.getElementById('auth-email-input').value.trim();
+            const pass = document.getElementById('auth-pass-input').value;
+            if(!email || !pass) { alert('Please execute entry completely.'); return; }
+
+            sessionUser = { email: email, address: sessionUser?.address || {} };
+            localStorage.setItem('scarlex_user', JSON.stringify(sessionUser));
+            renderAuthenticationStateMarkupCards();
+            setTimeout(toggleAuthModal, 400);
+        }
+
+        function executeAccountLogout() {
+            sessionUser = null;
+            localStorage.removeItem('scarlex_user');
+            renderAuthenticationStateMarkupCards();
+            toggleAuthModal();
+        }
+
+        // Logistics System Data Persistence Actions
+        function persistDeliveryAddressData() {
+            const name = document.getElementById('ship-name').value.trim();
+            const phone = document.getElementById('ship-phone').value.trim();
+            const line = document.getElementById('ship-address').value.trim();
+            const city = document.getElementById('ship-city').value.trim();
+            const pin = document.getElementById('ship-pin').value.trim();
+
+            if (!name || !phone || !line || !city || !pin) { alert('Incomplete structural routing fields.'); return; }
+            
+            if (!sessionUser) {
+                sessionUser = { email: "guest@scarlex.temporary", address: {} };
+            }
+            sessionUser.address = { name, phone, line, city, pin };
+            localStorage.setItem('scarlex_user', JSON.stringify(sessionUser));
+            renderAuthenticationStateMarkupCards();
+            alert('Destination Logistics data cached to active session state vault.');
+        }
+
+        // Razorpay Simulation Methods Matrix Controllers
+        function triggerCheckoutGatewaySession(prodId) {
+            activeTargetProductForCheckout = currentProducts.find(p => p.id === prodId);
+            if(!activeTargetProductForCheckout) return;
+
+            document.getElementById('check-item-img').src = activeTargetProductForCheckout.image;
+            document.getElementById('check-item-name').innerText = activeTargetProductForCheckout.name;
+            document.getElementById('check-item-price').innerText = `₹${activeTargetProductForCheckout.sellingPrice}`;
+
+            document.getElementById('checkout-drawer').classList.remove('hidden');
+            setCheckoutMethodMode('upi');
+        }
+
+        function closeCheckoutSession() {
+            document.getElementById('checkout-drawer').classList.add('hidden');
+        }
+
+        function setCheckoutMethodMode(mode) {
+            currentCheckoutMethod = mode;
+            const upiTab = document.getElementById('pay-tab-upi');
+            const cardTab = document.getElementById('pay-tab-card');
+            const upiPane = document.getElementById('pane-pay-upi');
+            const cardPane = document.getElementById('pane-pay-card');
+
+            if (mode === 'upi') {
+                upiTab.className = "bg-zinc-900 border-2 border-brand text-white p-3 rounded-lg flex flex-col items-center justify-center gap-1.5 transition-all text-center";
+                cardTab.className = "bg-zinc-900 border border-zinc-800 text-zinc-500 p-3 rounded-lg flex flex-col items-center justify-center gap-1.5 transition-all text-center";
+                upiPane.classList.remove('hidden');
+                cardPane.classList.add('hidden');
+            } else {
+                cardTab.className = "bg-zinc-900 border-2 border-brand text-white p-3 rounded-lg flex flex-col items-center justify-center gap-1.5 transition-all text-center";
+                upiTab.className = "bg-zinc-900 border border-zinc-800 text-zinc-500 p-3 rounded-lg flex flex-col items-center justify-center gap-1.5 transition-all text-center";
+                cardPane.classList.remove('hidden');
+                upiPane.classList.add('hidden');
+            }
+        }
+
+        function executeSecureTransactionProcess() {
+            const name = document.getElementById('ship-name').value.trim();
+            const phone = document.getElementById('ship-phone').value.trim();
+            const line = document.getElementById('ship-address').value.trim();
+
+            if (!name || !phone || !line) {
+                alert('Shipping destination entries are required to route this transaction order package layout.');
+                return;
+            }
+
+            if(currentCheckoutMethod === 'upi' && !document.getElementById('pay-upi-id').value.trim()) {
+                alert('Please enter a valid structure configuration target UPI Identifier handle string.');
+                return;
+            }
+            if(currentCheckoutMethod === 'card' && !document.getElementById('pay-card-num').value.trim()) {
+                alert('Please enter valid structural credit card entry criteria configurations.');
+                return;
+            }
+
+            alert(`Razorpay Gateway Transaction Authorized Successfully!\nOrder placed for ${activeTargetProductForCheckout.name}.\nOur logistics team will ship to ${name} within 48 working hours.`);
+            closeCheckoutSession();
+        }
+
+        // Navigation Menu Context Interface Handlers
+        function toggleMobileNavMenu() {
+            const drawer = document.getElementById('mobile-nav-drawer');
+            const icon = document.getElementById('mobile-menu-icon');
+            
+            if (drawer.classList.contains('-translate-x-full')) {
+                drawer.classList.remove('-translate-x-full');
+                icon.className = "fa-solid fa-xmark";
+            } else {
+                drawer.classList.add('-translate-x-full');
+                icon.className = "fa-solid fa-bars-staggered";
+            }
+        }
+
+        function handleMobileLink(viewId) {
+            toggleMobileNavMenu();
+            navigateTo(viewId);
+        }
+
+        function triggerAdminAuth() {
+            navigateTo(isAdminAuthenticated ? 'admin' : 'admin-auth');
+        }
+
         function verifyAdminPasscode() {
-            const secret = document.getElementById('auth-pass-input').value;
-            if (secret === "SCARLEX2026") {
+            if (document.getElementById('auth-pass-admin-field').value === "SCARLEX2026") {
                 isAdminAuthenticated = true;
                 navigateTo('admin');
             } else {
@@ -396,10 +629,7 @@
         }
 
         function navigateTo(viewId) {
-            // Guard view block access routing permissions manually
-            if (viewId === 'admin' && !isAdminAuthenticated) {
-                viewId = 'admin-auth';
-            }
+            if (viewId === 'admin' && !isAdminAuthenticated) viewId = 'admin-auth';
 
             const container = document.getElementById('app-view-container');
             const template = document.getElementById(`view-${viewId}`);
@@ -409,7 +639,6 @@
             container.appendChild(template.content.cloneNode(true));
             window.scrollTo({ top: 0 });
 
-            // Initialize views
             if (viewId === 'home') renderGrid('home-featured-products-grid');
             if (viewId === 'shop') renderGrid('shop-catalog-grid');
             if (viewId === 'admin') renderAdminTable();
@@ -421,28 +650,27 @@
             grid.innerHTML = '';
 
             currentProducts.forEach(product => {
-                const discountPercentage = Math.round(((product.mrp - product.sellingPrice) / product.mrp) * 100);
-                
+                const discount = Math.round(((product.mrp - product.sellingPrice) / product.mrp) * 100);
                 const card = document.createElement('div');
-                card.className = 'glass-card rounded-xl overflow-hidden p-4 flex flex-col justify-between border border-zinc-900';
+                card.className = 'glass-card rounded-lg overflow-hidden p-3 flex flex-col justify-between';
                 card.innerHTML = `
-                    <div class="relative w-full aspect-square bg-zinc-900 rounded-lg overflow-hidden mb-4 border border-zinc-800 flex items-center justify-center">
-                        <img src="${product.image}" alt="${product.name}" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
-                        ${discountPercentage > 0 ? `<span class="absolute top-2 left-2 bg-brand text-white text-[10px] font-bold px-2 py-0.5 rounded">${discountPercentage}% OFF</span>` : ''}
-                    </div>
                     <div>
-                        <span class="text-[10px] uppercase font-mono tracking-widest text-brand font-semibold">${product.category}</span>
-                        <h3 class="text-sm font-bold text-white tracking-wide mt-1 truncate font-montserrat">${product.name}</h3>
-                        <p class="text-[11px] text-zinc-500 font-light mt-1 line-clamp-2">${product.specs || ''}</p>
-                    </div>
-                    <div class="mt-4 pt-3 border-t border-zinc-900 flex justify-between items-center">
-                        <div>
-                            <span class="text-xs text-zinc-500 line-through mr-1.5">₹${product.mrp}</span>
-                            <span class="text-sm font-bold text-white">₹${product.sellingPrice}</span>
+                        <div class="relative w-full aspect-square bg-zinc-900 rounded overflow-hidden mb-3 flex items-center justify-center border border-zinc-900">
+                            <img src="${product.image}" alt="${product.name}" class="w-full h-full object-cover">
+                            ${discount > 0 ? `<span class="absolute top-2 left-2 bg-brand text-white text-[9px] font-bold px-1.5 py-0.5 rounded">${discount}% OFF</span>` : ''}
                         </div>
-                        <a href="https://wa.me/918402906422?text=Hi%20Bishal,%20I%20want%20to%20buy%20the%20${encodeURIComponent(product.name)}" target="_blank" class="bg-zinc-900 hover:bg-brand text-[11px] font-semibold text-white px-3 py-1.5 rounded transition-all flex items-center gap-1 border border-zinc-800">
-                            <i class="fa-brands fa-whatsapp text-green-500"></i> Order
-                        </a>
+                        <span class="text-[9px] uppercase font-mono tracking-widest text-brand font-semibold">${product.category}</span>
+                        <h3 class="text-xs font-bold text-white tracking-wide mt-0.5 truncate font-montserrat">${product.name}</h3>
+                        <p class="text-[10px] text-zinc-500 font-light mt-0.5 line-clamp-2">${product.specs || ''}</p>
+                    </div>
+                    <div class="mt-3 pt-2.5 border-t border-zinc-900/60 flex justify-between items-center">
+                        <div>
+                            <span class="text-[10px] text-zinc-500 line-through mr-1">₹${product.mrp}</span>
+                            <span class="text-xs font-bold text-white">₹${product.sellingPrice}</span>
+                        </div>
+                        <button onclick="triggerCheckoutGatewaySession('${product.id}')" class="bg-brand hover:bg-brandHover text-[10px] font-bold text-white px-3 py-1.5 rounded transition-all tracking-wider uppercase">
+                            Buy Now
+                        </button>
                     </div>
                 `;
                 grid.appendChild(card);
@@ -458,19 +686,17 @@
                 const row = document.createElement('tr');
                 row.className = 'border-b border-zinc-900 hover:bg-zinc-900/10 transition-colors';
                 row.innerHTML = `
-                    <td class="py-3 px-2">
-                        <img src="${product.image}" class="w-10 h-10 object-cover rounded border border-zinc-800">
+                    <td class="py-2.5 px-1"><img src="${product.image}" class="w-8 h-8 object-cover rounded border border-zinc-800"></td>
+                    <td class="py-2.5 font-medium text-white">
+                        <div class="font-bold truncate max-w-[120px]">${product.name}</div>
+                        <div class="text-[9px] text-zinc-600 font-mono">${product.id}</div>
                     </td>
-                    <td class="py-3 font-medium text-white">
-                        <div class="font-bold">${product.name}</div>
-                        <div class="text-[10px] text-zinc-600 font-mono">${product.id}</div>
-                    </td>
-                    <td class="py-3 text-zinc-400">${product.category}</td>
-                    <td class="py-3 font-mono text-zinc-500">₹${product.mrp}</td>
-                    <td class="py-3 font-mono text-white font-bold">₹${product.sellingPrice}</td>
-                    <td class="py-3 text-center">
-                        <button onclick="deleteProduct(${index})" class="text-zinc-600 hover:text-brand transition-colors p-2 text-sm" title="Remove Product">
-                            <i class="fa-solid fa-trash-can"></i>
+                    <td class="py-2.5 text-zinc-400">${product.category}</td>
+                    <td class="py-2.5 font-mono text-zinc-500">₹${product.mrp}</td>
+                    <td class="py-2.5 font-mono text-white font-bold">₹${product.sellingPrice}</td>
+                    <td class="py-2.5 text-center">
+                        <button onclick="deleteProduct(${index})" class="text-zinc-600 hover:text-brand transition-colors p-1" title="Remove Product">
+                            <i class="fa-solid fa-trash-can text-xs"></i>
                         </button>
                     </td>
                 `;
@@ -486,18 +712,11 @@
             const specs = document.getElementById('admin-specs').value.trim();
             const imageFileInput = document.getElementById('admin-image-file');
 
-            if (!name || !mrp || !selling) {
-                alert('Please accurately fill out the Product Name, MRP and Selling Price columns!');
-                return;
-            }
+            if (!name || !mrp || !selling) { alert('Please accurately complete parameters.'); return; }
 
             const newProduct = {
-                id: "PROD-" + Date.now().toString().slice(-6),
-                name: name,
-                category: category,
-                mrp: mrp,
-                sellingPrice: selling,
-                specs: specs,
+                id: "PROD-" + Date.now().toString().slice(-4),
+                name: name, category: category, mrp: mrp, sellingPrice: selling, specs: specs,
                 image: "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?q=80&w=600&auto=format&fit=crop"
             };
 
@@ -516,7 +735,7 @@
                 currentProducts.unshift(newProduct);
                 syncStorage();
                 renderAdminTable();
-                alert('Success! Frame appended safely with default placeholder asset configuration.');
+                alert('Success! Frame appended safely with default placeholder configuration.');
                 resetForm();
             }
         }
@@ -541,9 +760,10 @@
             setTimeout(() => {
                 const loader = document.getElementById('loading-screen');
                 if (loader) loader.style.opacity = '0';
-                setTimeout(() => loader ? loader.remove() : null, 700);
-            }, 800);
+                setTimeout(() => loader ? loader.remove() : null, 500);
+            }, 600);
 
+            renderAuthenticationStateMarkupCards();
             navigateTo('home');
         });
     </script>
