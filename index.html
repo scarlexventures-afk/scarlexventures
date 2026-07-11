@@ -165,20 +165,6 @@
 
     </div><!-- End Viewport Canvas Wrapper -->
 
-    <!-- CUSTOMER ACCESSIBILITY MAINTENANCE BLOCKER OVERLAY -->
-    <div id="maintenance-blocker-screen" class="fixed inset-0 z-[9990] bg-black hidden flex flex-col justify-center items-center p-6 text-center">
-        <div class="max-w-md bg-zinc-900/40 border border-zinc-800 p-8 rounded-xl backdrop-blur-md">
-            <div class="w-16 h-16 bg-brand/10 text-brand rounded-full flex items-center justify-center text-2xl mx-auto mb-4"><i class="fa-solid fa-warehouse-item animate-pulse"></i></div>
-            <h1 class="text-2xl md:text-3xl heading-premium text-white tracking-widest mb-2">GARAGE UNDER MAINTENANCE</h1>
-            <p class="text-xs text-zinc-400 font-light leading-relaxed mb-6">Our showroom floor catalog is temporarily undergoing diagnostic configuration sweeps. Check back soon for new 3D artifact updates!</p>
-            <div class="flex items-center justify-center gap-4 text-zinc-500 text-sm border-t border-zinc-800 pt-5">
-                <a href="https://www.instagram.com/scarlex_garage?igsh=c2xhZXZ0d3pqcm04" target="_blank" class="hover:text-brand transition-colors"><i class="fa-brands fa-instagram mr-1"></i> @scarlex_garage</a>
-            </div>
-        </div>
-        <!-- Secret access point for owners to enter admin even while site is down -->
-        <button onclick="triggerAdminAuth()" class="absolute bottom-4 right-4 text-[10px] font-mono text-zinc-800 hover:text-zinc-600"><i class="fa-solid fa-lock"></i> Overide System</button>
-    </div>
-
     <!-- Customer Session Credentials Modal Overlay Box Framework -->
     <div id="auth-modal" class="fixed inset-0 bg-black/80 z-[100] backdrop-blur-sm hidden flex items-center justify-center p-4">
         <div class="bg-bgCard border border-zinc-800 w-full max-w-sm rounded-xl p-5 relative fade-in-view">
@@ -220,68 +206,6 @@
                 <h3 class="text-sm font-bold font-montserrat uppercase tracking-wider text-white">Account Verified</h3>
                 <p class="text-[11px] text-zinc-500 mb-4" id="auth-user-email"></p>
                 <button onclick="executeAccountLogout()" class="w-full bg-zinc-900 hover:bg-zinc-800 text-zinc-400 hover:text-white py-2 rounded text-xs uppercase tracking-wider border border-zinc-800 font-medium">Disconnect Session</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Razorpay Checkout Gateway Transaction Drawer Modal Overlay Box Framework -->
-    <div id="checkout-drawer" class="fixed inset-0 bg-black/85 z-50 hidden overflow-y-auto p-3 md:p-6 flex items-center justify-center">
-        <div class="bg-bgCard border border-zinc-800 w-full max-w-xl rounded-xl overflow-hidden shadow-2xl fade-in-view my-auto">
-            <div class="bg-zinc-900/60 border-b border-zinc-800 p-4 flex justify-between items-center">
-                <span class="bg-brand/10 text-brand px-2 py-0.5 rounded text-[10px] uppercase font-mono tracking-wider font-bold">Secure Order Checkout</span>
-                <button onclick="closeCheckoutSession()" class="text-zinc-500 hover:text-white p-1 text-sm"><i class="fa-solid fa-xmark"></i></button>
-            </div>
-
-            <div class="p-4 md:p-5 space-y-5 text-xs">
-                <div class="flex items-center gap-3 bg-zinc-900/40 border border-zinc-900 p-3 rounded-lg">
-                    <img id="check-item-img" src="" class="w-12 h-12 object-cover rounded border border-zinc-800">
-                    <div>
-                        <h4 id="check-item-name" class="font-bold text-white text-sm tracking-wide"></h4>
-                        <div class="text-[11px] text-zinc-400 mt-0.5">Total Due: <span class="text-white font-bold font-mono text-xs ml-0.5" id="check-item-price"></span></div>
-                    </div>
-                </div>
-
-                <!-- Direct Merchant Payment Collection Target Routing -->
-                <div class="bg-brand/5 border border-brand/20 p-3 rounded-lg text-center font-mono">
-                    <span class="text-zinc-400 block text-[10px] uppercase tracking-wider">Direct Transaction Merchant Node Target</span>
-                    <span class="text-white font-bold text-sm tracking-widest"><i class="fa-solid fa-money-bill-transfer text-brand mr-1"></i> +91 8402906422</span>
-                </div>
-
-                <div class="space-y-3">
-                    <div class="flex justify-between items-center border-b border-zinc-900 pb-1.5">
-                        <span class="font-bold font-montserrat uppercase tracking-wider text-zinc-300 text-[11px]"><i class="fa-solid fa-truck-ramp-box text-brand mr-1"></i> 1. Delivery Shipping Destination</span>
-                        <button onclick="persistDeliveryAddressData()" class="text-[10px] text-brand hover:underline font-semibold font-mono">Save Details</button>
-                    </div>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                        <input type="text" id="ship-name" placeholder="Full Receiver Name" class="bg-zinc-900 border border-zinc-800 text-white p-2.5 rounded focus:outline-none focus:border-brand w-full">
-                        <input type="text" id="ship-phone" placeholder="10-Digit Mobile Contact Number" class="bg-zinc-900 border border-zinc-800 text-white p-2.5 rounded focus:outline-none focus:border-brand w-full">
-                        <input type="text" id="ship-address" placeholder="Flat, Street Address, Landmark" class="bg-zinc-900 border border-zinc-800 text-white p-2.5 rounded focus:outline-none focus:border-brand w-full md:col-span-2">
-                        <input type="text" id="ship-city" placeholder="City" class="bg-zinc-900 border border-zinc-800 text-white p-2.5 rounded focus:outline-none focus:border-brand w-full">
-                        <input type="text" id="ship-pin" placeholder="PIN Code / Area Code" class="bg-zinc-900 border border-zinc-800 text-white p-2.5 rounded focus:outline-none focus:border-brand w-full">
-                    </div>
-                </div>
-
-                <div class="space-y-3">
-                    <div class="border-b border-zinc-900 pb-1.5"><span class="font-bold font-montserrat uppercase tracking-wider text-zinc-300 text-[11px]"><i class="fa-solid fa-wallet text-brand mr-1"></i> 2. Select Secure Payment Method</span></div>
-                    <div class="grid grid-cols-2 gap-2.5">
-                        <button onclick="setCheckoutMethodMode('upi')" id="pay-tab-upi" class="bg-zinc-900 border-2 border-brand text-white p-3 rounded-lg flex flex-col items-center justify-center gap-1.5 transition-all"><i class="fa-solid fa-qrcode text-base text-zinc-400"></i><span class="font-bold text-[11px]">UPI / QR Code</span></button>
-                        <button onclick="setCheckoutMethodMode('card')" id="pay-tab-card" class="bg-zinc-900 border border-zinc-800 text-zinc-400 p-3 rounded-lg flex flex-col items-center justify-center gap-1.5 transition-all"><i class="fa-solid fa-credit-card text-base text-zinc-400"></i><span class="font-bold text-[11px]">Debit / Credit Card</span></button>
-                    </div>
-
-                    <div class="bg-zinc-950 p-4 border border-zinc-900 rounded-lg mt-2 min-h-[90px] flex flex-col justify-center">
-                        <div id="pane-pay-upi" class="text-center py-1">
-                            <input type="text" id="pay-upi-id" placeholder="username@upi" class="bg-zinc-900 border border-zinc-800 text-white p-2.5 rounded text-center text-xs focus:outline-none focus:border-brand max-w-xs w-full mx-auto block">
-                        </div>
-                        <div id="pane-pay-card" class="space-y-3 hidden">
-                            <div class="grid grid-cols-3 gap-2">
-                                <input type="text" id="pay-card-num" placeholder="0000 0000 0000 0000" class="bg-zinc-900 border border-zinc-800 text-white p-2 rounded text-xs col-span-3">
-                                <input type="text" id="pay-card-expiry" placeholder="MM/YY" class="bg-zinc-900 border border-zinc-800 text-white p-2 rounded text-xs text-center">
-                                <input type="password" id="pay-card-cvv" placeholder="CVV" class="bg-zinc-900 border border-zinc-800 text-white p-2 rounded text-xs text-center">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <button onclick="executeSecureTransactionProcess()" class="w-full bg-brand text-white py-3.5 rounded-lg font-montserrat font-bold uppercase tracking-widest text-xs shadow-lg shadow-brand/20 flex items-center justify-center gap-2"><i class="fa-solid fa-shield-halved"></i> Authorize Through Razorpay Pipeline</button>
             </div>
         </div>
     </div>
@@ -378,17 +302,6 @@
                     <p class="text-[10px] text-brand font-mono uppercase tracking-wider">Level 1 Encryption Clearance Protocol Active</p>
                 </div>
                 
-                <!-- NEW SECURE WEBSITE LIVE/OFF SYSTEM SWITCH FIELD -->
-                <div class="flex items-center gap-3 bg-zinc-950 p-3 rounded-lg border border-zinc-800 self-start">
-                    <div class="text-left">
-                        <span class="text-[10px] font-mono block text-zinc-500 uppercase">Store Customer Gate</span>
-                        <span id="store-status-text" class="text-xs font-bold text-emerald-400">STATUS: ONLINE LIVE</span>
-                    </div>
-                    <button onclick="toggleStoreVisibilityGateStatus()" id="store-toggle-switch-btn" class="bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 px-3 py-1.5 rounded font-mono text-[10px] uppercase font-bold tracking-wide transition-all active:scale-95">
-                        Take Catalog Offline
-                    </button>
-                </div>
-
                 <button onclick="logoutAdmin()" class="bg-zinc-900 border border-zinc-800 text-xs px-4 py-2 rounded font-semibold text-zinc-400 hover:text-white uppercase tracking-wider self-start md:self-center">
                     Lock System Panel
                 </button>
@@ -462,7 +375,7 @@
                 <div class="border-b border-zinc-900 pb-2 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3">
                     <div>
                         <h2 class="text-sm font-bold text-white uppercase tracking-wider font-montserrat">Live Financial Transaction & Orders Manifest Log Engine</h2>
-                        <p class="text-[10px] text-textMuted font-mono">Real-time data stream outputs captured through the secure Razorpay pipeline routed to merchant collection: 8402906422.</p>
+                        <p class="text-[10px] text-textMuted font-mono">Real-time data stream outputs captured through the secure pipelines routed to merchant collection: +91 8402906422.</p>
                     </div>
                     <button onclick="compileAndDownloadOrdersPDFManifest()" class="bg-zinc-900 hover:bg-zinc-800 text-white font-mono border border-zinc-800 px-4 py-2 rounded text-[11px] tracking-wide uppercase flex items-center justify-center gap-2 self-start active:scale-95 transition-transform"><i class="fa-solid fa-file-pdf text-brand"></i> Download Order Book Ledger Manifest (PDF)</button>
                 </div>
@@ -482,9 +395,6 @@
     <!-- CORE RUNTIME APPLICATION LOGIC MODULES -->
     <script>
         let isAdminAuthenticated = false;
-        let isWebsiteLiveForCustomers = localStorage.getItem('scarlex_site_live') !== 'false';
-        let currentCheckoutMethod = 'upi';
-        let activeTargetProductForCheckout = null;
         let activeRouteViewId = 'home';
 
         let sessionUser = JSON.parse(localStorage.getItem('scarlex_user')) || null;
@@ -496,8 +406,8 @@
         ];
 
         let activeOrdersLedger = JSON.parse(localStorage.getItem('scarlex_orders')) || [
-            { orderId: "TXN-884920", productName: "Rolls-Royce Collection Frame", customerName: "Aarav Sharma", phone: "9876543210", address: "Ganeshguri, Flat 3B, Landmark Opp High School", city: "Guwahati", pin: "781005", method: "UPI", amount: 5499 },
-            { orderId: "TXN-395021", productName: "Ferrari F1 Frame", customerName: "Devika Borah", phone: "8402900000", address: "Zoo Road, Path 2, House 14", city: "Guwahati", pin: "781024", method: "CARD", amount: 4999 }
+            { orderId: "TXN-884920", productName: "Rolls-Royce Collection Frame", customerName: "Aarav Sharma", phone: "9876543210", address: "Ganeshguri, Flat 3B, Landmark Opp High School", city: "Guwahati", pin: "781005", method: "WHATSAPP", amount: 5499 },
+            { orderId: "TXN-395021", productName: "Ferrari F1 Frame", customerName: "Devika Borah", phone: "8402900000", address: "Zoo Road, Path 2, House 14", city: "Guwahati", pin: "781024", method: "WHATSAPP", amount: 4999 }
         ];
 
         function syncStorage() { localStorage.setItem('scarlex_catalog', JSON.stringify(currentProducts)); }
@@ -523,37 +433,6 @@
             }
         }
 
-        /* LIVE/OFF KILL-SWITCH SYSTEM CHANNELS */
-        function evaluateGlobalWebsiteVisibilityState() {
-            const blocker = document.getElementById('maintenance-blocker-screen');
-            if (!isWebsiteLiveForCustomers && activeRouteViewId !== 'admin' && activeRouteViewId !== 'admin-auth') {
-                blocker.classList.remove('hidden');
-            } else {
-                blocker.classList.add('hidden');
-            }
-        }
-
-        function toggleStoreVisibilityGateStatus() {
-            isWebsiteLiveForCustomers = !isWebsiteLiveForCustomers;
-            localStorage.setItem('scarlex_site_live', isWebsiteLiveForCustomers);
-            updateAdminPanelSwitchUI();
-            evaluateGlobalWebsiteVisibilityState();
-        }
-
-        function updateAdminPanelSwitchUI() {
-            const txt = document.getElementById('store-status-text');
-            const btn = document.getElementById('store-toggle-switch-btn');
-            if(!txt || !btn) return;
-
-            if(isWebsiteLiveForCustomers) {
-                txt.innerText = "STATUS: ONLINE LIVE"; txt.className = "text-xs font-bold text-emerald-400";
-                btn.innerText = "Take Catalog Offline"; btn.className = "bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 px-3 py-1.5 rounded font-mono text-[10px] uppercase font-bold tracking-wide transition-all active:scale-95";
-            } else {
-                txt.innerText = "STATUS: OFFLINE MAINTENANCE"; txt.className = "text-xs font-bold text-brand";
-                btn.innerText = "Deploy Showroom Live"; btn.className = "bg-brand/10 text-brand border border-brand/30 px-3 py-1.5 rounded font-mono text-[10px] uppercase font-bold tracking-wide transition-all active:scale-95";
-            }
-        }
-
         function toggleAuthModal() {
             document.getElementById('auth-modal').classList.toggle('hidden');
             renderAuthenticationStateMarkupCards();
@@ -571,17 +450,6 @@
                 outState.classList.add('hidden'); inState.classList.remove('hidden');
                 document.getElementById('auth-user-email').innerText = sessionUser.email;
                 navText.innerText = sessionUser.email.split('@')[0].toUpperCase();
-                if (sessionUser.address) {
-                    setTimeout(() => {
-                        if(document.getElementById('ship-name')) {
-                            document.getElementById('ship-name').value = sessionUser.address.name || '';
-                            document.getElementById('ship-phone').value = sessionUser.address.phone || '';
-                            document.getElementById('ship-address').value = sessionUser.address.line || '';
-                            document.getElementById('ship-city').value = sessionUser.address.city || '';
-                            document.getElementById('ship-pin').value = sessionUser.address.pin || '';
-                        }
-                    }, 100);
-                }
             } else {
                 outState.classList.remove('hidden'); inState.classList.add('hidden');
                 navText.innerText = "Sign In";
@@ -591,13 +459,13 @@
             const email = document.getElementById('auth-email-input').value.trim();
             const pass = document.getElementById('auth-pass-input').value;
             if(!email || !pass) { alert('Please fill in traditional credentials completely.'); return; }
-            sessionUser = { email: email, address: sessionUser?.address || {} };
+            sessionUser = { email: email };
             localStorage.setItem('scarlex_user', JSON.stringify(sessionUser));
             renderAuthenticationStateMarkupCards();
             setTimeout(toggleAuthModal, 400);
         }
         function executeSocialMockAuthentication(provider) {
-            sessionUser = { email: `social_${provider.toLowerCase()}_user@scarlex.vault`, address: sessionUser?.address || {} };
+            sessionUser = { email: `social_${provider.toLowerCase()}_user@scarlex.vault` };
             localStorage.setItem('scarlex_user', JSON.stringify(sessionUser));
             renderAuthenticationStateMarkupCards();
             alert(`Successfully authenticated via secure ${provider} identity bridge portal mapping.`);
@@ -608,67 +476,12 @@
             renderAuthenticationStateMarkupCards(); toggleAuthModal();
         }
 
-        function persistDeliveryAddressData() {
-            const name = document.getElementById('ship-name').value.trim();
-            const phone = document.getElementById('ship-phone').value.trim();
-            const line = document.getElementById('ship-address').value.trim();
-            const city = document.getElementById('ship-city').value.trim();
-            const pin = document.getElementById('ship-pin').value.trim();
-            if (!name || !phone || !line || !city || !pin) { alert('Incomplete structural routing fields.'); return; }
-            if (!sessionUser) { sessionUser = { email: "guest@scarlex.temp", address: {} }; }
-            sessionUser.address = { name, phone, line, city, pin };
-            localStorage.setItem('scarlex_user', JSON.stringify(sessionUser));
-            renderAuthenticationStateMarkupCards();
-            alert('Destination Logistics data cached to active session state vault.');
-        }
-
+        /* CUSTOM ROUTING ACTION FOR WHATSAPP COMMERCE ORDERING INSTEAD OF LOCAL PAYMENT CHECKOUTS */
         function triggerCheckoutGatewaySession(prodId) {
-            activeTargetProductForCheckout = currentProducts.find(p => p.id === prodId);
-            if(!activeTargetProductForCheckout) return;
-            document.getElementById('check-item-img').src = activeTargetProductForCheckout.image;
-            document.getElementById('check-item-name').innerText = activeTargetProductForCheckout.name;
-            document.getElementById('check-item-price').innerText = `₹${activeTargetProductForCheckout.sellingPrice}`;
-            document.getElementById('checkout-drawer').classList.remove('hidden');
-        }
-        function closeCheckoutSession() { document.getElementById('checkout-drawer').classList.add('hidden'); }
-        function setCheckoutMethodMode(mode) {
-            currentCheckoutMethod = mode;
-            const upiTab = document.getElementById('pay-tab-upi');
-            const cardTab = document.getElementById('pay-tab-card');
-            const upiPane = document.getElementById('pane-pay-upi');
-            const cardPane = document.getElementById('pane-pay-card');
-            if (mode === 'upi') {
-                upiTab.className = "bg-zinc-900 border-2 border-brand text-white p-3 rounded-lg flex flex-col items-center justify-center gap-1.5 text-center";
-                cardTab.className = "bg-zinc-900 border border-zinc-800 text-zinc-500 p-3 rounded-lg flex flex-col items-center justify-center gap-1.5 text-center";
-                upiPane.classList.remove('hidden'); cardPane.classList.add('hidden');
-            } else {
-                cardTab.className = "bg-zinc-900 border-2 border-brand text-white p-3 rounded-lg flex flex-col items-center justify-center gap-1.5 text-center";
-                upiTab.className = "bg-zinc-900 border border-zinc-800 text-zinc-500 p-3 rounded-lg flex flex-col items-center justify-center gap-1.5 text-center";
-                cardPane.classList.remove('hidden'); upiPane.classList.add('hidden');
-            }
-        }
-        function executeSecureTransactionProcess() {
-            const name = document.getElementById('ship-name').value.trim();
-            const phone = document.getElementById('ship-phone').value.trim();
-            const line = document.getElementById('ship-address').value.trim();
-            const city = document.getElementById('ship-city').value.trim();
-            const pin = document.getElementById('ship-pin').value.trim();
-
-            if (!name || !phone || !line || !city || !pin) { alert('Shipping destination entries are required.'); return; }
-
-            const generatedTxnId = "TXN-" + Math.floor(100000 + Math.random() * 900000);
-            const newRecordOrderInstance = {
-                orderId: generatedTxnId,
-                productName: activeTargetProductForCheckout.name,
-                customerName: name, phone: phone, address: line, city: city, pin: pin,
-                method: currentCheckoutMethod.toUpperCase(),
-                amount: activeTargetProductForCheckout.sellingPrice
-            };
-
-            activeOrdersLedger.unshift(newRecordOrderInstance);
-            syncOrdersStorage();
-            alert(`Razorpay Transaction Authorized!\nFunds captured and routed safely to merchant endpoint +91 8402906422.\nOrder Instance Ref: ${generatedTxnId}.`);
-            closeCheckoutSession();
+            const targetProd = currentProducts.find(p => p.id === prodId);
+            if(!targetProd) return;
+            const message = encodeURIComponent(`Hello Team Scarlex! I am interested in ordering the custom 3D frame: ${targetProd.name} (Price: ₹${targetProd.sellingPrice}). Please share availability and payment details!`);
+            window.open(`https://wa.me/918402906422?text=${message}`, '_blank');
         }
 
         function toggleMobileNavMenu() {
@@ -692,7 +505,6 @@
         function navigateTo(viewId) {
             if (viewId === 'admin' && !isAdminAuthenticated) viewId = 'admin-auth';
             activeRouteViewId = viewId;
-            evaluateGlobalWebsiteVisibilityState();
 
             const container = document.getElementById('app-view-container');
             const template = document.getElementById(`view-${viewId}`);
@@ -704,7 +516,6 @@
             if (viewId === 'home') renderGrid('home-featured-products-grid');
             if (viewId === 'shop') renderGrid('shop-catalog-grid');
             if (viewId === 'admin') { 
-                updateAdminPanelSwitchUI();
                 renderAdminTable(); 
                 renderOrdersLedgerListTableContainerNodes(); 
             }
@@ -726,10 +537,10 @@
                     </div>
                     <div class="mt-3 pt-2.5 border-t border-zinc-900 flex justify-between items-center">
                         <div>
-                            <span class="text-[10px] text-zinc-500 line-through mr-1">₹${product.mrp}</span>
+                            <span class="text-[10px] text-zinc-550 line-through mr-1 text-zinc-500">₹${product.mrp}</span>
                             <span class="text-xs font-bold text-white">₹${product.sellingPrice}</span>
                         </div>
-                        <button onclick="triggerCheckoutGatewaySession('${product.id}')" class="bg-brand text-[10px] font-bold text-white px-3 py-1.5 rounded uppercase tracking-wider">Buy Now</button>
+                        <button onclick="triggerCheckoutGatewaySession('${product.id}')" class="bg-brand text-[10px] font-bold text-white px-3 py-1.5 rounded uppercase tracking-wider flex items-center gap-1"><i class="fa-brands fa-whatsapp text-white"></i> Buy Now</button>
                     </div>
                 `;
                 grid.appendChild(card);
@@ -767,7 +578,7 @@
                     <td class="py-2.5 text-zinc-300">${order.customerName}</td>
                     <td class="py-2.5 font-mono text-zinc-400">${order.phone}</td>
                     <td class="py-2.5 text-zinc-500 max-w-[200px] truncate" title="${order.address}, ${order.city} - ${order.pin}">${order.address}, ${order.city} - ${order.pin}</td>
-                    <td class="py-2.5"><span class="px-1.5 py-0.5 rounded text-[9px] font-mono bg-zinc-900 border border-zinc-800 text-brand font-bold">${order.method}</span></td>
+                    <td class="py-2.5"><span class="px-1.5 py-0.5 rounded text-[9px] font-mono bg-zinc-900 border border-zinc-800 text-emerald-400 font-bold">${order.method}</span></td>
                     <td class="py-2.5 font-mono font-bold text-white">₹${order.amount}</td>
                 `;
                 tableBody.appendChild(row);
