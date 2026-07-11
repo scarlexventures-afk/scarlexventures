@@ -21,7 +21,9 @@
                         brandHover: '#FF3B3B',
                         bgMain: '#0A0A0A',
                         bgCard: '#161616',
-                        textMuted: '#B3B3B3'
+                        textMuted: '#B3B3B3',
+                        googleBg: '#4285F4',
+                        fbBg: '#1877F2'
                     },
                     fontFamily: {
                         heading: ['Bebas Neue', 'sans-serif'],
@@ -80,7 +82,6 @@
             </div>
         </div>
     </div>
-    <style>@keyframes loading { 0% { left: -33%; } 100% { left: 100%; } }</style>
 
     <!-- Navigation Bar -->
     <nav class="sticky top-0 z-40 bg-bgMain/95 backdrop-blur-md border-b border-zinc-900 px-4 lg:px-12 py-3.5 flex items-center justify-between">
@@ -99,7 +100,11 @@
             <a href="#" onclick="navigateTo('contact')" class="hover:text-brand transition-colors text-textMuted">Contact</a>
         </div>
 
-        <div class="flex items-center gap-2">
+        <div class="flex items-center gap-3">
+            <!-- Dynamic Social Integration Channels Links Panel -->
+            <a href="https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?q=80&w=600&auto=format&fit=crop" target="_blank" class="text-zinc-400 hover:text-brand transition-colors text-sm" title="Instagram Profile"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://chat.whatsapp.com/LOyuL7Cfv6Z5hhNf659Tvg" target="_blank" class="text-zinc-400 hover:text-emerald-500 transition-colors text-sm" title="WhatsApp Community"><i class="fa-brands fa-whatsapp"></i></a>
+            <span class="w-[1px] h-4 bg-zinc-800 hidden sm:inline-block"></span>
             <button onclick="toggleAuthModal()" id="nav-auth-btn" class="bg-zinc-900 border border-zinc-800 text-[11px] px-3.5 py-2 rounded font-montserrat uppercase tracking-wider text-white flex items-center gap-1.5 transition-all">
                 <i class="fa-solid fa-user-circle text-sm text-zinc-400"></i> <span id="nav-auth-text">Sign In</span>
             </button>
@@ -113,6 +118,10 @@
         <a href="#" onclick="handleMobileLink('shop')" class="py-3 border-b border-zinc-900 text-zinc-300 flex justify-between items-center"><span>Shop Collection</span><i class="fa-solid fa-chevron-right text-xs text-zinc-700"></i></a>
         <a href="#" onclick="handleMobileLink('about')" class="py-3 border-b border-zinc-900 text-zinc-300 flex justify-between items-center"><span>Our Craft</span><i class="fa-solid fa-chevron-right text-xs text-zinc-700"></i></a>
         <a href="#" onclick="handleMobileLink('contact')" class="py-3 text-zinc-300 flex justify-between items-center"><span>Contact</span><i class="fa-solid fa-chevron-right text-xs text-zinc-700"></i></a>
+        <div class="pt-6 flex gap-4 justify-center text-lg text-zinc-500">
+            <a href="https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?q=80&w=600&auto=format&fit=crop" target="_blank" class="hover:text-brand"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://chat.whatsapp.com/LOyuL7Cfv6Z5hhNf659Tvg" target="_blank" class="hover:text-emerald-500"><i class="fa-brands fa-whatsapp"></i></a>
+        </div>
     </div>
 
     <!-- Main Dynamic Application Mounting Containment Structure -->
@@ -126,14 +135,31 @@
         </div>
     </footer>
 
-    <!-- Customer Session Credentials Modal Overlay Box Framework -->
+    <!-- Customer Session Credentials Modal Overlay Box Framework with Identity Integration Providers Mockups -->
     <div id="auth-modal" class="fixed inset-0 bg-black/80 z-[100] backdrop-blur-sm hidden flex items-center justify-center p-4">
         <div class="bg-bgCard border border-zinc-800 w-full max-w-sm rounded-xl p-5 relative fade-in-view">
             <button onclick="toggleAuthModal()" class="absolute top-4 right-4 text-zinc-500 hover:text-white p-1 text-sm"><i class="fa-solid fa-xmark"></i></button>
             <div id="auth-logged-out-state">
                 <h3 class="text-base font-bold font-montserrat uppercase tracking-wider mb-1" id="auth-title">Customer Login</h3>
-                <p class="text-[11px] text-textMuted mb-4">Securely save checkout addresses and complete instant digital orders.</p>
-                <div class="space-y-3.5 text-xs">
+                <p class="text-[11px] text-textMuted mb-4">Securely access your account vault through traditional or federated channels.</p>
+                
+                <!-- Social Authentication Platform Integrations Channels Grid Setup -->
+                <div class="grid grid-cols-2 gap-2 mb-4">
+                    <button onclick="executeSocialMockAuthentication('Google')" class="bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 p-2 rounded text-[10px] font-semibold flex items-center justify-center gap-1.5 text-white transition-colors">
+                        <i class="fa-brands fa-google text-googleBg"></i> Google
+                    </button>
+                    <button onclick="executeSocialMockAuthentication('Facebook')" class="bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 p-2 rounded text-[10px] font-semibold flex items-center justify-center gap-1.5 text-white transition-colors">
+                        <i class="fa-brands fa-facebook text-fbBg"></i> Facebook
+                    </button>
+                </div>
+
+                <div class="relative flex py-2 items-center mb-2">
+                    <div class="flex-grow border-t border-zinc-900"></div>
+                    <span class="flex-shrink mx-3 text-[9px] text-zinc-600 uppercase font-mono tracking-wider">Or Traditional Credentials</span>
+                    <div class="flex-grow border-t border-zinc-900"></div>
+                </div>
+
+                <div class="space-y-3 text-xs">
                     <div>
                         <label class="block text-zinc-400 mb-1">Email Address</label>
                         <input type="email" id="auth-email-input" class="w-full bg-zinc-900 border border-zinc-800 text-white p-2.5 rounded focus:outline-none focus:border-brand">
@@ -172,6 +198,12 @@
                     </div>
                 </div>
 
+                <!-- Explicit Merchant Financial Flow Destination Assignment -->
+                <div class="bg-brand/5 border border-brand/20 p-3 rounded-lg text-center font-mono">
+                    <span class="text-zinc-400 block text-[10px] uppercase tracking-wider">Direct Transaction Merchant Node Target</span>
+                    <span class="text-white font-bold text-sm tracking-widest"><i class="fa-solid fa-money-bill-transfer text-brand mr-1"></i> +91 8402906422</span>
+                </div>
+
                 <div class="space-y-3">
                     <div class="flex justify-between items-center border-b border-zinc-900 pb-1.5">
                         <span class="font-bold font-montserrat uppercase tracking-wider text-zinc-300 text-[11px]"><i class="fa-solid fa-truck-ramp-box text-brand mr-1"></i> 1. Delivery & Shipping Destination</span>
@@ -206,7 +238,7 @@
                         </div>
                     </div>
                 </div>
-                <button onclick="executeSecureTransactionProcess()" class="w-full bg-brand text-white py-3.5 rounded-lg font-montserrat font-bold uppercase tracking-widest text-xs shadow-lg shadow-brand/20 flex items-center justify-center gap-2"><i class="fa-solid fa-shield-halved"></i> Authorize Through Razorpay</button>
+                <button onclick="executeSecureTransactionProcess()" class="w-full bg-brand text-white py-3.5 rounded-lg font-montserrat font-bold uppercase tracking-widest text-xs shadow-lg shadow-brand/20 flex items-center justify-center gap-2"><i class="fa-solid fa-shield-halved"></i> Authorize Through Razorpay Pipeline</button>
             </div>
         </div>
     </div>
@@ -218,8 +250,12 @@
                 <div class="max-w-4xl mx-auto flex flex-col items-center">
                     <span class="text-brand font-montserrat text-[10px] tracking-[0.4em] font-semibold mb-3">SCARLEX GARAGE EXCLUSIVE</span>
                     <h1 class="text-4xl sm:text-6xl md:text-8xl heading-premium text-white mb-4 leading-tight">PREMIUM 3D FRAME<br><span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-zinc-400 to-brand">COLLECTIBLES</span></h1>
-                    <p class="font-montserrat text-zinc-400 text-xs sm:text-sm tracking-wide max-w-xl mb-8 font-light px-2">Handcrafted luxury automotive wall art capturing iconic legends inside deep shadow-box frames.</p>
-                    <button onclick="navigateTo('shop')" class="bg-brand text-white px-8 py-3.5 rounded font-montserrat font-bold text-xs uppercase tracking-widest">Shop Collection</button>
+                    <p class="font-montserrat text-zinc-400 text-xs sm:text-sm tracking-wide max-w-xl mb-6 font-light px-2">Handcrafted luxury automotive wall art capturing iconic legends inside deep shadow-box frames.</p>
+                    
+                    <div class="flex flex-wrap gap-3 justify-center mb-8">
+                        <button onclick="navigateTo('shop')" class="bg-brand text-white px-8 py-3.5 rounded font-montserrat font-bold text-xs uppercase tracking-widest">Shop Collection</button>
+                        <a href="https://chat.whatsapp.com/LOyuL7Cfv6Z5hhNf659Tvg" target="_blank" class="bg-zinc-900 border border-zinc-800 text-white px-6 py-3.5 rounded font-montserrat font-bold text-xs uppercase tracking-widest flex items-center gap-2 hover:bg-zinc-800 transition-colors"><i class="fa-brands fa-whatsapp text-emerald-500 text-sm"></i> Join Community</a>
+                    </div>
                 </div>
             </section>
             <section class="py-16 px-4 max-w-7xl mx-auto">
@@ -248,14 +284,14 @@
             <div class="space-y-6 text-zinc-300 font-light text-xs sm:text-sm leading-relaxed">
                 <p>Founded and owned by <strong>Bishal Sarma</strong>, our signature brand emerged from standard automotive posters lacking tangible depth and dynamic shadows.</p>
                 <div class="border-t border-b border-zinc-900 py-6 my-6">
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                        <div class="bg-zinc-900/30 p-3.5 border border-zinc-900 rounded">
-                            <span class="text-white font-semibold block">Bishal Sarma</span>
-                            <span class="text-[10px] text-brand uppercase font-mono">Owner & Head Designer</span>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="bg-zinc-900/30 p-4 border border-zinc-800 rounded shadow-md">
+                            <span class="text-white font-semibold font-montserrat text-sm block">Bishal Sarma</span>
+                            <span class="text-[9px] text-brand uppercase font-mono tracking-wider block mt-0.5">Founder & Owner</span>
                         </div>
-                        <div class="bg-zinc-900/30 p-3.5 border border-zinc-900 rounded">
-                            <span class="text-white font-semibold block">Nilabh Jyoti Sarma</span>
-                            <span class="text-[10px] text-brand uppercase font-mono">Co-Founder & Head of Social Media</span>
+                        <div class="bg-zinc-900/30 p-4 border border-zinc-800 rounded shadow-md">
+                            <span class="text-white font-semibold font-montserrat text-sm block">Nilabh Jyoti Sarma</span>
+                            <span class="text-[9px] text-brand uppercase font-mono tracking-wider block mt-0.5">Co-Founder & Head of Social Media</span>
                         </div>
                     </div>
                 </div>
@@ -266,15 +302,17 @@
 
     <template id="view-contact">
         <div class="fade-in-view max-w-2xl mx-auto px-4 py-12 text-center">
-            <h1 class="text-3xl md:text-5xl heading-premium mb-3">CONNECT WITH <span class="text-brand">THE GARAGE</span></h1>
-            <div class="space-y-4 max-w-sm mx-auto text-left bg-bgCard p-5 border border-zinc-800 rounded-lg text-xs">
-                <div><span class="text-[10px] text-textMuted uppercase block">Email</span><span class="text-white">scarlexventures@gmail.com</span></div>
-                <div><span class="text-[10px] text-textMuted uppercase block">WhatsApp / Phone</span><span class="text-white">+91 8402906422</span></div>
+            <h1 class="text-3xl md:text-5xl heading-premium mb-4">CONNECT WITH <span class="text-brand">THE GARAGE</span></h1>
+            <div class="space-y-4 max-w-sm mx-auto text-left bg-bgCard p-5 border border-zinc-800 rounded-lg text-xs shadow-xl">
+                <div><span class="text-[10px] text-textMuted uppercase block">Email Channel</span><span class="text-white font-medium">scarlexventures@gmail.com</span></div>
+                <div><span class="text-[10px] text-textMuted uppercase block">WhatsApp / Phone Pipeline</span><span class="text-white font-medium">+91 8402906422</span></div>
+                <div><span class="text-[10px] text-textMuted uppercase block">Instagram Handle</span><a href="https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?q=80&w=600&auto=format&fit=crop" target="_blank" class="text-brand hover:underline font-bold">@scarlex_garage</a></div>
+                <div><span class="text-[10px] text-textMuted uppercase block">Community Hub</span><a href="https://chat.whatsapp.com/LOyuL7Cfv6Z5hhNf659Tvg" target="_blank" class="text-emerald-400 hover:underline font-bold">Join Official WhatsApp Community</a></div>
             </div>
         </div>
     </template>
 
-    <!-- SECURE GATEWAY FOR SECURE ADMINISTRATOR VERIFICATION ENTRY OVERLAY DIALOG BOX INTERFACE -->
+    <!-- SECURITY PASSCODE PORTAL VIEW TEMPLATE -->
     <template id="view-admin-auth">
         <div class="fade-in-view max-w-sm mx-auto px-4 py-24 text-center">
             <div class="bg-bgCard border border-zinc-800 p-6 rounded-lg shadow-xl">
@@ -288,7 +326,7 @@
         </div>
     </template>
 
-    <!-- PASSWORD PROTECTED EXTENDED ADVANCED ADMINISTRATIVE MULTI-UTILITY INVENTORY CONTROL LEDGER AND ORDER MANAGEMENT STATION CONSOLE GRID LAYOUT -->
+    <!-- ADMINISTRATIVE CONSOLE CONTROL LEDGER PANELS -->
     <template id="view-admin">
         <div class="fade-in-view max-w-7xl mx-auto px-4 py-8 space-y-8">
             <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 border-b border-zinc-900 pb-4">
@@ -301,9 +339,8 @@
                 </button>
             </div>
 
-            <!-- Double Column System Form Framework Interface Grid Blocks Assembly -->
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                <!-- Data Mutations Form Container Element Block -->
+                <!-- Data Mutations Inventory Deployment Form -->
                 <div class="bg-bgCard border border-zinc-800 p-5 rounded-lg h-fit space-y-4">
                     <div class="border-b border-zinc-800 pb-1.5"><h2 class="text-xs font-bold text-white uppercase tracking-wider font-montserrat" id="form-action-title">Deploy Dynamic Collectible Artifact</h2></div>
                     <input type="hidden" id="edit-prod-idx" value="-1">
@@ -351,7 +388,7 @@
                     </div>
                 </div>
 
-                <!-- Database Inventory Mutator Control Ledger Table Block Module Element Interface Component -->
+                <!-- Active Catalog Control Ledger -->
                 <div class="lg:col-span-2 bg-bgCard border border-zinc-800 p-5 rounded-lg space-y-4">
                     <div class="border-b border-zinc-800 pb-1.5"><h2 class="text-xs font-bold text-white uppercase tracking-wider font-montserrat">Active Catalog Inventory Control Ledger</h2></div>
                     <div class="overflow-x-auto w-full">
@@ -365,14 +402,14 @@
                 </div>
             </div>
 
-            <!-- Integrated Active Orders Ledger Logging Subsystem Output Analytics Interface Screen Console Element Module Components -->
+            <!-- Integrated Financial Logs Engine & PDF Utility Panel Container -->
             <div class="bg-bgCard border border-zinc-800 p-5 rounded-lg space-y-4">
                 <div class="border-b border-zinc-900 pb-2 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3">
                     <div>
                         <h2 class="text-sm font-bold text-white uppercase tracking-wider font-montserrat">Live Financial Transaction & Orders Manifest Log Engine</h2>
-                        <p class="text-[10px] text-textMuted font-mono">Real-time data stream outputs captured through the secure Razorpay pipeline.</p>
+                        <p class="text-[10px] text-textMuted font-mono">Real-time data stream outputs captured through the secure Razorpay pipeline routed to merchant collection: 8402906422.</p>
                     </div>
-                    <button onclick="compileAndDownloadOrdersPDFManifest()" class="bg-zinc-900 hover:bg-zinc-800 text-white font-mono border border-zinc-800 px-4 py-2 rounded text-[11px] tracking-wide uppercase flex items-center justify-center gap-2 self-start active:scale-95 transition-transform"><i class="fa-solid fa-file-pdf text-brand"></i> Download Order Book Ledger Manifest (PDF)</i.></button>
+                    <button onclick="compileAndDownloadOrdersPDFManifest()" class="bg-zinc-900 hover:bg-zinc-800 text-white font-mono border border-zinc-800 px-4 py-2 rounded text-[11px] tracking-wide uppercase flex items-center justify-center gap-2 self-start active:scale-95 transition-transform"><i class="fa-solid fa-file-pdf text-brand"></i> Download Order Book Ledger Manifest (PDF)</button>
                 </div>
                 
                 <div class="overflow-x-auto w-full">
@@ -387,9 +424,8 @@
         </div>
     </template>
 
-    <!-- MAIN CORE RUNTIME BUSINESS ENGINE APPLICATIONS CONFIGURATIONS CONTEXT CORE LAYER -->
+    <!-- CORE RUNTIME APPLICATION LOGIC MODULES -->
     <script>
-        // Reactive Core Application Internal Matrix State Pointers
         let isAdminAuthenticated = false;
         let currentCheckoutMethod = 'upi';
         let activeTargetProductForCheckout = null;
@@ -397,10 +433,9 @@
         let sessionUser = JSON.parse(localStorage.getItem('scarlex_user')) || null;
         let currentAuthModeIsLogin = true;
 
-        // Reactive Database Collection Arrays Structured Object Configurations Sets
         let currentProducts = JSON.parse(localStorage.getItem('scarlex_catalog')) || [
-            { id: "p1", name: "Rolls-Royce Collection Frame", category: "Luxury Cars", mrp: 7999, sellingPrice: 5499, sizeL: "30", sizeB: "40", sizeH: "5", image: "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?q=80&w=600&auto=format&fit=crop", images: ["https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?q=80&w=600&auto=format&fit=crop"], specs: "Premium handcrafted high-fidelity luxury wall art configuration system." },
-            { id: "p2", name: "Ferrari F1 Frame", category: "Formula 1", mrp: 6999, sellingPrice: 4999, sizeL: "30", sizeB: "40", sizeH: "5", image: "https://images.unsplash.com/photo-1514565131-fce0801e5785?q=80&w=600&auto=format&fit=crop", images: ["https://images.unsplash.com/photo-1514565131-fce0801e5785?q=80&w=600&auto=format&fit=crop"], specs: "Perfect desktop statement engineering visual array alignment." }
+            { id: "p1", name: "Rolls-Royce Collection Frame", category: "Luxury Cars", mrp: 7999, sellingPrice: 5499, sizeL: "30", sizeB: "40", sizeH: "5", image: "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?q=80&w=600&auto=format&fit=crop", images: ["https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?q=80&w=600&auto=format&fit=crop"], specs: "Premium handcrafted high-fidelity luxury wall art configuration system designed by Bishal Sarma." },
+            { id: "p2", name: "Ferrari F1 Frame", category: "Formula 1", mrp: 6999, sellingPrice: 4999, sizeL: "30", sizeB: "40", sizeH: "5", image: "https://images.unsplash.com/photo-1514565131-fce0801e5785?q=80&w=600&auto=format&fit=crop", images: ["https://images.unsplash.com/photo-1514565131-fce0801e5785?q=80&w=600&auto=format&fit=crop"], specs: "Perfect desktop statement engineering visual array alignment curation." }
         ];
 
         let activeOrdersLedger = JSON.parse(localStorage.getItem('scarlex_orders')) || [
@@ -408,14 +443,9 @@
             { orderId: "TXN-395021", productName: "Ferrari F1 Frame", customerName: "Devika Borah", phone: "8402900000", address: "Zoo Road, Path 2, House 14", city: "Guwahati", pin: "781024", method: "CARD", amount: 4999 }
         ];
 
-        function syncStorage() {
-            localStorage.setItem('scarlex_catalog', JSON.stringify(currentProducts));
-        }
-        function syncOrdersStorage() {
-            localStorage.setItem('scarlex_orders', JSON.stringify(activeOrdersLedger));
-        }
+        function syncStorage() { localStorage.setItem('scarlex_catalog', JSON.stringify(currentProducts)); }
+        function syncOrdersStorage() { localStorage.setItem('scarlex_orders', JSON.stringify(activeOrdersLedger)); }
 
-        // Account Auth Overlays Controllers Actions Elements Matrix Setup Methods
         function toggleAuthModal() {
             document.getElementById('auth-modal').classList.toggle('hidden');
             renderAuthenticationStateMarkupCards();
@@ -448,10 +478,17 @@
         function processMockAuthentication() {
             const email = document.getElementById('auth-email-input').value.trim();
             const pass = document.getElementById('auth-pass-input').value;
-            if(!email || !pass) { alert('Please execute forms operations parameters entry metrics completely.'); return; }
+            if(!email || !pass) { alert('Please fill in traditional credentials completely.'); return; }
             sessionUser = { email: email, address: sessionUser?.address || {} };
             localStorage.setItem('scarlex_user', JSON.stringify(sessionUser));
             renderAuthenticationStateMarkupCards();
+            setTimeout(toggleAuthModal, 400);
+        }
+        function executeSocialMockAuthentication(provider) {
+            sessionUser = { email: `social_${provider.toLowerCase()}_user@scarlex.vault`, address: sessionUser?.address || {} };
+            localStorage.setItem('scarlex_user', JSON.stringify(sessionUser));
+            renderAuthenticationStateMarkupCards();
+            alert(`Successfully authenticated via secure ${provider} identity bridge portal mapping.`);
             setTimeout(toggleAuthModal, 400);
         }
         function executeAccountLogout() {
@@ -473,7 +510,6 @@
             alert('Destination Logistics data cached to active session state vault.');
         }
 
-        // Razorpay Gateway Pipeline Simulation Processing Modules Controllers
         function triggerCheckoutGatewaySession(prodId) {
             activeTargetProductForCheckout = currentProducts.find(p => p.id === prodId);
             if(!activeTargetProductForCheckout) return;
@@ -519,11 +555,10 @@
 
             activeOrdersLedger.unshift(newRecordOrderInstance);
             syncOrdersStorage();
-            alert(`Razorpay Transaction Complete!\nOrder ${generatedTxnId} successfully added to operational dispatch queue maps logs lists indices blueprints.`);
+            alert(`Razorpay Transaction Authorized!\nFunds captured and routed safely to merchant endpoint +91 8402906422.\nOrder Instance Ref: ${generatedTxnId}.`);
             closeCheckoutSession();
         }
 
-        // Navigation Architecture Routing System Handlers
         function toggleMobileNavMenu() {
             const drawer = document.getElementById('mobile-nav-drawer');
             const icon = document.getElementById('mobile-menu-icon');
@@ -582,7 +617,6 @@
             });
         }
 
-        // Administrative Dashboard Mutation Subsystem Engine Controllers Action Sets
         function renderAdminTable() {
             const tableBody = document.getElementById('admin-inventory-table'); if (!tableBody) return; tableBody.innerHTML = '';
             currentProducts.forEach((product, index) => {
@@ -703,13 +737,12 @@
             }
         }
 
-        // Executive Institutional PDF Document Manifest Generator System
         function compileAndDownloadOrdersPDFManifest() {
             const { jsPDF } = window.jspdf;
             const doc = new jsPDF();
             
-            doc.setFont("helvetica", "bold"); doc.setFontSize(18); doc.text("SCARLEX VENTURES - CENTRAL ORDERS LEDGER MANIFEST", 14, 20);
-            doc.setFont("helvetica", "normal"); doc.setFontSize(10); doc.setTextColor(100); doc.text(`System Generation Timestamp: ${new Date().toLocaleString()} | Operations Clearance: Level-1`, 14, 26);
+            doc.setFont("helvetica", "bold"); doc.setFontSize(16); doc.text("SCARLEX VENTURES - CENTRAL ORDERS LEDGER MANIFEST", 14, 20);
+            doc.setFont("helvetica", "normal"); doc.setFontSize(10); doc.setTextColor(100); doc.text(`System Generation Timestamp: ${new Date().toLocaleString()} | Merchant Code: +91 8402906422`, 14, 26);
             
             let startingVerticalOffsetAxis = 38;
             doc.setFont("helvetica", "bold"); doc.setFontSize(10); doc.setTextColor(0);
