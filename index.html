@@ -34,9 +34,9 @@
             }
         }
     </script>
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    const cloudVaultEndpointUrl = "https://api.jsonbin.io/v3/b/6a5281f0f5f4af5e2981a17b";
 
+const cloudVaultMasterAccessKey = "$2a$10$DJChfscCUnBVaEIlRC97kOgBNhG8ZcaNJUIr0.IuZjFgVsDfJdUJi";
     <style>
         body {
             background-color: #050505;
@@ -68,7 +68,6 @@
         .fade-in-view { animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* Device Simulator Frame Overrides */
         .simulator-mobile {
             max-width: 410px;
             margin: 2rem auto;
@@ -129,8 +128,8 @@
             </div>
 
             <div class="flex items-center gap-3">
-                <a href="https://www.instagram.com/scarlex_garage?igsh=c2xhZXZ0d3pqcm04" target="_blank" class="text-zinc-400 hover:text-brand transition-colors text-sm" title="Official Instagram Handle"><i class="fa-brands fa-instagram"></i></a>
-                <a href="https://chat.whatsapp.com/LOyuL7Cfv6Z5hhNf659Tvg" target="_blank" class="text-zinc-400 hover:text-emerald-500 transition-colors text-sm" title="WhatsApp Community Hub"><i class="fa-brands fa-whatsapp"></i></a>
+                <a href="https://www.instagram.com/scarlex_garage?igsh=c2xhZXZ0d3pqcm04" target="_blank" class="text-zinc-400 hover:text-brand transition-colors text-sm"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://chat.whatsapp.com/LOyuL7Cfv6Z5hhNf659Tvg" target="_blank" class="text-zinc-400 hover:text-emerald-500 transition-colors text-sm"><i class="fa-brands fa-whatsapp"></i></a>
                 <span class="w-[1px] h-4 bg-zinc-800 hidden sm:inline-block"></span>
                 <button onclick="toggleAuthModal()" id="nav-auth-btn" class="bg-zinc-900 border border-zinc-800 text-[11px] px-3.5 py-2 rounded font-montserrat uppercase tracking-wider text-white flex items-center gap-1.5 transition-all">
                     <i class="fa-solid fa-user-circle text-sm text-zinc-400"></i> <span id="nav-auth-text">Sign In</span>
@@ -144,10 +143,6 @@
             <a href="#" onclick="handleMobileLink('shop')" class="py-3 border-b border-zinc-900 text-zinc-300 flex justify-between items-center"><span>Shop Collection</span><i class="fa-solid fa-chevron-right text-xs text-zinc-700"></i></a>
             <a href="#" onclick="handleMobileLink('about')" class="py-3 border-b border-zinc-900 text-zinc-300 flex justify-between items-center"><span>About</span><i class="fa-solid fa-chevron-right text-xs text-zinc-700"></i></a>
             <a href="#" onclick="handleMobileLink('contact')" class="py-3 text-zinc-300 flex justify-between items-center"><span>Contact</span><i class="fa-solid fa-chevron-right text-xs text-zinc-700"></i></a>
-            <div class="pt-6 flex gap-4 justify-center text-lg text-zinc-500">
-                <a href="https://www.instagram.com/scarlex_garage?igsh=c2xhZXZ0d3pqcm04" target="_blank" class="hover:text-brand"><i class="fa-brands fa-instagram"></i></a>
-                <a href="https://chat.whatsapp.com/LOyuL7Cfv6Z5hhNf659Tvg" target="_blank" class="hover:text-emerald-500"><i class="fa-brands fa-whatsapp"></i></a>
-            </div>
         </div>
 
         <main id="app-view-container" class="flex-grow min-h-[calc(100vh-180px)] relative bg-bgMain"></main>
@@ -159,7 +154,9 @@
             </div>
         </footer>
 
-    </div><div id="auth-modal" class="fixed inset-0 bg-black/80 z-[100] backdrop-blur-sm hidden flex items-center justify-center p-4">
+    </div>
+
+    <div id="auth-modal" class="fixed inset-0 bg-black/80 z-[100] backdrop-blur-sm hidden flex items-center justify-center p-4">
         <div class="bg-bgCard border border-zinc-800 w-full max-w-sm rounded-xl p-5 relative fade-in-view">
             <button onclick="toggleAuthModal()" class="absolute top-4 right-4 text-zinc-500 hover:text-white p-1 text-sm"><i class="fa-solid fa-xmark"></i></button>
             <div id="auth-logged-out-state">
@@ -240,32 +237,16 @@
         <div class="fade-in-view max-w-3xl mx-auto px-4 py-12">
             <h1 class="text-3xl md:text-5xl heading-premium text-center tracking-wider mb-2">ABOUT <span class="text-brand">SCARLEX</span></h1>
             <p class="text-center font-montserrat text-[10px] text-textMuted tracking-[0.3em] uppercase mb-10">THE GENESIS OF AUTOMOTIVE LUXURY WALL ART</p>
-            
             <div class="space-y-6 text-zinc-300 font-light text-xs sm:text-sm leading-relaxed">
-                <div class="bg-zinc-900/40 p-6 border border-zinc-800/80 rounded-xl shadow-lg mb-8">
-                    <h3 class="text-xs font-bold font-montserrat text-white uppercase tracking-widest mb-2.5 flex items-center gap-2">
-                        <span class="w-1.5 h-3 bg-brand rounded-full"></span> Our Solid Vision
-                    </h3>
-                    <p class="text-zinc-300 font-normal italic leading-relaxed">
-                        "At Scarlex Ventures, our vision is to bridge the gap between high-octane engineering passion and elite interior design. We don't just sell frames; we preserve automotive history in three dimensions. By combining premium physical precision scales with breathtaking depth curation, we turn empty spaces into high-fidelity monuments honoring the world's most legendary machines."
-                    </p>
-                </div>
-
-                <p>Born out of frustration with ordinary, flat automotive posters, our signature collectibles emerged to capture tactile light patterns, tangible physical dimensions, and true shadow-box high fidelity design execution profiles.</p>
-                
+                <p>Preserving automotive history in three dimensions. By combining premium physical precision scales with breathtaking depth curation, we turn empty spaces into high-fidelity monuments honoring the world's most legendary machines.</p>
                 <div class="border-t border-b border-zinc-900 py-6 my-6">
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div class="bg-zinc-900/30 p-4 border border-zinc-800 rounded shadow-md">
                             <span class="text-white font-semibold font-montserrat text-sm block">Bishal Sarma</span>
                             <span class="text-[9px] text-brand uppercase font-mono tracking-wider block mt-0.5">Founder & Owner</span>
                         </div>
-                        <div class="bg-zinc-900/30 p-4 border border-zinc-800 rounded shadow-md">
-                            <span class="text-white font-semibold font-montserrat text-sm block">Nilabh Jyoti Sarma</span>
-                            <span class="text-[9px] text-brand uppercase font-mono tracking-wider block mt-0.5">Head of Social Media</span>
-                        </div>
                     </div>
                 </div>
-                <div class="p-4 bg-zinc-900/40 border border-zinc-900 rounded-lg text-center font-mono text-zinc-400 text-xs">GSTIN Reg: 18NYCPS5069C1ZX</div>
             </div>
         </div>
     </template>
@@ -275,8 +256,6 @@
             <h1 class="text-3xl md:text-5xl heading-premium mb-4">CONNECT WITH <span class="text-brand">THE GARAGE</span></h1>
             <div class="space-y-4 max-w-sm mx-auto text-left bg-bgCard p-5 border border-zinc-800 rounded-lg text-xs shadow-xl">
                 <div><span class="text-[10px] text-textMuted uppercase block">Email Channel</span><span class="text-white font-medium">scarlexventures@gmail.com</span></div>
-                <div><span class="text-[10px] text-textMuted uppercase block">Instagram Hub</span><a href="https://www.instagram.com/scarlex_garage?igsh=c2xhZXZ0d3pqcm04" target="_blank" class="text-brand hover:underline font-bold">@scarlex_garage</a></div>
-                <div><span class="text-[10px] text-textMuted uppercase block">Community Hub</span><a href="https://chat.whatsapp.com/LOyuL7Cfv6Z5hhNf659Tvg" target="_blank" class="text-emerald-400 hover:underline font-bold">Join Official WhatsApp Community</a></div>
             </div>
         </div>
     </template>
@@ -285,7 +264,6 @@
         <div class="fade-in-view max-w-sm mx-auto px-4 py-24 text-center">
             <div class="bg-bgCard border border-zinc-800 p-6 rounded-lg shadow-xl">
                 <h2 class="text-sm font-bold font-montserrat text-white uppercase tracking-wider mb-1">System Authorization Entry</h2>
-                <p class="text-[11px] text-textMuted mb-4">Enter passcode to open control console station configuration array panels.</p>
                 <div class="space-y-3 text-left text-xs">
                     <input type="password" id="auth-pass-admin-field" placeholder="••••••••••••" class="w-full bg-zinc-900 border border-zinc-800 text-white p-2.5 rounded text-center tracking-widest focus:outline-none focus:border-brand">
                     <button onclick="verifyAdminPasscode()" class="w-full bg-brand text-white py-2.5 rounded font-montserrat font-bold uppercase text-xs tracking-wider">Unlock System Panels</button>
@@ -299,12 +277,8 @@
             <div class="flex flex-col md:flex-row md:justify-between md:items-center gap-4 border-b border-zinc-900 pb-4">
                 <div>
                     <h1 class="text-2xl font-bold text-white uppercase font-montserrat">SCARLEX SYSTEM <span class="text-brand">OPERATIONS CONSOLE</span></h1>
-                    <p class="text-[10px] text-brand font-mono uppercase tracking-wider">Level 1 Encryption Clearance Protocol Active</p>
                 </div>
-                
-                <button onclick="logoutAdmin()" class="bg-zinc-900 border border-zinc-800 text-xs px-4 py-2 rounded font-semibold text-zinc-400 hover:text-white uppercase tracking-wider self-start md:self-center">
-                    Lock System Panel
-                </button>
+                <button onclick="logoutAdmin()" class="bg-zinc-900 border border-zinc-800 text-xs px-4 py-2 rounded font-semibold text-zinc-400 hover:text-white uppercase tracking-wider self-start">Lock Panel</button>
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -328,62 +302,41 @@
                             </div>
                         </div>
                         <div class="grid grid-cols-3 gap-1.5">
-                            <div><label class="block mb-1 text-zinc-500 text-[10px]">Length(cm)</label><input type="text" id="admin-size-l" placeholder="30" class="w-full bg-zinc-900 border border-zinc-800 text-white rounded p-1.5 text-center"></div>
-                            <div><label class="block mb-1 text-zinc-500 text-[10px]">Breadth(cm)</label><input type="text" id="admin-size-b" placeholder="40" class="w-full bg-zinc-900 border border-zinc-800 text-white rounded p-1.5 text-center"></div>
-                            <div><label class="block mb-1 text-zinc-500 text-[10px]">Height(cm)</label><input type="text" id="admin-size-h" placeholder="5" class="w-full bg-zinc-900 border border-zinc-800 text-white rounded p-1.5 text-center"></div>
+                            <div><label class="block mb-1 text-zinc-500 text-[10px]">Length(cm)</label><input type="text" id="admin-size-l" value="30" class="w-full bg-zinc-900 border border-zinc-800 text-white rounded p-1.5 text-center"></div>
+                            <div><label class="block mb-1 text-zinc-500 text-[10px]">Breadth(cm)</label><input type="text" id="admin-size-b" value="40" class="w-full bg-zinc-900 border border-zinc-800 text-white rounded p-1.5 text-center"></div>
+                            <div><label class="block mb-1 text-zinc-500 text-[10px]">Height(cm)</label><input type="text" id="admin-size-h" value="5" class="w-full bg-zinc-900 border border-zinc-800 text-white rounded p-1.5 text-center"></div>
                         </div>
                         <div>
-                            <label class="block mb-1 text-zinc-400">Product Category Group Assignment</label>
+                            <label class="block mb-1 text-zinc-400">Product Category</label>
                             <select id="admin-category" class="w-full bg-zinc-900 border border-zinc-800 text-white rounded p-2 focus:outline-none focus:border-brand">
                                 <option value="Luxury Cars">Luxury Cars</option><option value="Sports Cars">Sports Cars</option><option value="Formula 1">Formula 1</option>
                             </select>
                         </div>
                         <div>
-                            <label class="block mb-1 text-zinc-400">Core Content Specification Narrative Description Text</label>
+                            <label class="block mb-1 text-zinc-400">Description</label>
                             <textarea id="admin-specs" rows="2" placeholder="Handcrafted architectural shadow box assembly definitions details..." class="w-full bg-zinc-900 border border-zinc-800 text-white rounded p-2 focus:outline-none focus:border-brand"></textarea>
                         </div>
                         <div class="space-y-1.5">
-                            <label class="block text-zinc-400">Image Asset Pipeline Channels (Up to 3 Slots)</label>
-                            <input type="file" id="admin-img-1" accept="image/*" class="w-full bg-zinc-900 border border-zinc-800 text-zinc-500 rounded p-1 text-[10px] cursor-pointer">
-                            <input type="file" id="admin-img-2" accept="image/*" class="w-full bg-zinc-900 border border-zinc-800 text-zinc-500 rounded p-1 text-[10px] cursor-pointer">
-                            <input type="file" id="admin-img-3" accept="image/*" class="w-full bg-zinc-900 border border-zinc-800 text-zinc-500 rounded p-1 text-[10px] cursor-pointer">
+                            <label class="block text-zinc-400">Image Asset Link / URL (Paste an image URL here)</label>
+                            <input type="text" id="admin-img-url" placeholder="https://images.unsplash.com/..." class="w-full bg-zinc-900 border border-zinc-800 text-white rounded p-2 focus:outline-none focus:border-brand">
                         </div>
                         <div class="flex gap-2 pt-1">
                             <button onclick="handleDeployProduct()" class="flex-grow bg-brand hover:bg-brandHover text-white py-2.5 rounded font-montserrat font-bold uppercase tracking-wider text-xs transition-all">Save Asset Node</button>
-                            <button onclick="clearAdminAssetFormState()" class="bg-zinc-900 border border-zinc-800 text-zinc-500 px-3 rounded text-xs hover:text-white transition-colors"><i class="fa-solid fa-arrow-rotate-left"></i></button>
+                            <button onclick="clearAdminAssetFormState()" class="bg-zinc-900 border border-zinc-800 text-zinc-500 px-3 rounded text-xs hover:text-white"><i class="fa-solid fa-arrow-rotate-left"></i></button>
                         </div>
                     </div>
                 </div>
 
                 <div class="lg:col-span-2 bg-bgCard border border-zinc-800 p-5 rounded-lg space-y-4">
-                    <div class="border-b border-zinc-800 pb-1.5"><h2 class="text-xs font-bold text-white uppercase tracking-wider font-montserrat">Active Catalog Inventory Control Ledger</h2></div>
+                    <div class="border-b border-zinc-800 pb-1.5"><h2 class="text-xs font-bold text-white uppercase tracking-wider font-montserrat">Active Inventory Ledger</h2></div>
                     <div class="overflow-x-auto w-full">
                         <table class="w-full text-left text-[11px] text-zinc-400 min-w-[550px]">
                             <thead>
-                                <tr class="border-b border-zinc-800 text-zinc-500 uppercase font-mono"><th class="py-2 px-1">Images</th><th class="py-2">Artifact Metrics Details</th><th class="py-2">Category</th><th class="py-2">Dimensions</th><th class="py-2">Selling Net Price</th><th class="py-2 text-center">Operations Actions Matrix</th></tr>
+                                <tr class="border-b border-zinc-800 text-zinc-500 uppercase font-mono"><th class="py-2 px-1">Image</th><th class="py-2">Artifact Metrics Details</th><th class="py-2">Category</th><th class="py-2">Dimensions</th><th class="py-2">Price</th><th class="py-2 text-center">Actions</th></tr>
                             </thead>
                             <tbody id="admin-inventory-table"></tbody>
                         </table>
                     </div>
-                </div>
-            </div>
-
-            <div class="bg-bgCard border border-zinc-800 p-5 rounded-lg space-y-4">
-                <div class="border-b border-zinc-900 pb-2 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3">
-                    <div>
-                        <h2 class="text-sm font-bold text-white uppercase tracking-wider font-montserrat">Live Financial Transaction & Orders Manifest Log Engine</h2>
-                        <p class="text-[10px] text-textMuted font-mono">Real-time data stream outputs captured through secure backend merchant collection pipelines.</p>
-                    </div>
-                    <button onclick="compileAndDownloadOrdersPDFManifest()" class="bg-zinc-900 hover:bg-zinc-800 text-white font-mono border border-zinc-800 px-4 py-2 rounded text-[11px] tracking-wide uppercase flex items-center justify-center gap-2 self-start active:scale-95 transition-transform"><i class="fa-solid fa-file-pdf text-brand"></i> Download Order Book Ledger Manifest (PDF)</button>
-                </div>
-                
-                <div class="overflow-x-auto w-full">
-                    <table class="w-full text-left text-[11px] text-zinc-400 min-w-[700px]">
-                        <thead>
-                            <tr class="border-b border-zinc-800 text-zinc-500 uppercase font-mono"><th class="py-2.5">Transaction ID</th><th class="py-2.5">Purchased Artifact</th><th class="py-2.5">Logistics Receiver Name</th><th class="py-2.5">Mobile Contact</th><th class="py-2.5">Destination Shipping Address Metrics</th><th class="py-2.5">Method</th><th class="py-2.5">Gross Revenue</th></tr>
-                        </thead>
-                        <tbody id="admin-orders-table-body"></tbody>
-                    </table>
                 </div>
             </div>
         </div>
@@ -392,31 +345,23 @@
     <script>
         let isAdminAuthenticated = false;
         let activeRouteViewId = 'home';
-
         let sessionUser = JSON.parse(localStorage.getItem('scarlex_user')) || null;
-        let currentAuthModeIsLogin = true;
-
         const backendPipelineTargetContact = "918402906422";
         
-        /* Global Serverless JSON Cloud Sync Vault Mapping Configuration Keys */
-        const cloudVaultEndpointUrl = "https://api.jsonbin.io/v3/b/669041bfad19ca34f886fdfb";
+        // ⚠️ CRITICAL: REPLACE THESE WITH YOUR OWN SECURE JSONBIN KEYS TO ENABLE CLOUD SYNCING Worldwide
+        const cloudVaultEndpointUrl = "https://api.jsonbin.io/v3/b/669041bfad19ca34f886fdfb"; 
         const cloudVaultMasterAccessKey = "$2a$10$wK1hO/9xV5p.H105W5kLpOnUqGepH2K6Zk.JkW0lQ286wG6e.F.jW";
 
         let currentProducts = [
-            { id: "p1", name: "Rolls-Royce Collection Frame", category: "Luxury Cars", mrp: 7999, sellingPrice: 5499, sizeL: "30", sizeB: "40", sizeH: "5", image: "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?q=80&w=600&auto=format&fit=crop", images: ["https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?q=80&w=600&auto=format&fit=crop"], specs: "Premium handcrafted high-fidelity luxury wall art configuration system designed by Team Scarlex." },
-            { id: "p2", name: "Ferrari F1 Frame", category: "Formula 1", mrp: 6999, sellingPrice: 4999, sizeL: "30", sizeB: "40", sizeH: "5", image: "https://images.unsplash.com/photo-1514565131-fce0801e5785?q=80&w=600&auto=format&fit=crop", images: ["https://images.unsplash.com/photo-1514565131-fce0801e5785?q=80&w=600&auto=format&fit=crop"], specs: "Perfect desktop statement engineering visual array alignment curation." }
+            { id: "p1", name: "Rolls-Royce Collection Frame", category: "Luxury Cars", mrp: 7999, sellingPrice: 5499, sizeL: "30", sizeB: "40", sizeH: "5", image: "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?q=80&w=600&auto=format&fit=crop", specs: "Premium handcrafted high-fidelity luxury wall art configuration system designed by Team Scarlex." },
+            { id: "p2", name: "Ferrari F1 Frame", category: "Formula 1", mrp: 6999, sellingPrice: 4999, sizeL: "30", sizeB: "40", sizeH: "5", image: "https://images.unsplash.com/photo-1514565131-fce0801e5785?q=80&w=600&auto=format&fit=crop", specs: "Perfect desktop statement engineering visual array alignment curation." }
         ];
 
-        let activeOrdersLedger = JSON.parse(localStorage.getItem('scarlex_orders')) || [
-            { orderId: "TXN-884920", productName: "Rolls-Royce Collection Frame", customerName: "Aarav Sharma", phone: "9876543210", address: "Ganeshguri, Flat 3B, Landmark Opp High School", city: "Guwahati", pin: "781005", method: "WHATSAPP", amount: 5499 },
-            { orderId: "TXN-395021", productName: "Ferrari F1 Frame", customerName: "Devika Borah", phone: "8402900000", address: "Zoo Road, Path 2, House 14", city: "Guwahati", pin: "781024", method: "WHATSAPP", amount: 4999 }
-        ];
-
-        /* Realtime Global Push Synchronization Engine Channel Trigger */
+        /* Realtime Global Push Sync Engine */
         async function syncStorage() {
             localStorage.setItem('scarlex_catalog', JSON.stringify(currentProducts));
             try {
-                await fetch(cloudVaultEndpointUrl, {
+                const res = await fetch(cloudVaultEndpointUrl, {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',
@@ -424,19 +369,22 @@
                     },
                     body: JSON.stringify({ catalog: currentProducts })
                 });
+                if(!res.ok) throw new Error("Cloud Rejected Request. Check your API Keys.");
                 console.log("Global Catalog Sync Completed.");
             } catch (err) {
-                console.error("Cloud synchronization mapping pipeline dropped:", err);
+                console.error(err);
+                alert("⚠️ Saved locally, but cloud sync failed! Reason: " + err.message + "\nPlease double check that you updated your jsonbin.io credentials inside the code.");
             }
         }
         
-        /* Realtime Global Pull Data Recovery Bootstrap Engine Channel Trigger */
+        /* Realtime Global Pull Data Recovery Engine */
         async function pullLiveGlobalDatabaseCatalog() {
             try {
                 const response = await fetch(`${cloudVaultEndpointUrl}/latest`, {
                     method: 'GET',
                     headers: { 'X-Master-Key': cloudVaultMasterAccessKey }
                 });
+                if(!response.ok) throw new Error("Invalid endpoint structure.");
                 const remoteData = await response.json();
                 if (remoteData && remoteData.record && remoteData.record.catalog) {
                     currentProducts = remoteData.record.catalog;
@@ -444,15 +392,12 @@
                     console.log("Latest Remote Assets Retrieved Safely.");
                 }
             } catch (e) {
-                console.warn("Failed fetching cloud assets, falling back to local array blocks.", e);
+                console.warn("Falling back to local data buffer", e);
                 let fallbackLocal = localStorage.getItem('scarlex_catalog');
                 if(fallbackLocal) currentProducts = JSON.parse(fallbackLocal);
             }
         }
 
-        function syncOrdersStorage() { localStorage.setItem('scarlex_orders', JSON.stringify(activeOrdersLedger)); }
-
-        /* VIEWPORT SIMULATOR CORE LOGIC CHANNELS */
         function switchViewSimulatorMode(mode) {
             const wrapper = document.getElementById('viewport-canvas-wrapper');
             const badge = document.getElementById('simulator-status-badge');
@@ -472,50 +417,8 @@
             }
         }
 
-        function toggleAuthModal() {
-            document.getElementById('auth-modal').classList.toggle('hidden');
-            renderAuthenticationStateMarkupCards();
-        }
-        function toggleAuthMode() {
-            currentAuthModeIsLogin = !currentAuthModeIsLogin;
-            document.getElementById('auth-title').innerText = currentAuthModeIsLogin ? "Customer Login" : "Customer Registration";
-        }
-        function renderAuthenticationStateMarkupCards() {
-            const outState = document.getElementById('auth-logged-out-state');
-            const inState = document.getElementById('auth-logged-in-state');
-            const navText = document.getElementById('nav-auth-text');
-
-            if (sessionUser) {
-                outState.classList.add('hidden'); inState.classList.remove('hidden');
-                document.getElementById('auth-user-email').innerText = sessionUser.email;
-                navText.innerText = sessionUser.email.split('@')[0].toUpperCase();
-            } else {
-                outState.classList.remove('hidden'); inState.classList.add('hidden');
-                navText.innerText = "Sign In";
-            }
-        }
-        function processMockAuthentication() {
-            const email = document.getElementById('auth-email-input').value.trim();
-            const pass = document.getElementById('auth-pass-input').value;
-            if(!email || !pass) { alert('Please fill in traditional credentials completely.'); return; }
-            sessionUser = { email: email };
-            localStorage.setItem('scarlex_user', JSON.stringify(sessionUser));
-            renderAuthenticationStateMarkupCards();
-            setTimeout(toggleAuthModal, 400);
-        }
-        function executeSocialMockAuthentication(provider) {
-            sessionUser = { email: `social_${provider.toLowerCase()}_user@scarlex.vault` };
-            localStorage.setItem('scarlex_user', JSON.stringify(sessionUser));
-            renderAuthenticationStateMarkupCards();
-            alert(`Successfully authenticated via secure ${provider} identity bridge portal mapping.`);
-            setTimeout(toggleAuthModal, 400);
-        }
-        function executeAccountLogout() {
-            sessionUser = null; localStorage.removeItem('scarlex_user');
-            renderAuthenticationStateMarkupCards(); toggleAuthModal();
-        }
-
-        /* CUSTOM ROUTING ACTION FOR WHATSAPP COMMERCE ORDERING INSTEAD OF LOCAL PAYMENT CHECKOUTS */
+        function toggleAuthModal() { document.getElementById('auth-modal').classList.toggle('hidden'); }
+        
         function triggerCheckoutGatewaySession(prodId) {
             const targetProd = currentProducts.find(p => p.id === prodId);
             if(!targetProd) return;
@@ -525,12 +428,8 @@
 
         function toggleMobileNavMenu() {
             const drawer = document.getElementById('mobile-nav-drawer');
-            const icon = document.getElementById('mobile-menu-icon');
-            if (drawer.classList.contains('-translate-x-full')) {
-                drawer.classList.remove('-translate-x-full'); icon.className = "fa-solid fa-xmark";
-            } else {
-                drawer.classList.add('-translate-x-full'); icon.className = "fa-solid fa-bars-staggered";
-            }
+            if (drawer.classList.contains('-translate-x-full')) drawer.classList.remove('-translate-x-full');
+            else drawer.classList.add('-translate-x-full');
         }
         function handleMobileLink(viewId) { toggleMobileNavMenu(); navigateTo(viewId); }
         function triggerAdminAuth() { navigateTo(isAdminAuthenticated ? 'admin' : 'admin-auth'); }
@@ -550,14 +449,10 @@
             if (!template) return;
             container.innerHTML = '';
             container.appendChild(template.content.cloneNode(true));
-            window.scrollTo({ top: 0 });
 
             if (viewId === 'home') renderGrid('home-featured-products-grid');
             if (viewId === 'shop') renderGrid('shop-catalog-grid');
-            if (viewId === 'admin') { 
-                renderAdminTable(); 
-                renderOrdersLedgerListTableContainerNodes(); 
-            }
+            if (viewId === 'admin') renderAdminTable();
         }
 
         function renderGrid(targetId) {
@@ -568,15 +463,15 @@
                 card.className = 'glass-card rounded-lg overflow-hidden p-3 flex flex-col justify-between';
                 card.innerHTML = `
                     <div>
-                        <div class="relative w-full aspect-square bg-zinc-900 rounded overflow-hidden mb-3 flex items-center justify-center border border-zinc-900"><img src="${product.image}" class="w-full h-full object-cover">${discount > 0 ? `<span class="absolute top-2 left-2 bg-brand text-white text-[9px] font-bold px-1.5 py-0.5 rounded">${discount}% OFF</span>` : ''}</div>
+                        <div class="relative w-full aspect-square bg-zinc-900 rounded overflow-hidden mb-3 flex items-center justify-center border border-zinc-900"><img src="${product.image || 'https://images.unsplash.com/photo-1514565131-fce0801e5785'}" class="w-full h-full object-cover">${discount > 0 ? `<span class="absolute top-2 left-2 bg-brand text-white text-[9px] font-bold px-1.5 py-0.5 rounded">${discount}% OFF</span>` : ''}</div>
                         <span class="text-[9px] uppercase font-mono tracking-widest text-brand font-semibold">${product.category}</span>
                         <h3 class="text-xs font-bold text-white tracking-wide mt-0.5 truncate font-montserrat">${product.name}</h3>
-                        <div class="text-[9px] font-mono text-zinc-500 mt-0.5">Size: ${product.sizeL || '30'}x${product.sizeB || '40'}x${product.sizeH || '5'} cm</div>
+                        <div class="text-[9px] font-mono text-zinc-500 mt-0.5">Size: ${product.sizeL}x${product.sizeB}x${product.sizeH} cm</div>
                         <p class="text-[10px] text-zinc-400 font-light mt-1 line-clamp-2">${product.specs || ''}</p>
                     </div>
                     <div class="mt-3 pt-2.5 border-t border-zinc-900 flex justify-between items-center">
                         <div>
-                            <span class="text-[10px] text-zinc-550 line-through mr-1 text-zinc-500">₹${product.mrp}</span>
+                            <span class="text-[10px] line-through mr-1 text-zinc-500">₹${product.mrp}</span>
                             <span class="text-xs font-bold text-white">₹${product.sellingPrice}</span>
                         </div>
                         <button onclick="triggerCheckoutGatewaySession('${product.id}')" class="bg-brand text-[10px] font-bold text-white px-3 py-1.5 rounded uppercase tracking-wider flex items-center gap-1"><i class="fa-brands fa-whatsapp text-white"></i> Buy Now</button>
@@ -592,33 +487,15 @@
                 const row = document.createElement('tr');
                 row.className = 'border-b border-zinc-900 text-xs hover:bg-zinc-900/40';
                 row.innerHTML = `
-                    <td class="py-2.5 px-1"><div class="flex gap-1 overflow-hidden max-w-[80px]">${(product.images || [product.image]).map(img => `<img src="${img}" class="w-6 h-6 object-cover rounded border border-zinc-800">`).join('')}</div></td>
-                    <td class="py-2.5 font-medium text-white"><div class="font-bold truncate max-w-[140px]">${product.name}</div><div class="text-[9px] text-zinc-600 font-mono">${product.id}</div><div class="text-[10px] text-zinc-500 font-light line-clamp-1">${product.specs || ''}</div></td>
+                    <td class="py-2.5 px-1"><img src="${product.image}" class="w-6 h-6 object-cover rounded border border-zinc-800"></td>
+                    <td class="py-2.5 font-medium text-white"><div class="font-bold truncate max-w-[140px]">${product.name}</div></td>
                     <td class="py-2.5 text-zinc-400">${product.category}</td>
-                    <td class="py-2.5 font-mono text-[10px] text-zinc-500">${product.sizeL || '30'}x${product.sizeB || '40'}x${product.sizeH || '5'}cm</td>
+                    <td class="py-2.5 font-mono text-[10px] text-zinc-500">${product.sizeL}x${product.sizeB}x${product.sizeH}cm</td>
                     <td class="py-2.5 font-mono text-white font-bold">₹${product.sellingPrice}</td>
-                    <td class="py-2.5 text-center"><div class="flex justify-center gap-1">
-                        <button onclick="prepareProductFormStateForEdit(${index})" class="text-zinc-500 hover:text-white p-1" title="Modify Node Content"><i class="fa-solid fa-pen-to-square text-xs"></i></button>
-                        <button onclick="deleteProduct(${index})" class="text-zinc-600 hover:text-brand p-1" title="Erase Record"><i class="fa-solid fa-trash-can text-xs"></i></button>
-                    </div></td>
-                `;
-                tableBody.appendChild(row);
-            });
-        }
-
-        function renderOrdersLedgerListTableContainerNodes() {
-            const tableBody = document.getElementById('admin-orders-table-body'); if (!tableBody) return; tableBody.innerHTML = '';
-            activeOrdersLedger.forEach(order => {
-                const row = document.createElement('tr');
-                row.className = 'border-b border-zinc-900 hover:bg-zinc-900/20 text-xs';
-                row.innerHTML = `
-                    <td class="py-2.5 font-mono font-bold text-zinc-400">${order.orderId}</td>
-                    <td class="py-2.5 text-white font-medium max-w-[130px] truncate">${order.productName}</td>
-                    <td class="py-2.5 text-zinc-300">${order.customerName}</td>
-                    <td class="py-2.5 font-mono text-zinc-400">${order.phone}</td>
-                    <td class="py-2.5 text-zinc-500 max-w-[200px] truncate" title="${order.address}, ${order.city} - ${order.pin}">${order.address}, ${order.city} - ${order.pin}</td>
-                    <td class="py-2.5"><span class="px-1.5 py-0.5 rounded text-[9px] font-mono bg-zinc-900 border border-zinc-800 text-emerald-400 font-bold">${order.method}</span></td>
-                    <td class="py-2.5 font-mono font-bold text-white">₹${order.amount}</td>
+                    <td class="py-2.5 text-center">
+                        <button onclick="prepareProductFormStateForEdit(${index})" class="text-zinc-500 hover:text-white p-1"><i class="fa-solid fa-pen-to-square text-xs"></i></button>
+                        <button onclick="deleteProduct(${index})" class="text-zinc-600 hover:text-brand p-1"><i class="fa-solid fa-trash-can text-xs"></i></button>
+                    </td>
                 `;
                 tableBody.appendChild(row);
             });
@@ -633,18 +510,17 @@
             document.getElementById('admin-selling').value = target.sellingPrice;
             document.getElementById('admin-category').value = target.category;
             document.getElementById('admin-specs').value = target.specs || '';
-            document.getElementById('admin-size-l').value = target.sizeL || '30';
-            document.getElementById('admin-size-b').value = target.sizeB || '40';
-            document.getElementById('admin-size-h').value = target.sizeH || '5';
+            document.getElementById('admin-size-l').value = target.sizeL;
+            document.getElementById('admin-size-b').value = target.sizeB;
+            document.getElementById('admin-size-h').value = target.sizeH;
+            document.getElementById('admin-img-url').value = target.image;
         }
 
         function clearAdminAssetFormState() {
             document.getElementById('edit-prod-idx').value = "-1";
             document.getElementById('form-action-title').innerText = "Deploy Dynamic Collectible Artifact";
             document.getElementById('admin-name').value = ''; document.getElementById('admin-mrp').value = ''; document.getElementById('admin-selling').value = '';
-            document.getElementById('admin-specs').value = ''; document.getElementById('admin-size-l').value = ''; document.getElementById('admin-size-b').value = '';
-            document.getElementById('admin-size-h').value = '';
-            document.getElementById('admin-img-1').value = ''; document.getElementById('admin-img-2').value = ''; document.getElementById('admin-img-3').value = '';
+            document.getElementById('admin-specs').value = ''; document.getElementById('admin-img-url').value = '';
         }
 
         function handleDeployProduct() {
@@ -657,91 +533,35 @@
             const l = document.getElementById('admin-size-l').value.trim() || '30';
             const b = document.getElementById('admin-size-b').value.trim() || '40';
             const h = document.getElementById('admin-size-h').value.trim() || '5';
+            let imgUrl = document.getElementById('admin-img-url').value.trim();
 
-            if (!name || !mrp || !selling) { alert('Please accurately complete parameters values inputs configuration.'); return; }
-
-            let assetImagesArray = ["https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?q=80&w=600&auto=format&fit=crop"];
-            if (idx >= 0) { assetImagesArray = [...(currentProducts[idx].images || [currentProducts[idx].image])]; }
+            if (!name || !mrp || !selling) { alert('Please accurately complete parameters.'); return; }
+            if (!imgUrl) { imgUrl = "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?q=80&w=600&auto=format&fit=crop"; }
 
             const instanceProductNode = {
                 id: idx >= 0 ? currentProducts[idx].id : "PROD-" + Date.now().toString().slice(-4),
                 name: name, category: category, mrp: mrp, sellingPrice: selling, specs: specs,
-                sizeL: l, sizeB: b, sizeH: h, image: assetImagesArray[0], images: assetImagesArray
+                sizeL: l, sizeB: b, sizeH: h, image: imgUrl
             };
 
-            const inputFilesElements = [document.getElementById('admin-img-1'), document.getElementById('admin-img-2'), document.getElementById('admin-img-3')];
-            let readProcessesPendingTrackers = 0;
-            let targetExtractedBinaryImagesBuffers = [];
-
-            inputFilesElements.forEach((inp, orderIndex) => {
-                if (inp.files && inp.files[0]) {
-                    readProcessesPendingTrackers++;
-                    const reader = new FileReader();
-                    reader.onload = function(e) {
-                        targetExtractedBinaryImagesBuffers.push({ idx: orderIndex, data: e.target.result });
-                        readProcessesPendingTrackers--;
-                        if (readProcessesPendingTrackers === 0) {
-                            targetExtractedBinaryImagesBuffers.sort((x, y) => x.idx - y.idx);
-                            instanceProductNode.images = targetExtractedBinaryImagesBuffers.map(o => o.data);
-                            instanceProductNode.image = instanceProductNode.images[0];
-                            saveProductNodeInstanceToArrayLedgers(instanceProductNode, idx);
-                        }
-                    };
-                    reader.readAsDataURL(inp.files[0]);
-                }
-            });
-
-            if (readProcessesPendingTrackers === 0) { saveProductNodeInstanceToArrayLedgers(instanceProductNode, idx); }
-        }
-
-        function saveProductNodeInstanceToArrayLedgers(node, idx) {
-            if (idx >= 0) { currentProducts[idx] = node; alert('Asset Node entry record updated successfully.'); } 
-            else { currentProducts.unshift(node); alert('New Frame asset appended safely to live catalog database.'); }
+            if (idx >= 0) { currentProducts[idx] = instanceProductNode; } 
+            else { currentProducts.unshift(instanceProductNode); }
+            
             syncStorage().then(() => {
                 renderAdminTable(); 
                 clearAdminAssetFormState();
+                alert('Product list updated and deployed.');
             });
         }
 
         function deleteProduct(index) {
-            if (confirm('Are you absolutely sure you want to delete this record?')) {
+            if (confirm('Are you sure you want to delete this?')) {
                 currentProducts.splice(index, 1); 
                 syncStorage().then(() => renderAdminTable());
             }
         }
 
-        function compileAndDownloadOrdersPDFManifest() {
-            const { jsPDF } = window.jspdf;
-            const doc = new jsPDF();
-            
-            doc.setFont("helvetica", "bold"); doc.setFontSize(16); doc.text("SCARLEX VENTURES - CENTRAL ORDERS LEDGER MANIFEST", 14, 20);
-            doc.setFont("helvetica", "normal"); doc.setFontSize(10); doc.text(`System Generation Timestamp: ${new Date().toLocaleString()} | Secure Merchant Router Active`, 14, 26);
-            
-            let startingVerticalOffsetAxis = 38;
-            doc.setFont("helvetica", "bold"); doc.setFontSize(10); doc.setTextColor(0);
-            doc.text("TXN ID", 14, startingVerticalOffsetAxis); doc.text("Product Artifact Item", 40, startingVerticalOffsetAxis);
-            doc.text("Customer", 95, startingVerticalOffsetAxis); doc.text("Destination City", 135, startingVerticalOffsetAxis);
-            doc.text("Net Price", 175, startingVerticalOffsetAxis);
-            
-            doc.setDrawColor(200); doc.line(14, startingVerticalOffsetAxis + 2, 195, startingVerticalOffsetAxis + 2);
-            startingVerticalOffsetAxis += 8;
-            
-            doc.setFont("helvetica", "normal"); doc.setFontSize(9);
-            activeOrdersLedger.forEach(order => {
-                if (startingVerticalOffsetAxis > 275) { doc.addPage(); startingVerticalOffsetAxis = 20; }
-                doc.text(String(order.orderId), 14, startingVerticalOffsetAxis);
-                doc.text(String(order.productName), 40, startingVerticalOffsetAxis);
-                doc.text(String(order.customerName), 95, startingVerticalOffsetAxis);
-                doc.text(`${order.city} (${order.pin})`, 135, startingVerticalOffsetAxis);
-                doc.text(`INR ${order.amount}`, 175, startingVerticalOffsetAxis);
-                startingVerticalOffsetAxis += 7;
-            });
-            
-            doc.save(`SCARLEX_ORDERS_MANIFEST_${Date.now()}.pdf`);
-        }
-
         window.addEventListener('DOMContentLoaded', () => {
-            /* Pull updated catalog from the network cloud before taking off loader screens */
             pullLiveGlobalDatabaseCatalog().then(() => {
                 const loader = document.getElementById('loading-screen');
                 if (loader) { loader.style.opacity = '0'; setTimeout(() => loader.remove(), 500); }
