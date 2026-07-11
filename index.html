@@ -1,89 +1,87 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SCARLEX VENTURES | Full System</title>
+    <title>SCARLEX VENTURES | Collection</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat&family=Poppins&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        body { background-color: #050505; color: #FFFFFF; font-family: 'Poppins', sans-serif; }
-        .glass-card { background: rgba(22, 22, 22, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.05); }
-        .heading-premium { font-family: 'Bebas Neue', sans-serif; letter-spacing: 0.1em; }
-        .fade-in-view { animation: fadeIn 0.4s ease-out forwards; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+        body { font-family: 'Poppins', sans-serif; background-color: #000; color: #fff; }
+        .glass-card { background: rgba(15, 15, 15, 0.9); border: 1px solid #222; backdrop-filter: blur(10px); }
+        .text-brand { color: #ef4444; }
+        .font-montserrat { font-family: 'Montserrat', sans-serif; }
     </style>
 </head>
-<body class="antialiased">
+<body>
 
-    <nav class="sticky top-0 z-40 bg-black/90 border-b border-zinc-900 p-4 flex justify-between items-center">
-        <div class="text-2xl heading-premium">SCARLEX <span class="text-red-600">VENTURES</span></div>
-        <div class="space-x-6 text-xs uppercase font-bold">
+    <!-- NAVIGATION -->
+    <nav class="sticky top-0 z-50 bg-black border-b border-zinc-800 p-4 flex justify-between items-center px-8">
+        <div class="text-xl font-bold tracking-widest cursor-pointer" onclick="navigateTo('home')">SCARLEX</div>
+        <div class="space-x-8 text-xs font-bold uppercase">
             <button onclick="navigateTo('home')" class="hover:text-red-500">Home</button>
             <button onclick="navigateTo('shop')" class="hover:text-red-500">Shop</button>
             <button onclick="navigateTo('admin')" class="hover:text-red-500">Admin</button>
         </div>
     </nav>
 
-    <main id="app-view-container" class="p-6"></main>
+    <main id="app-view-container" class="p-4 md:p-12"></main>
 
+    <!-- TEMPLATES -->
     <template id="view-home">
-        <div class="text-center py-20">
-            <h1 class="text-5xl heading-premium mb-6">PREMIUM 3D FRAMES</h1>
-            <div id="home-featured-products-grid" class="grid grid-cols-1 md:grid-cols-3 gap-6"></div>
+        <div class="max-w-6xl mx-auto text-center">
+            <h1 class="text-4xl md:text-6xl font-montserrat font-bold mb-12">EXQUISITE COLLECTIBLES</h1>
+            <div id="home-featured-products-grid" class="grid grid-cols-1 md:grid-cols-3 gap-8"></div>
         </div>
     </template>
 
     <template id="view-shop">
         <div class="max-w-6xl mx-auto">
-            <h1 class="text-3xl font-bold mb-8">CATALOG</h1>
+            <h1 class="text-2xl font-bold mb-8 uppercase">Catalog</h1>
             <div id="shop-catalog-grid" class="grid grid-cols-2 md:grid-cols-4 gap-6"></div>
         </div>
     </template>
 
     <template id="view-admin">
-        <div class="max-w-4xl mx-auto space-y-6">
-            <h2 class="text-xl font-bold">ADMIN CONSOLE</h2>
-            <div class="bg-zinc-900 p-6 rounded-lg space-y-4">
-                <input type="hidden" id="edit-prod-idx" value="-1">
-                <input type="text" id="admin-name" placeholder="Product Name" class="w-full bg-black p-2 border border-zinc-700">
-                <input type="number" id="admin-selling" placeholder="Price" class="w-full bg-black p-2 border border-zinc-700">
-                
-                <label class="block text-xs text-zinc-400">Upload Product Image (Small files only)</label>
-                <input type="file" id="admin-image-file" accept="image/*" class="w-full text-sm">
+        <div class="max-w-3xl mx-auto glass-card p-8 rounded-xl">
+            <h2 class="text-2xl font-montserrat font-bold mb-6">ADMIN INVENTORY</h2>
+            <div class="space-y-4 mb-10">
+                <input type="text" id="admin-name" placeholder="Item Name" class="w-full bg-zinc-900 border border-zinc-800 p-3 rounded">
+                <input type="number" id="admin-selling" placeholder="Price (INR)" class="w-full bg-zinc-900 border border-zinc-800 p-3 rounded">
+                <input type="file" id="admin-image-file" accept="image/*" class="w-full bg-zinc-900 border border-zinc-800 p-3 rounded text-sm">
                 <input type="hidden" id="admin-img-url">
-
-                <button onclick="handleDeployProduct()" class="bg-red-600 px-6 py-2 w-full font-bold uppercase">Save Product</button>
+                <button onclick="handleDeployProduct()" class="w-full bg-red-600 py-3 font-bold uppercase hover:bg-red-700 transition">Deploy Product</button>
             </div>
-            <table class="w-full text-left">
+            <table class="w-full text-left text-sm">
+                <thead><tr class="border-b border-zinc-800 text-zinc-500 uppercase"><th class="py-2">Item</th><th class="py-2">Price</th><th class="py-2">Action</th></tr></thead>
                 <tbody id="admin-inventory-table"></tbody>
             </table>
         </div>
     </template>
 
     <script>
-        const cloudVaultEndpointUrl = "https://api.jsonbin.io/v3/b/6a5281f0f5f4af5e2981a17b"; 
-        const cloudVaultMasterAccessKey = "$2a$10$DJChfscCUnBVaEIlRC97kOgBNhG8ZcaNJUIr0.IuZjFgVsDfJdUJi";
+        const BIN_ID = "6a5281f0f5f4af5e2981a17b";
+        const MASTER_KEY = "$2a$10$DJChfscCUnBVaEIlRC97kOgBNhG8ZcaNJUIr0.IuZjFgVsDfJdUJi";
         let currentProducts = [];
 
-        // File to Base64 logic
-        document.getElementById('admin-image-file').addEventListener('change', function(e) {
-            const file = e.target.files[0];
-            const reader = new FileReader();
-            reader.onloadend = () => { document.getElementById('admin-img-url').value = reader.result; };
-            if (file) reader.readAsDataURL(file);
+        // Image to Base64 Handler
+        document.addEventListener('change', (e) => {
+            if(e.target.id === 'admin-image-file') {
+                const reader = new FileReader();
+                reader.onload = () => { document.getElementById('admin-img-url').value = reader.result; };
+                if(e.target.files[0]) reader.readAsDataURL(e.target.files[0]);
+            }
         });
 
         async function syncStorage() {
-            await fetch(cloudVaultEndpointUrl, {
+            await fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}`, {
                 method: 'PUT',
-                headers: { 'Content-Type': 'application/json', 'X-Master-Key': cloudVaultMasterAccessKey },
+                headers: { 'Content-Type': 'application/json', 'X-Master-Key': MASTER_KEY },
                 body: JSON.stringify({ catalog: currentProducts })
             });
         }
 
-        function handleDeployProduct() {
+        async function handleDeployProduct() {
             const product = {
                 id: Date.now(),
                 name: document.getElementById('admin-name').value,
@@ -91,32 +89,43 @@
                 image: document.getElementById('admin-img-url').value
             };
             currentProducts.push(product);
-            syncStorage().then(() => { alert("Saved!"); navigateTo('admin'); });
+            await syncStorage();
+            alert("Artifact Deployed.");
+            navigateTo('admin');
         }
 
         function navigateTo(viewId) {
             const container = document.getElementById('app-view-container');
             container.innerHTML = document.getElementById(`view-${viewId}`).innerHTML;
-            
-            // Logic to populate grids
+
             if(viewId === 'home' || viewId === 'shop') {
                 const grid = document.getElementById(viewId === 'home' ? 'home-featured-products-grid' : 'shop-catalog-grid');
                 grid.innerHTML = currentProducts.map(p => `
-                    <div class="glass-card p-4 rounded"><img src="${p.image}" class="w-full h-40 object-cover mb-2"><h3 class="font-bold">${p.name}</h3><p class="text-red-500">₹${p.sellingPrice}</p></div>
+                    <div class="glass-card p-4 rounded-xl border border-zinc-800">
+                        <img src="${p.image}" class="w-full h-48 object-cover rounded mb-4">
+                        <h3 class="font-bold">${p.name}</h3>
+                        <p class="text-brand">₹${p.sellingPrice}</p>
+                    </div>
                 `).join('');
-            }
-            if(viewId === 'admin') {
+            } else if(viewId === 'admin') {
                 document.getElementById('admin-inventory-table').innerHTML = currentProducts.map((p, i) => `
-                    <tr><td class="p-2">${p.name}</td><td class="p-2"><button onclick="deleteProd(${i})" class="text-red-500">Delete</button></td></tr>
+                    <tr class="border-b border-zinc-800">
+                        <td class="py-4">${p.name}</td>
+                        <td class="py-4">₹${p.sellingPrice}</td>
+                        <td class="py-4"><button onclick="deleteProduct(${i})" class="text-zinc-500 hover:text-red-500">Delete</button></td>
+                    </tr>
                 `).join('');
             }
         }
 
-        function deleteProd(i) { currentProducts.splice(i, 1); syncStorage().then(() => navigateTo('admin')); }
+        async function deleteProduct(i) {
+            currentProducts.splice(i, 1);
+            await syncStorage();
+            navigateTo('admin');
+        }
 
-        // Boot
         window.onload = async () => {
-            const res = await fetch(`${cloudVaultEndpointUrl}/latest`, { headers: {'X-Master-Key': cloudVaultMasterAccessKey} });
+            const res = await fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}/latest`, { headers: {'X-Master-Key': MASTER_KEY} });
             const data = await res.json();
             currentProducts = data.record.catalog || [];
             navigateTo('home');
